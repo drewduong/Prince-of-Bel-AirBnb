@@ -5,6 +5,21 @@ const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const router = express.Router();
 
+
+// Restore session user
+router.get(
+  '/',
+  restoreUser,
+  (req, res) => {
+    const { user } = req;
+    if (user) {
+      return res.json({
+        user: user.toSafeObject()
+      });
+    } else return res.json({});
+  }
+);
+
 //Next, add the POST /api/session route to the router using an asynchronous route handler. 
 // Log in
 router.post(
@@ -39,5 +54,7 @@ router.delete(
     return res.json({ message: 'success' });
   }
 );
+
+
 
 module.exports = router;

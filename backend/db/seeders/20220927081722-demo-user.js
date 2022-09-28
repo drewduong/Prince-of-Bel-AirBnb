@@ -14,21 +14,41 @@ module.exports = {
      * }], {});
     */
     await queryInterface.bulkInsert('Users', [
-      {
-        email: 'demo@user.io',
+      { //1
+        firstName: 'Henry',
+        lastName: 'Jones',
         username: 'Demo-lition',
+        email: 'demo@user.io',
         hashedPassword: bcrypt.hashSync('password')
       },
-      {
-        email: 'user1@user.io',
+      { //2
+        firstName: 'Jessica',
+        lastName: 'Pham',
         username: 'FakeUser1',
+        email: 'user1@user.io',
         hashedPassword: bcrypt.hashSync('password2')
       },
-      {
-        email: 'user2@user.io',
+      { //3
+        firstName: 'Patrick',
+        lastName: 'Hanes',
         username: 'FakeUser2',
+        email: 'user2@user.io',
         hashedPassword: bcrypt.hashSync('password3')
-      }
+      },
+      { //4
+        firstName: 'Penguin',
+        lastName: 'Poker',
+        username: 'PokerChampion99',
+        email: 'pokerstar@worldstar.com',
+        hashedPassword: bcrypt.hashSync('password4')
+      },
+      { //5
+        firstName: 'Lemon',
+        lastName: 'Zest',
+        username: 'Baking4Life',
+        email: 'lzest@gmail.com',
+        hashedPassword: bcrypt.hashSync('password5')
+      },
     ], {});
   },
 
@@ -40,7 +60,8 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     await queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
+      //added other usernames
+      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2', 'PokerChampion99', 'Baking4Life'] }
     }, {});
   }
 };

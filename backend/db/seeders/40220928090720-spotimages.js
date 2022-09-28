@@ -11,7 +11,7 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */S
+    */
     await queryInterface.bulkInsert('SpotImages', [
       {
         spotId: 5,

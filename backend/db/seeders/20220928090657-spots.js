@@ -61,6 +61,18 @@ module.exports = {
         description: 'No place else like this',
         price: 49.99
       },
+      {
+        ownerId: 5,
+        address: '1250 Pepper Dr',
+        city: 'San Diego',
+        state: 'California',
+        country: 'United States of America',
+        lat: 12.154784,
+        lng: 17.579254,
+        name: 'Leave Your Hometown Now',
+        description: 'Discoveer the best San Diego has to offer here in this lovely place',
+        price: 112.47
+      },
     ], {});
 
   },

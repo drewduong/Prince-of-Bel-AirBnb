@@ -14,7 +14,9 @@ module.exports = {
         //added references
         references: {
           model: 'Spots'
-        }
+        },
+        //added ondelete cascade
+        onDelete: 'CASCADE'
       },
       url: {
         type: Sequelize.STRING

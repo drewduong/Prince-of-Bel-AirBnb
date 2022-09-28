@@ -14,14 +14,18 @@ module.exports = {
         //added references
         references: {
           model: 'Spots'
-        }
+        },
+        //added ondelete cascade
+        onDelete: 'CASCADE'
       },
       userId: {
         type: Sequelize.INTEGER,
         //added references
         references: {
           model: 'Users'
-        }
+        },
+        //added ondelete cascade
+        onDelete: 'CASCADE'
       },
       startDate: {
         type: Sequelize.DATE

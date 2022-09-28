@@ -14,7 +14,9 @@ module.exports = {
         //added references
         references: {
           model: 'Users'
-        }
+        },
+        //added ondelete cascade
+        onDelete: 'CASCADE'
       },
       address: {
         type: Sequelize.STRING

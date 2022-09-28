@@ -3,6 +3,31 @@
     "bcryptjs": "^2.4.3",
     "express": "^4.18.1",
     "express-validator": "^6.14.2",
+    "pg": "^8.8.0",
     "validator": "^13.7.0"
-  }
+  },
+  "name": "authenticate-me",
+  "description": "## Database Schema Design",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "npm --prefix backend install backend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drewduong/Prince-of-Bel-AirBnb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drewduong/Prince-of-Bel-AirBnb/issues"
+  },
+  "homepage": "https://github.com/drewduong/Prince-of-Bel-AirBnb#readme"
 }

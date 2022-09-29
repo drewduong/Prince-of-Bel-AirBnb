@@ -10,7 +10,7 @@ router.use('/api', apiRouter);
 
 // ...
 
-//TEST ROUTE - commented out bc we're not using this test route for now
+// TEST ROUTE - commented out bc we're not using this test route for now
 // router.get('/hello/world', function (req, res) {
 //   res.cookie('XSRF-TOKEN', req.csrfToken());
 //   res.send('Hello World!');

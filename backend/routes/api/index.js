@@ -10,6 +10,8 @@ const { restoreUser } = require("../../utils/auth.js");
 router.use(restoreUser);
 
 
+
+
 //Connect all the routers exported from these two files in the index.js file nested in the backend/routes/api folder. Make sure to connect the routers AFTER the restoreUser middleware is connected.
 router.use('/session', sessionRouter);
 

@@ -12,7 +12,6 @@ const { User, Spot, SpotImage, Review } = require('../../db/models')
 //GET ALL SPOTS 
 //GET /api/spots
 router.get('/', async (req, res) => {
-  //allSpots is an array, so we need to do .toJSON() to be able to manipulate
   const allSpots = await Spot.findAll({
     include: [
       { model: Review, attributes: [] },

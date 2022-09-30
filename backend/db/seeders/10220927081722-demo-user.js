@@ -1,4 +1,5 @@
 'use strict';
+const { Op } = require('sequelize')
 //added to use bcrypt
 const bcrypt = require("bcryptjs");
 

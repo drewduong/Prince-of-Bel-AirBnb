@@ -67,15 +67,16 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
   const spotId = req.params.spotId
   //finding id of the user who's logged in, and which spot he owns
   const spotById = await Spot.findByPk(spotId)
-  const ownerId = spotById.ownerId
+  console.log('spot by id: ', spotById)
+  // const ownerId = spotById.ownerId
 
-  if (ownerId !== userId) {
-    res.status(404)
-    res.json({
-      "message": "Spot couldn't be found",
-      "statusCode": 404
-    })
-  }
+  // if (ownerId !== userId) {
+  //   res.status(404)
+  //   res.json({
+  //     "message": "Spot couldn't be found",
+  //     "statusCode": 404
+  //   })
+  // }
 
   if (!spotById) {
     res.status(404)
@@ -97,26 +98,29 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
   }
 })
 
-// //[AUTHENTICATION NEEDED]
-//GET ALL SPOTS OWNED BY CURRENT USER //GET /api/spots/current
-// router.get('/current', requireAuth, async (req, res) => {
-//   const allSpots = await Spot.findAll({
-//     include: [
-//       { model: Review, attributes: [] },
-//       { model: SpotImage, attributes: [] }
-//     ],
-//     attributes: {
-//       include: [
-//         [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgRating'],
-//         [sequelize.col('SpotImages.url'), 'previewImage']
-//       ]
-//     },
-//     raw: true,
-//     group: ['Spot.id']
-//   })
-//   res.status(200)
-//   res.json({ Spots: allSpots })
-// })
+//[AUTHENTICATION NEEDED]
+// GET ALL SPOTS OWNED BY CURRENT USER 
+// GET /api/spots/current
+router.get('/current', requireAuth, async (req, res) => {
+  const allSpots = await Spot.findAll({
+    include: [
+      { model: User, attributes: [] },
+      { model: Review, attributes: [] },
+      { model: SpotImage, attributes: [] }
+    ],
+    attributes: {
+      include: [
+        [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgRating'],
+        [sequelize.col('SpotImages.url'), 'previewImage']
+      ]
+    },
+    raw: true,
+    group: ['Spot.id']
+  })
+  res.status(200)
+  res.json({ Spots: allSpots })
+})
+
 
 //[NO AUTHENTICATION]
 //GET DETAILS OF A SPOT FROM AN ID //GET api/spots/:spotId

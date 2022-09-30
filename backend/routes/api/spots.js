@@ -30,10 +30,10 @@ router.get('/', async (req, res) => {
   res.json({ Spots: allSpots })
 })
 
-// [NO AUTHENTICATION, YES VALIDATION]
+// [AUTHENTICATION REQUIRED, YES VALIDATION]
 // CREATE A SPOT 
 // POST /api/spots
-router.post('/', [requireAuth], async (req, res) => {
+router.post('/', requireAuth, async (req, res) => {
   const { address, city, state, country, lat, lng, name, description, price } = req.body
   //finding id of the user who's logged in 
   const user = await User.findOne({
@@ -123,9 +123,23 @@ router.get('/current', requireAuth, async (req, res) => {
 
 
 //[NO AUTHENTICATION]
-//GET DETAILS OF A SPOT FROM AN ID //GET api/spots/:spotId
+// // GET DETAILS OF A SPOT FROM AN ID //GET api/spots/:spotId
 // router.get('/:spotId', async (req, res) => {
-//   const spotById = await Spot.findByPk(req.params.spotId)
+//   const spotById = await Spot.findByPk(req.params.spotId, {
+//     include: [
+//       { model: User, attributes: [] },
+//       { model: Review, attributes: [] },
+//       { model: SpotImage, attributes: ['id', 'url', 'preview'] }
+//     ],
+//     attributes: {
+//       include: [
+//         [sequelize.fn('COUNT', sequelize.col('Reviews.id')), 'numReviews']
+//         [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgStarRating']
+//       ]
+//     },
+//     raw: true,
+//     group: ['Spot.id', 'SpotImages.url']
+//   })
 
 //   if (!spotById) {
 //     res.status(404)
@@ -138,6 +152,65 @@ router.get('/current', requireAuth, async (req, res) => {
 //     res.json(spotById)
 //   }
 // })
+
+//[AUTHENTICATION NEEDED, VALIDATION NEEDED] - Spot must belong to the current user
+//EDIT A SPOT //POST  /api/spots/:spotId
+router.put('/:spotId', requireAuth, async (req, res) => {
+  const { address, city, state, country, lat, lng, name, description, price } = req.body
+
+  const user = await User.findOne({
+    where: {
+      id: req.user.id
+    }
+  })
+
+  const spotById = await Spot.findByPk(req.params.spotId)
+
+  if (!spotById) {
+    res.status(404)
+    res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  } else {
+    spotById.update({
+      //added ownerid
+      ownerId: user.id,
+      address: address,
+      city: city,
+      state: state,
+      country: country,
+      lat: lat,
+      lng: lng,
+      name: name,
+      description: description,
+      price: price
+    })
+    res.status(200)
+    res.json(spotById)
+  }
+})
+
+//[AUTHENTICATION NEEDED] - Spot must belong to the current user
+//DELETE A SPOT //DELETE /api/spots/:spotId
+router.delete('/:spotId', requireAuth, async (req, res) => {
+  const spotById = await Spot.findByPk(req.params.spotId)
+
+  if (!spotById) {
+    res.status(404)
+    res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  } else {
+    spotById.destroy()
+    res.status(200)
+    res.json({
+      "message": "Successfully deleted",
+      "statusCode": 200
+    })
+  }
+})
 
 
 module.exports = router;

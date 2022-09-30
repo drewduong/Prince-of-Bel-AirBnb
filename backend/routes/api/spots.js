@@ -31,33 +31,33 @@ router.get('/', async (req, res) => {
   res.json({ Spots: allSpots })
 })
 
-//[NO AUTHENTICATION, YES VALIDATION]
-//CREATE A SPOT 
-//POST /api/spots
-// router.post('/', [requireAuth], async (req, res) => {
-//   const { address, city, state, country, lat, lng, name, description, price } = req.body
-//   //finding id of the user who's logged in 
-//   const user = await User.findOne({
-//     where: {
-//       id: req.user.id
-//     }
-//   })
-//   const newSpot = await Spot.create({
-//     //added ownerId
-//     ownerId: user.id,
-//     address: address,
-//     city: city,
-//     state: state,
-//     country: country,
-//     lat: lat,
-//     lng: lng,
-//     name: name,
-//     description: description,
-//     price: price
-//   })
-//   res.status(201)
-//   res.json(newSpot)
-// })
+// [NO AUTHENTICATION, YES VALIDATION]
+// CREATE A SPOT 
+// POST /api/spots
+router.post('/', [requireAuth], async (req, res) => {
+  const { address, city, state, country, lat, lng, name, description, price } = req.body
+  //finding id of the user who's logged in 
+  const user = await User.findOne({
+    where: {
+      id: req.user.id
+    }
+  })
+  const newSpot = await Spot.create({
+    //added ownerId
+    ownerId: user.id,
+    address: address,
+    city: city,
+    state: state,
+    country: country,
+    lat: lat,
+    lng: lng,
+    name: name,
+    description: description,
+    price: price
+  })
+  res.status(201)
+  res.json(newSpot)
+})
 
 //[AUTHENTICATION NEEDED] - Spot must belong to the current user
 //CREATE AN IMAGE FOR A SPOT BASED ON SPOT'S ID 

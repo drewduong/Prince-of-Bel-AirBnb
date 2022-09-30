@@ -63,8 +63,19 @@ router.post('/', [requireAuth], async (req, res) => {
 // POST /api/spots/:spotId/images
 router.post('/:spotId/images', requireAuth, async (req, res) => {
   const { url, preview } = req.body
-  //finding id of the user who's logged in
-  const spotById = await User.findByPk(req.params.spotId)
+  const userId = req.user.id
+  const spotId = req.params.spotId
+  //finding id of the user who's logged in, and which spot he owns
+  const spotById = await Spot.findByPk(spotId)
+  const ownerId = spotById.ownerId
+
+  if (ownerId !== userId) {
+    res.status(404)
+    res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
 
   if (!spotById) {
     res.status(404)

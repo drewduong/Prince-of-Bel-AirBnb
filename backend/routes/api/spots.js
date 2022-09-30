@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
       ]
     },
     raw: true,
-    group: ['Spot.id']
+    group: ['Spot.id', 'SpotImages.url']
   })
   res.status(200)
   res.json({ Spots: allSpots })

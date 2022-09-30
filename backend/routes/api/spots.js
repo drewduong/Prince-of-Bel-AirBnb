@@ -58,33 +58,33 @@ router.post('/', [requireAuth], async (req, res) => {
   res.json(newSpot)
 })
 
-//[AUTHENTICATION NEEDED] - Spot must belong to the current user
-//CREATE AN IMAGE FOR A SPOT BASED ON SPOT'S ID 
-//POST /api/spots/:spotId/images
-// router.post('/:spotId/images', requireAuth, async (req, res) => {
-//   const { url, preview } = req.body
-//   //finding id of the user who's logged in
-//   const spotById = await User.findByPk(req.params.spotId)
+// [AUTHENTICATION NEEDED] - Spot must belong to the current user
+// CREATE AN IMAGE FOR A SPOT BASED ON SPOT'S ID 
+// POST /api/spots/:spotId/images
+router.post('/:spotId/images', requireAuth, async (req, res) => {
+  const { url, preview } = req.body
+  //finding id of the user who's logged in
+  const spotById = await User.findByPk(req.params.spotId)
 
-//   if (!spotById) {
-//     res.status(404)
-//     res.json({
-//       "message": "Spot couldn't be found",
-//       "statusCode": 404
-//     })
-//   } else {
-//     const newImage = await SpotImage.create({
-//       url: url,
-//       preview: preview
-//     })
-//     res.status(200)
-//     res.json({
-//       id: newImage.id,
-//       url: newImage.url,
-//       preview: newImage.preview
-//     })
-//   }
-// })
+  if (!spotById) {
+    res.status(404)
+    res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  } else {
+    const newImage = await SpotImage.create({
+      url: url,
+      preview: preview
+    })
+    res.status(200)
+    res.json({
+      id: newImage.id,
+      url: newImage.url,
+      preview: newImage.preview
+    })
+  }
+})
 
 // //[AUTHENTICATION NEEDED]
 //GET ALL SPOTS OWNED BY CURRENT USER //GET /api/spots/current

@@ -20,6 +20,10 @@ const validateLogin = [
   handleValidationErrors
 ];
 
+//require authentication
+const { requireAuth } = require('../../utils/auth')
+
+
 // Restore session user
 router.get(
   '/',
@@ -35,14 +39,16 @@ router.get(
 );
 
 //Next, add the POST /api/session route to the router using an asynchronous route handler. 
-// Log in
+//LOG IN A USER //POST /api/session
 router.post(
   '/',
-  validateLogin,
+  //added requireAuth
+  requireAuth, validateLogin,
   async (req, res, next) => {
-    const { credential, password } = req.body;
+    const { credential, password, token } = req.body;
 
     const user = await User.login({ credential, password });
+    const userTest = await User.find
 
     if (!user) {
       const err = new Error('Login failed');
@@ -55,7 +61,7 @@ router.post(
     await setTokenCookie(res, user);
 
     return res.json({
-      user
+      user: user
     });
   }
 );

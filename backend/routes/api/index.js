@@ -1,5 +1,6 @@
 // backend/routes/api/index.js
 const router = require('express').Router();
+const spotsRouter = require('./spots.js');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const { restoreUser } = require("../../utils/auth.js");
@@ -9,8 +10,7 @@ const { restoreUser } = require("../../utils/auth.js");
 // If current user session is not valid, set req.user to null
 router.use(restoreUser);
 
-
-
+router.use('/spots', spotsRouter)
 
 //Connect all the routers exported from these two files in the index.js file nested in the backend/routes/api folder. Make sure to connect the routers AFTER the restoreUser middleware is connected.
 router.use('/session', sessionRouter);

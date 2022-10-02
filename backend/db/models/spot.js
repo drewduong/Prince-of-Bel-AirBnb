@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Spot.belongsTo(models.User, { foreignKey: 'ownerId' }) //check if this should be through or multiple models.User
+      Spot.belongsTo(models.User, { foreignKey: 'ownerId' })
       Spot.belongsToMany(models.User, { through: models.Booking })
       Spot.hasMany(models.Review, { foreignKey: 'spotId' })
       Spot.hasMany(models.SpotImage, { foreignKey: 'spotId' })

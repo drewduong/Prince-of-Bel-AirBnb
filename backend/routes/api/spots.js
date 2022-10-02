@@ -9,9 +9,6 @@ const { requireAuth } = require('../../utils/auth')
 const { User, Spot, SpotImage, Review, Booking } = require('../../db/models')
 
 
-
-
-
 // Edit a spot
 router.put('/:spotId', requireAuth, async (req, res) => {
   const { address, city, state, country, lat, lng, name, description, price } = req.body

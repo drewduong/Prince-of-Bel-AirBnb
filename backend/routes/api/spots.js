@@ -9,7 +9,42 @@ const { requireAuth } = require('../../utils/auth')
 const { User, Spot, SpotImage, Review, Booking } = require('../../db/models')
 
 
+// Create a review for a spot based on the spot's id
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+  const { review, stars } = req.body
+  const spot = await Spot.findByPk(req.params.spotId)
 
+  if (!spot) {
+    res.status(404)
+    return res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  const existingReview = await Review.findByPk(req.params.spotId, {
+    where: {
+      userId: req.user.id
+    }
+  })
+
+  if (existingReview) {
+    res.status(403)
+    return res.json({
+      "message": "User already has a review for this spot",
+      "statusCode": 403
+    })
+  } else {
+    const newReview = await Review.create({
+      userId: req.user.id,
+      spotId: spot.id,
+      review: review,
+      stars: stars
+    })
+    res.status(201)
+    return res.json(newReview)
+  }
+})
 
 
 // Edit a spot
@@ -262,17 +297,16 @@ router.get('/:spotId', async (req, res) => {
 
   let avgReview = reviewsAVG[0]
   let avgReviewObj = avgReview.toJSON()
+  let avgReviewNum = Number(avgReviewObj.avgStarRating).toFixed(1)
 
   const spotObj = spot.toJSON()
-  spotObj.numReviews = reviewCountObj.numReviews
-  spotObj.avgStarRating = Number(avgReviewObj.avgStarRating).toFixed(1)
+  spotObj.numReviews = Number(reviewCountObj.numReviews)
+  spotObj.avgStarRating = avgReviewNum
   spotObj.SpotImages = image.SpotImages
   spotObj.Owner = owner.User
 
-
   res.status(200)
   return res.json(spotObj)
-
 })
 
 // Get all spots

@@ -8,6 +8,8 @@ const { requireAuth } = require('../../utils/auth')
 //import model needed
 const { User, Spot, SpotImage, Review } = require('../../db/models')
 
+
+
 //[AUTHENTICATION NEEDED]
 //GET ALL REVIEWS OF THE CURRENT USER //GET /api/reviews/current
 // router.get('/current', requireAuth, async (req, res) => {

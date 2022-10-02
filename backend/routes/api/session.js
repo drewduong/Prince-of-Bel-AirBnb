@@ -24,48 +24,38 @@ const validateLogin = [
 const { requireAuth } = require('../../utils/auth')
 
 
-// Restore session user
-router.get(
-  '/',
-  restoreUser,
-  (req, res) => {
-    const { user } = req;
-    if (user) {
-      return res.json({
-        user: user.toSafeObject()
-      });
-    } else return res.json({});
-  }
+// Get current user
+router.get('/', restoreUser, (req, res) => {
+  const { user } = req;
+  if (user) {
+    res.status(200)
+    res.json(user);
+  } else return res.json(null);
+}
 );
 
-//Next, add the POST /api/session route to the router using an asynchronous route handler. 
-//LOG IN A USER //POST /api/session
-router.post(
-  '/',
-  //added requireAuth
-  requireAuth, validateLogin,
-  async (req, res, next) => {
-    const { credential, password, token } = req.body;
+// Login a user
+router.post('/', validateLogin, async (req, res, next) => {
+  const { credential, password } = req.body;
 
-    const user = await User.login({ credential, password });
-    const userTest = await User.find
+  const user = await User.login({ credential, password });
 
-    if (!user) {
-      const err = new Error('Login failed');
-      err.status = 401;
-      err.title = 'Login failed';
-      err.errors = ['The provided credentials were invalid.'];
-      return next(err);
-    }
-
-    await setTokenCookie(res, user);
-
-    return res.json({
-      user: user
-    });
+  if (!user) {
+    res.status(401)
+    res.json({
+      "message": "Invalid credentials",
+      "statusCode": 401
+    })
   }
+
+  const userTranslated = user.toJSON()
+  const token = await setTokenCookie(res, user);
+  userTranslated.token = token
+
+  res.json(userTranslated);
+}
 );
-//The DELETE /api/session logout route will remove the token cookie from the response and return a JSON success message.
+
 // Log out
 router.delete(
   '/',

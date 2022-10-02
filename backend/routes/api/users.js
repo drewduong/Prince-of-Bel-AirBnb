@@ -31,19 +31,51 @@ const validateSignup = [
 
 //Next, add the POST /api/users route to the router using an asynchronous route handler.
 // Sign up
-router.post(
-  '/',
-  validateSignup,
-  async (req, res) => {
-    const { firstName, lastName, email, password, username } = req.body;
-    const user = await User.signup({ firstName, lastName, email, username, password });
+router.post('/', validateSignup, async (req, res) => {
+  const { firstName, lastName, email, password, username } = req.body;
 
-    await setTokenCookie(res, user);
+  const existingEmail = await User.findOne({
+    where: {
+      email
+    }
+  })
 
-    return res.json({
-      user
-    });
+  const existingUsername = await User.findOne({
+    where: {
+      username
+    }
+  })
+
+  if (existingEmail) {
+    res.status(403)
+    res.json({
+      "message": "User already exists",
+      "statusCode": 403,
+      "errors": {
+        "email": "User with that email already exists"
+      }
+    })
   }
+
+  if (existingUsername) {
+    res.status(403)
+    res.json({
+      "message": "User already exists",
+      "statusCode": 403,
+      "errors": {
+        "username": "User with that username already exists"
+      }
+    })
+  }
+
+  const user = await User.signup({ firstName, lastName, email, username, password });
+  const userTranslated = user.toJSON()
+  const token = await setTokenCookie(res, user);
+
+  userTranslated.token = token
+
+  res.json(userTranslated);
+}
 );
 
 module.exports = router;

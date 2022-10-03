@@ -37,7 +37,7 @@ module.exports = {
       {
         spotId: 1,
         url: 'googledrive.com/h453h',
-        preview: true
+        preview: false
       },
     ], {});
 

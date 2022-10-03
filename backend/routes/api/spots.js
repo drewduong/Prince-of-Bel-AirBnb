@@ -215,7 +215,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     })
   }
 
-  const bookings = await Booking.findAll({
+  const bookings = await Booking.findOne({
     where: {
       spotId: spot.id
     }

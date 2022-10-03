@@ -45,29 +45,35 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
   })
 })
 
+// Get all reviews of the current user
+router.get('/current', requireAuth, async (req, res) => {
+  let results = []
+  const reviews = await Review.findAll({
+    where: {
+      userId: req.user.id
+    },
+    include: [
+      { model: User, attributes: ['id', 'firstName', 'lastName'] },
+      { model: Spot, attributes: { exclude: ['createdAt', 'updatedAt', 'description'] } },
+      { model: ReviewImage, attributes: ['id', 'url'] }
+    ],
+  })
 
+  for (let review of reviews) {
+    const previewImage = await SpotImage.findByPk(review.id, {
+      where: {
+        preview: true
+      },
+      attributes: ['url']
+    })
 
+    let reviewObj = review.toJSON()
+    reviewObj.Spot.previewImage = previewImage.url
+    results.push(reviewObj)
+  }
 
-//[AUTHENTICATION NEEDED]
-//GET ALL REVIEWS OF THE CURRENT USER //GET /api/reviews/current
-// router.get('/current', requireAuth, async (req, res) => {
-//   const allReviews = await Review.findAll({
-//     where: {
-//       userId: req.user.id
-//     },
-//     include: [
-//       { model: ReviewImage, attributes: ['id', 'url'] },
-//       { model: Spot },
-//       { model: SpotImage }
-//     ],
-//     attributes: {
-//       include: [
-
-//       ]
-//     }
-//   })
-//   res.status(200)
-//   res.json({ Reviews: allReviews })
-// })
+  res.status(200)
+  return res.json({ Reviews: results })
+})
 
 module.exports = router;

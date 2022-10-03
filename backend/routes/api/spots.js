@@ -4,6 +4,7 @@ const router = express.Router();
 
 //require authme and validate create spot
 const { requireAuth } = require('../../utils/auth')
+const { Op } = require('sequelize');
 
 //import model needed
 const { User, Spot, SpotImage, Review, Booking, ReviewImage, sequelize } = require('../../db/models')

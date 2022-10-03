@@ -30,19 +30,19 @@ module.exports = {
         spotId: 3,
         userId: 3,
         review: 'Extremely loud and owner was found sneaking in the back',
-        stars: 1
+        stars: 2
       },
       {
         spotId: 2,
         userId: 4,
         review: 'Would definitely recommend to other friends. Lovely stay',
-        stars: 4
+        stars: 3
       },
       {
         spotId: 1,
         userId: 5,
         review: 'I am speechless this listing is even allowed to be on here',
-        stars: 0
+        stars: 5
       }
     ], {});
 

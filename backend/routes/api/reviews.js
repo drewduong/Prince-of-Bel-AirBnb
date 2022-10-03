@@ -8,6 +8,31 @@ const { requireAuth } = require('../../utils/auth')
 //import model needed
 const { User, Spot, SpotImage, Review, ReviewImage } = require('../../db/models')
 
+// Delete a review
+router.delete('/:reviewId', requireAuth, async (req, res) => {
+  const review = Review.findByPk(req.params.reviewId, {
+    where: {
+      userId: req.user.id
+    }
+  })
+
+  if (!review) {
+    res.status(404)
+    return res.json({
+      "message": "Review couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  await review.destroy()
+
+  res.status(200)
+  return res.json({
+    "message": "Successfully deleted",
+    "statusCode": 200
+  })
+})
+
 // Add an image to a review based on the review's id
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
   const { url } = req.body

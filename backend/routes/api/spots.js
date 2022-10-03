@@ -383,7 +383,44 @@ router.get('/:spotId', async (req, res) => {
 
 // Get all spots
 router.get('/', async (req, res) => {
-  const spots = await Spot.findAll()
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
+
+  let pagination = {}
+
+  page = parseInt(page)
+  size = parseInt(size)
+
+  if (isNaN(page) || !page) page = 1
+  if (isNaN(size) || !size) size = 20
+  if (size > 20) size = 20
+  if (page > 10) page = 10
+
+  if (page > 0 && size > 0) {
+    pagination.limit = size
+    pagination.offset = (page - 1) * size
+  }
+
+  if (size <= 0 || page <= 0 || minPrice <= 0 || maxPrice <= 0) {
+    res.status(400)
+    return res.json({
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "page": "Page must be greater than or equal to 1",
+        "size": "Size must be greater than or equal to 1",
+        "maxLat": "Maximum latitude is invalid",
+        "minLat": "Minimum latitude is invalid",
+        "minLng": "Maximum longitude is invalid",
+        "maxLng": "Minimum longitude is invalid",
+        "minPrice": "Maximum price must be greater than or equal to 0",
+        "maxPrice": "Minimum price must be greater than or equal to 0"
+      }
+    })
+  }
+
+  const spots = await Spot.findAll({
+    ...pagination
+  })
 
   let results = []
   for (let spot of spots) {
@@ -415,7 +452,7 @@ router.get('/', async (req, res) => {
 
   }
   res.status(200)
-  return res.json({ Spots: results })
+  return res.json({ Spots: results, page, size })
 })
 
 module.exports = router;

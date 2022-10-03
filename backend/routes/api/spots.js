@@ -444,10 +444,11 @@ router.get('/', async (req, res) => {
 
     let spotObj = spot.toJSON()
 
-    if (!image) {
+    if (image.url === null) {
       spotObj.previewImage = 'Preview image does not exist'
+    } else {
+      spotObj.previewImage = image.url
     }
-    spotObj.previewImage = image.url
 
     let reviewsNum = Number(reviews[0].avgRating).toFixed(1)
     spotObj.avgRating = reviewsNum

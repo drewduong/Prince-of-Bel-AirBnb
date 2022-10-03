@@ -8,6 +8,69 @@ const { requireAuth } = require('../../utils/auth')
 //import model needed
 const { User, Spot, SpotImage, Review, Booking, ReviewImage } = require('../../db/models')
 
+// Delete a spot
+router.delete('/:spotId', requireAuth, async (req, res) => {
+  const spot = Spot.findByPk(req.params.spotId, {
+    where: {
+      ownerId: req.user.id
+    }
+  })
+
+  if (!spot) {
+    res.status(404)
+    return res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  await spot.destroy()
+
+  res.status(200)
+  return res.json({
+    "message": "Successfully deleted",
+    "statusCode": 200
+  })
+})
+
+// Get all bookings for a spot based on the spot's id
+router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+  const spot = await Spot.findByPk(req.params.spotId)
+
+  if (!spot) {
+    res.status(404)
+    return res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  if (req.user.id !== spot.ownerId) {
+    const bookings = await Booking.findAll({
+      where: {
+        spotId: spot.id
+      },
+      attributes: ['spotId', 'startDate', 'endDate']
+    })
+    res.status(200)
+    res.json({ Bookings: bookings })
+  }
+
+  if (req.user.id === spot.ownerId) {
+
+    const bookings = await Booking.findAll({
+      where: {
+        spotId: req.params.spotId
+      },
+      include: [
+        { model: User, attributes: ['id', 'firstName', 'lastName'] }
+      ]
+    })
+
+    res.status(200)
+    return res.json({ Bookings: bookings })
+  }
+})
 
 // Get all reviews by a spot's id
 router.get('/:spotId/reviews', async (req, res) => {

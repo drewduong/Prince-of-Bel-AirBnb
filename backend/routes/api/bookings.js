@@ -6,24 +6,119 @@ const sequelize = require('sequelize') //double check if we need this
 const { requireAuth } = require('../../utils/auth')
 
 //import model needed
-const { User, Spot, SpotImage, Review } = require('../../db/models')
+const { User, Spot, SpotImage, Review, Booking } = require('../../db/models')
 
+// Delete a booking
+router.delete('/:bookingId', requireAuth, async (req, res) => {
+  const booking = await Booking.findByPk(req.params.bookingId)
 
-//[AUTHENTICATION NEEDED]
-//GET ALL OF THE CURRENT USER'S BOOKINGS
-//GET /api/bookings/current
-// router.get('/current', requireAuth, async(req, res) => {
-//   const allBookings = await Booking.findAll({
-//     where: {
-//       userId: req.user.id
-//     }
-//   })
-// })
+  if (!booking) {
+    res.status(404)
+    return res.json({
+      "message": "Booking couldn't be found",
+      "statusCode": 404
+    })
+  }
 
+  await booking.destroy()
 
-//AUTHENTICATION NEEDED
-//GET ALL BOOKINGS FOR SPOT BASED ON THE SPOT'S ID
-//GET /api/spots/:spotId/bookings
+  res.status(200)
+  return res.json({
+    "message": "Successfully deleted",
+    "statusCode": 200
+  })
+})
+
+// Edit a booking
+router.put('/:bookingId', requireAuth, async (req, res) => {
+  const { startDate, endDate } = req.body
+  const booking = await Booking.findByPk(req.params.bookingId, {
+    where: {
+      userId: req.user.id
+    }
+  })
+
+  if (!booking) {
+    res.status(404)
+    return res.json({
+      "message": "Booking couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  if (!startDate || !endDate || endDate <= startDate) {
+    res.status(400)
+    return res.json({
+      "message": "Validation error",
+      "statusCode": 400,
+      "errors": {
+        "endDate": "endDate cannot be on or before startDate"
+      }
+    })
+  }
+
+  let date = new Date()
+
+  if (booking.endDate < date) {
+    res.status(403)
+    return res.json({
+      "message": "Past bookings can't be modified",
+      "statusCode": 403
+    })
+  }
+
+  if (booking.startDate >= startDate && booking.endDate <= endDate
+    || booking.startDate <= startDate && booking.endDate >= endDate) {
+    res.status(403)
+    return res.json({
+      "message": "Sorry, this spot is already booked for the specified dates",
+      "statusCode": 403,
+      "errors": {
+        "startDate": "Start date conflicts with an existing booking",
+        "endDate": "End date conflicts with an existing booking"
+      }
+    })
+  }
+
+  booking.update({
+    spotId: booking.spotId,
+    userId: req.user.id,
+    startDate: startDate,
+    endDate: endDate
+  })
+
+  res.status(200)
+  return res.json(booking)
+})
+
+// Get all of the current user's bookings
+router.get('/current', requireAuth, async (req, res) => {
+  let results = []
+  const bookings = await Booking.findAll({
+    where: {
+      userId: req.user.id
+    },
+    include: [
+      { model: Spot, attributes: { exclude: ['description', 'createdAt', 'updatedAt'] } }
+    ]
+  })
+
+  for (let booking of bookings) {
+    const previewImage = await SpotImage.findByPk(booking.id, {
+      where: {
+        preview: true
+      },
+      attributes: ['url']
+    })
+
+    let bookingObj = booking.toJSON()
+    bookingObj.Spot.previewImage = previewImage.url
+    results.push(bookingObj)
+  }
+
+  res.status(200)
+  return res.json({ Bookings: results })
+})
 
 
 

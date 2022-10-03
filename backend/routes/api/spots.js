@@ -442,12 +442,14 @@ router.get('/', async (req, res) => {
       attributes: ['url']
     })
 
+    console.log('checking for preview image', image)
     let spotObj = spot.toJSON()
 
-    if (image.url === null) {
-      spotObj.previewImage = 'Preview image does not exist'
+    if (image) {
+      let imageObj = image.toJSON()
+      spotObj.previewImage = imageObj.url
     } else {
-      spotObj.previewImage = image.url
+      spotObj.previewImage = 'Preview image does not exist'
     }
 
     let reviewsNum = Number(reviews[0].avgRating).toFixed(1)

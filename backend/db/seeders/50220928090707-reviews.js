@@ -18,10 +18,10 @@ module.exports = {
         spotId: 5,
         userId: 1,
         review: 'Average stay, definitely not as advertised based on the photos',
-        stars: 3 //4
+        stars: 4
       },
       {
-        spotId: 4, //5
+        spotId: 5,
         userId: 2,
         review: 'Wow, that was easily the best home I have seen so far on our honeymoon',
         stars: 5

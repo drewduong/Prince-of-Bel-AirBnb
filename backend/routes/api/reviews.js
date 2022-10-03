@@ -45,6 +45,33 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
   })
 })
 
+// Edit a review
+router.put('/:reviewId', requireAuth, async (req, res) => {
+  const { review, stars } = req.body
+  const existingReview = await Review.findByPk(req.params.reviewId, {
+    where: {
+      userId: req.user.id
+    }
+  })
+
+  if (!existingReview) {
+    res.status(404)
+    return res.json({
+      "message": "Review couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  existingReview.update({
+    userId: req.user.id,
+    spotId: existingReview.spotId,
+    review: review,
+    stars: stars
+  })
+  res.status(200)
+  return res.json(existingReview)
+})
+
 // Get all reviews of the current user
 router.get('/current', requireAuth, async (req, res) => {
   let results = []

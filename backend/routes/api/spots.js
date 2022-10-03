@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const sequelize = require('sequelize') //double check if we need this
+// const sequelize = require('sequelize') //double check if we need this
 
 //require authme and validate create spot
 const { requireAuth } = require('../../utils/auth')
 
 //import model needed
-const { User, Spot, SpotImage, Review, Booking, ReviewImage } = require('../../db/models')
-
+const { User, Spot, SpotImage, Review, Booking, ReviewImage, sequelize } = require('../../db/models')
 // Delete a spot
 router.delete('/:spotId', requireAuth, async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId, {
@@ -215,11 +214,13 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     })
   }
 
-  const bookings = await Booking.findOne({
+  const bookings = await Booking.findAll({
     where: {
       spotId: spot.id
     }
   })
+
+  console.log('booking info:    ', bookings)
 
   if (!startDate || !endDate || endDate <= startDate) {
     res.status(400)
@@ -253,6 +254,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     startDate: startDate,
     endDate: endDate
   })
+  console.log('new booking:    ', newBooking)
   res.status(200)
   return res.json(newBooking)
 })

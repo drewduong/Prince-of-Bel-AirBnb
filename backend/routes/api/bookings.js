@@ -104,6 +104,7 @@ router.get('/current', requireAuth, async (req, res) => {
   })
 
   for (let booking of bookings) {
+    let bookingObj = booking.toJSON()
     const previewImage = await SpotImage.findByPk(booking.id, {
       where: {
         preview: true
@@ -111,7 +112,6 @@ router.get('/current', requireAuth, async (req, res) => {
       attributes: ['url']
     })
 
-    let bookingObj = booking.toJSON()
     bookingObj.Spot.previewImage = previewImage.url
     results.push(bookingObj)
   }

@@ -112,7 +112,13 @@ router.get('/current', requireAuth, async (req, res) => {
       attributes: ['url']
     })
 
-    bookingObj.Spot.previewImage = previewImage.url
+    if (previewImage) {
+      let imageObj = previewImage.toJSON()
+      bookingObj.Spot.previewImage = imageObj.url
+    } else {
+      bookingObj.Spot.previewImage = 'Preview image does not exist'
+    }
+
     results.push(bookingObj)
   }
 

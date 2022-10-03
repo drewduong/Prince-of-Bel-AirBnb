@@ -10,7 +10,7 @@ const { User, Spot, SpotImage, Review, ReviewImage } = require('../../db/models'
 
 // Delete a review
 router.delete('/:reviewId', requireAuth, async (req, res) => {
-  const review = Review.findByPk(req.params.reviewId, {
+  const review = await Review.findByPk(req.params.reviewId, {
     where: {
       userId: req.user.id
     }
@@ -46,13 +46,13 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     })
   }
 
-  const images = await ReviewImage.count({
+  const images = await ReviewImage.findAll({
     where: {
       reviewId: review.id
     }
   })
 
-  if (images === 10) {
+  if (images.length >= 10) {
     res.status(403)
     return res.json({
       "message": "Maximum number of images for this resource was reached",
@@ -61,12 +61,14 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
   }
 
   const newImage = await ReviewImage.create({
+    reviewId: review.id,
     url: url
   })
+
   res.status(200)
   return res.json({
     id: newImage.id,
-    url: newImage.url
+    url: url
   })
 })
 

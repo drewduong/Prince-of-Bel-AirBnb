@@ -442,7 +442,7 @@ router.get('/', async (req, res) => {
       attributes: ['url']
     })
 
-    console.log('checking for preview image', image)
+    // console.log('checking for preview image', image)
     let spotObj = spot.toJSON()
 
     if (image) {

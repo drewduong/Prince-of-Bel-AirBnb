@@ -18,6 +18,7 @@ function Navigation({ isLoaded }) {
       <>
         <NavLink to="/login">Log In</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/spots/new">Host a Spot</NavLink>
       </>
     );
   }

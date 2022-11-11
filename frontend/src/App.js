@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import SignupFormPage from "./components/SignupFormPage";
+import SignupForm from "./components/SignupFormModal/SignupForm";
 import CreateSpotForm from "./components/CreateSpotForm"
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/signup">
-            <SignupFormPage />
+            <SignupForm />
           </Route>
           <Route path="/spots/new">
             <CreateSpotForm />

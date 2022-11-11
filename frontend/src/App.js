@@ -19,14 +19,15 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          {/* <Route path="/signup">
             <SignupForm />
-          </Route>
-          <Route path="/spots/new">
-            <CreateSpotForm />
-          </Route>
+          </Route> */}
+          {/* <Route path="/spots/new">
+            <CreateSpotForm /> */}
+          {/* </Route> */}
         </Switch>
-      )}
+      )
+      }
     </>
   );
 }

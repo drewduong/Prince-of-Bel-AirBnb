@@ -39,7 +39,7 @@ const CreateFormPage = () => {
   return (
     <div className="spot-form">
       <form onSubmit={onSubmit}>
-        <h2>Host a Spot</h2>
+        <h2>Become a Host</h2>
         <ul className="errors">
           {validationErrors.length > 0 && validationErrors.map(error => (
             <span>

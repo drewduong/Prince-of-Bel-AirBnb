@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import './CreateSpotForm.css';
 
-const CreateFormPage = () => {
+const CreateSpotForm = () => {
   // const currentUser = useSelector((state) => state.session.user);
 
   const [address, setAddress] = useState("")
@@ -39,7 +39,7 @@ const CreateFormPage = () => {
   return (
     <div className="spot-form">
       <form onSubmit={onSubmit}>
-        <h2>Become a Host</h2>
+        <h2>Begin Hosting</h2>
         <ul className="errors">
           {validationErrors.length > 0 && validationErrors.map(error => (
             <span>
@@ -105,4 +105,4 @@ const CreateFormPage = () => {
   )
 }
 
-export default CreateFormPage
+export default CreateSpotForm

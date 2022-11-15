@@ -12,9 +12,14 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false)
 
+  // const openMenu = () => {
+  //   if (showMenu) return
+  //   setShowMenu(true)
+  // }
+
   const openMenu = () => {
-    if (showMenu) return
-    setShowMenu(true)
+    if (showMenu) return 'show-menu'
+    if (!showMenu) return 'hide-menu'
   }
 
   useEffect(() => {
@@ -34,6 +39,7 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <ProfileButton user={sessionUser} />
+        <NavLink to='/host'>Begin Hosting</NavLink>
       </>
     );
   } else {
@@ -45,18 +51,18 @@ function Navigation({ isLoaded }) {
 
         {/* </div> */}
         {/* <div className='menu-profile'> */}
-        <button className='dropdown-button' onClick={openMenu}>
+        <CreateSpotForm />
+        <button className='dropdown-button' onClick={(() => showMenu ? setShowMenu(false) : setShowMenu(true))}>
           <i className='menu' class="fa-sharp fa-solid fa-bars"></i>
           <i className='profile' class="fa-regular fa-user"></i>
         </button>
         {/* </div> */}
-        {showMenu && (
+        <div className={openMenu()}>
           <div className="profile-dropdown">
-            {/* <CreateSpotForm /> */}
             <LoginFormModal />
             <SignupFormModal />
           </div>
-        )}
+        </div>
         {/* </div> */}
       </>
     );
@@ -65,9 +71,8 @@ function Navigation({ isLoaded }) {
   return (
     <div className='nav-bar-container'>
       <div className='left-nav'>
-        <LoginFormModal />
         <NavLink exact to="/">
-          <img className='logo' src='https://pixabay.com/get/ga2d799f71569cb17f851300663689c2bb4ccdc4a3da9743c3eeb358e0e39b52ed928eedaf5cc0931dea3acd430fac74584b17664e48b979488ac250c7897993da4ac57485f5c37ed0147adb91c973cd4_640.png' alt='logo' />
+          <img className='logo' src='https://cdn.pixabay.com/photo/2018/05/08/21/28/airbnb-3384008_960_720.png' alt='logo' />
         </NavLink>
       </div>
       <div>

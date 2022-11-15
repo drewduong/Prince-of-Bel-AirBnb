@@ -53,8 +53,8 @@ function Navigation({ isLoaded }) {
         {/* <div className='menu-profile'> */}
         <CreateSpotForm />
         <button className='dropdown-button' onClick={(() => showMenu ? setShowMenu(false) : setShowMenu(true))}>
-          <i className='menu' class="fa-sharp fa-solid fa-bars"></i>
-          <i className='profile' class="fa-regular fa-user"></i>
+          <i id='menu' className="fa-sharp fa-solid fa-bars"></i>
+          <i id='profile' className="fa-regular fa-user"></i>
         </button>
         {/* </div> */}
         <div className={openMenu()}>

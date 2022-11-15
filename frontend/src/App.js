@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import SignupForm from "./components/SignupFormModal/SignupForm";
 import CreateSpotForm from "./components/CreateSpotForm"
 import AllSpots from "./components/AllSpots";
+import OneSpot from "./components/OneSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,13 +20,12 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <AllSpots />
-          {/* <Route path="/signup">
-            <SignupForm />
-          </Route> */}
-          {/* <Route path="/spots/new">
-            <CreateSpotForm /> */}
-          {/* </Route> */}
+          <Route exact path='/'>
+            <AllSpots />
+          </Route>
+          <Route exact path='/spots/:spotId'>
+            <OneSpot />
+          </Route>
         </Switch>
       )
       }

@@ -21,17 +21,28 @@ const AllSpots = () => {
   if (!currentSpots) return (<div>Spots Not Found</div>)
 
   return (
-    <div>
-      <h2>List of Spots</h2>
-      <ol>
-        {currentSpots.map(spot => {
-          return <li key={spot.id}>
-            <NavLink to={`/spots/${spot.id}`}>
-              <img src={spot.previewImage} alt='No Preview' />
-            </NavLink>
+    <div className='spots-container'>
+      <ul>
+        {currentSpots.map(spot => (
+          <li key={spot.id}>
+            <div className='spots-card'>
+              <NavLink to={`/spots/${spot.id}`}>
+                <div className='spots-image'>
+                  <img src={spot.previewImage} alt='No Preview' />
+                  <div>
+                    <div className='spots-city'>
+                      <span>{spot.city}, {spot.state}</span>
+                      <div className='spots-price'>
+                        <span>{`${spot.price}`}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </NavLink>
+            </div>
           </li>
-        })}
-      </ol>
+        ))}
+      </ul>
     </div>
   )
 }

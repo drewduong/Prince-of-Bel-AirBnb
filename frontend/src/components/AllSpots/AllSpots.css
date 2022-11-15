@@ -1,0 +1,5 @@
+.spots-container {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black
+}

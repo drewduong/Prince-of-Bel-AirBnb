@@ -43,6 +43,7 @@ router.post('/', validateLogin, async (req, res, next) => {
   if (!user) {
     res.status(401)
     res.json({
+      "errors": ["Invalid credentials"],
       "message": "Invalid credentials",
       "statusCode": 401
     })

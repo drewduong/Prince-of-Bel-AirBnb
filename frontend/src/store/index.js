@@ -4,10 +4,12 @@ import thunk from "redux-thunk";
 
 //import reducers here
 import sessionReducer from "./session";
+import spotReducer from "./spots";
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
+  spots: spotReducer
 });
 
 let enhancer;

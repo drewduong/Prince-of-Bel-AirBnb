@@ -19,7 +19,7 @@ const CreateSpotForm = () => {
   const [validationErrors, setValidationErrors] = useState([])
 
   // if (!currentUser) return <Redirect to="/" />
-
+  //adasdadsasdas
   useEffect(() => {
     const errors = []
 

@@ -191,7 +191,7 @@ const initialState = {}
 const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_SPOTS: {
-      const allSpots = {}
+      const allSpots = { ...state }
       action.spots.Spots.forEach(spot => {
         allSpots[spot.id] = spot
       })
@@ -199,8 +199,8 @@ const spotReducer = (state = initialState, action) => {
       return allSpots
     }
     case GET_SPOT: {
-      const newState = {}
-      newState[action.spotId] = action.spot
+      const newState = { ...state }
+      newState[action.spotId] = { ...newState[action.spotId], ...action.spot }
       console.log('/n', 'one spot (reducer):', '/n', newState)
       return newState
     }

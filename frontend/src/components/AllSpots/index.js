@@ -28,7 +28,7 @@ const AllSpots = () => {
             <div className='spots-card'>
               <NavLink to={`/spots/${spot.id}`}>
                 <div className='spots-image'>
-                  <img src={spot.previewImage} alt='No Preview' />
+                  <img className='airbnb-image' src={spot.previewImage} alt='No Preview' />
                   <div>
                     <div className='spots-city'>
                       <span>{spot.city}, {spot.state}</span>

@@ -36,7 +36,7 @@ const OneSpot = () => {
                 {/* <img className='airbnb-image' src={currentSpot?.SpotImages[0]?.url} alt='No Preview' /> */}
                 <div>
                   <div className='spots-city'>
-                    <span>{currentSpot.city}, {currentSpot.state}</span>
+                    <span>{currentSpot.city}, {currentSpot.country}</span>
                     <div className='spot-description'>
                       <span>{currentSpot.description}</span>
                     </div>

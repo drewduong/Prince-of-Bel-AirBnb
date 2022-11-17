@@ -4,10 +4,10 @@ import { csrfFetch } from './csrf';
 
 const GET_SPOT = 'spots/GET_SPOT'
 const GET_ALL_SPOTS = 'spots/GET_ALL_SPOTS'
-// const GET_USER_SPOTS = 'spots/GET_USER_SPOTS'
+const GET_USER_SPOTS = 'spots/GET_USER_SPOTS'
 const CREATE_SPOT = 'spots/CREATE_SPOT'
 const CREATE_SPOT_IMAGE = 'spots/CREATE_SPOT_IMAGE'
-// const UPDATE_SPOT = 'spots/UPDATE_SPOT'
+const UPDATE_SPOT = 'spots/UPDATE_SPOT'
 // const DELETE_SPOT = 'spots/DELETE_SPOT'
 
 
@@ -15,6 +15,7 @@ const CREATE_SPOT_IMAGE = 'spots/CREATE_SPOT_IMAGE'
 
 // get all spots
 export const getAllSpotsAction = (payload) => {
+  // console.log("Get all spots payload (action)", payload)
   return {
     type: GET_ALL_SPOTS,
     payload
@@ -23,6 +24,7 @@ export const getAllSpotsAction = (payload) => {
 
 // get spot
 export const getSpotAction = (payload) => {
+  // console.log("Get all spots payload (action)", payload)
   return {
     type: GET_SPOT,
     payload
@@ -30,16 +32,17 @@ export const getSpotAction = (payload) => {
 }
 
 // get user spots
-// export const getUserSpotsAction = (spots) => {
-//   return {
-//     type: GET_USER_SPOTS,
-//     spots
-//   }
-// }
+export const getUserSpotsAction = (payload) => {
+  console.log("Get user spots payload (action)", payload)
+  return {
+    type: GET_USER_SPOTS,
+    payload
+  }
+}
 
 // create a spot
 export const createSpotAction = (payload) => {
-  console.log("Spot (action)", payload)
+  // console.log("Create spots payload (action)", payload)
   return {
     type: CREATE_SPOT,
     payload
@@ -47,24 +50,27 @@ export const createSpotAction = (payload) => {
 }
 
 // create spot image
-export const createSpotImageAction = (spotId, imageUrl) => {
+export const createSpotImageAction = (spotId, image) => {
+  // console.log("Create spot image payload (action)", payload)
   return {
     type: CREATE_SPOT_IMAGE,
     spotId,
-    imageUrl
+    image
   }
 }
 
 // update spot
-// export const updateSpotAction = (spotId) => {
-//   return {
-//     type: UPDATE_SPOT,
-//     spotId
-//   }
-// }
+export const updateSpotAction = (payload) => {
+  // console.log("Update spot payload (action)", payload)
+  return {
+    type: UPDATE_SPOT,
+    payload
+  }
+}
 
 // delete spot
 // export const deleteSpotAction = (spotId) => {
+// console.log("Delete spot payload (action)", payload)
 //   return {
 //     type: DELETE_SPOT,
 //     spotId
@@ -81,40 +87,40 @@ export const getAllSpotsThunk = () => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    // console.log("/n", "Get all spots, BACKEND DATA (action):", "/n", data)
+    // console.log("/n", "Get all spots backend data (thunk):", "/n", data)
     dispatch(getAllSpotsAction(data))
     return data
   }
 }
 
-
+// Payload contains spotId
 export const getSpotThunk = (payload) => async (dispatch) => {
+  // console.log('/n', 'Get spot useParams spotId payload (thunk):', '/n', payload)
   const res = await csrfFetch(`/api/spots/${payload}`)
 
   if (res.ok) {
     const data = await res.json()
-    // console.log('*get spot details*: ', data)
-    console.log("/n", "Get a single spot, BACKEND DATA (action):", "/n", data)
+    console.log("/n", "Get a spot backend data (thunk):", "/n", data)
     dispatch(getSpotAction(data))
     return data
   }
 }
 
 
-// export const getUserSpotsThunk = () => async (dispatch) => {
-//   const res = await csrfFetch('/api/spots/current')
+export const getUserSpotsThunk = () => async (dispatch) => {
+  const res = await csrfFetch('/api/spots/current')
 
-//   if (res.ok) {
-//     const data = await res.json()
-//     // console.log('*get current user spots*: ', data)
-//     dispatch(getUserSpotsAction(data))
-//     return data
-//   }
-// }
+  if (res.ok) {
+    const data = await res.json()
+    console.log("/n", "Get user spots backend data (thunk):", "/n", data)
+    dispatch(getUserSpotsAction(data))
+    return data
+  }
+}
 
 
 export const createSpotThunk = (payload) => async (dispatch) => {
-  console.log('/n', 'Create a spot (thunk):', '/n', payload)
+  // console.log('/n', 'Create a spot user input payload (thunk):', '/n', payload)
   const res = await csrfFetch('/api/spots', {
     method: 'POST',
     body: JSON.stringify(payload)
@@ -122,14 +128,15 @@ export const createSpotThunk = (payload) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    console.log('/n', 'Create a spot if response is ok (thunk):', '/n', data)
+    console.log('/n', 'Create a spot backend (thunk):', '/n', data)
     dispatch(createSpotAction(data))
     return data
   }
 }
 
-
+// Payload contains SpotId, imageUrl
 export const createSpotImageThunk = (spotId, image) => async (dispatch) => {
+  // console.log('/n', 'Create a spot image useParams spotId and image payload (thunk):', '/n', payload)
   const res = await csrfFetch(`/api/spots/${spotId}/images`, {
     method: 'POST',
     body: JSON.stringify(image)
@@ -137,32 +144,31 @@ export const createSpotImageThunk = (spotId, image) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    console.log('/n', 'Create a spot image (thunk):', '/n', data)
+    console.log('/n', 'Create a spot image backend data (thunk):', '/n', data)
     dispatch(createSpotImageAction(data))
     return data
   }
 }
 
+// Payload contains spotId
+export const updateSpotThunk = (payload) => async (dispatch) => {
+  // console.log('/n', 'Update a spot user useParams spotId payload (thunk):', '/n', payload)
+  const res = await csrfFetch(`/api/spots/${payload}`, {
+    method: 'PUT',
+    body: JSON.stringify(payload)
+  })
 
-// export const updateSpotThunk = (spotId) => async (dispatch) => {
-//   const res = await csrfFetch(`/api/spots/${spotId}`, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       body: JSON.stringify(spotId)
-//     }
-//   })
-
-//   if (res.ok) {
-//     const data = await res.json()
-//     // console.log('*update spot*: ', data)
-//     dispatch(updateSpotAction(data))
-//     return data
-//   }
-// }
+  if (res.ok) {
+    const data = await res.json()
+    // console.log('*update spot*: ', data)
+    dispatch(updateSpotAction(data))
+    return data
+  }
+}
 
 
 // export const deleteSpotThunk = (spotId) => async (dispatch) => {
+// console.log('/n', 'Create a spot useParams spotId payload (thunk):', '/n', payload)
 //   const res = await csrfFetch(`/api/spots/${spotId}`, {
 //     method: 'DELETE',
 //     headers: {
@@ -201,7 +207,13 @@ const spotReducer = (state = initialState, action) => {
     case CREATE_SPOT: {
       const newState = { ...state }
       newState[action.payload.id] = action.payload
-      console.log('/n', 'Create a spots newState after (reducer):', '/n', newState)
+      // console.log('/n', 'Create a spots newState after (reducer):', '/n', newState)
+      return newState
+    }
+    case GET_USER_SPOTS: {
+      const newState = { ...state }
+      newState[action.payload.Spots] = action.payload
+      console.log('/n', 'User spots newState after (reducer):', '/n', newState)
       return newState
     }
     default:

@@ -55,7 +55,7 @@ const CreateSpotForm = () => {
       }
 
       const newSpot = await dispatch(createSpotThunk(payload))
-      console.log('/n', 'Create a spot (onSubmit)):', '/n', newSpot)
+      // console.log('/n', 'Create a spot (onSubmit)):', '/n', newSpot)
       if (newSpot) {
         const image = ({
           url: imageUrl,

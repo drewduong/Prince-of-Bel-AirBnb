@@ -46,7 +46,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
         (<ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
-          <li><NavLink className='account' to={'/user'}>Account</NavLink></li>
+          <li><NavLink className='account' to={'/account'}>Account</NavLink></li>
           <li><button onClick={logout}>Log Out</button></li>
         </ul>) :
         (<ul className="profile-dropdown">

@@ -1,10 +1,19 @@
 .spots-container {
   display: flex;
   justify-content: space-between;
-  border: 2px solid black
+  border: 2px solid black;
+}
+
+.spots-card {
+  border: 2px solid black;
 }
 
 .airbnb-image {
+  border: 2px solid black;
   width: 100%;
   /* height: 300px; */
+}
+
+.left-div {
+  border: 2px solid black
 }

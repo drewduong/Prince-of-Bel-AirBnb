@@ -9,15 +9,19 @@ const AllSpots = () => {
   const dispatch = useDispatch()
 
   /* Subscribe to the store and listen to changes in the spots slice of state.
-  allSpots is an object, which can't be mapped over, it needs to be converted to an array */
+  newState is an object containing all spots, which can't be mapped over, it needs to be converted to an array */
+
   const currentSpots = useSelector(state => Object.values(state.spots))
   // console.log('/n', 'useSelector Current Spots:', '/n', currentSpots)
+
+  /* Passive data: dispatch within useEffect
+     Active data, dispatch within onSubmit */
 
   useEffect(() => {
     dispatch(getAllSpotsThunk())
   }, [dispatch])
 
-  // Conditional used to catch if it's not rendering correctly
+  // Conditional used to debug if it's not rendering correctly
   if (!currentSpots) return (<div>Spots Not Found</div>)
 
   return (
@@ -30,10 +34,13 @@ const AllSpots = () => {
                 <div className='spots-image'>
                   <img className='airbnb-image' src={spot.previewImage} alt='No Preview' />
                   <div>
-                    <div className='spots-city'>
+                    <div className='left-div'>
                       <span>{spot.city}, {spot.state}</span>
+                      <div className='spots-description'>
+                        <span>{spot.description}</span>
+                      </div>
                       <div className='spots-price'>
-                        <span>{`${spot.price}`}</span>
+                        <span>{spot.price}</span>
                       </div>
                     </div>
                   </div>

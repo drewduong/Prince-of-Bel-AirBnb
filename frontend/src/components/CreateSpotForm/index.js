@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { createSpotImageThunk, createSpotThunk } from '../../store/spots';
 import './CreateSpotForm.css';
 
 const CreateSpotForm = () => {
@@ -16,10 +17,14 @@ const CreateSpotForm = () => {
   const [imageUrl, setImageUrl] = useState("")
 
   const history = useHistory()
+  const dispatch = useDispatch()
   const [validationErrors, setValidationErrors] = useState([])
 
   // if (!currentUser) return <Redirect to="/" />
-  //adasdadsasdas
+
+  /* Passive data: dispatch within useEffect
+     Active data, dispatch within onSubmit */
+
   useEffect(() => {
     const errors = []
 
@@ -30,10 +35,36 @@ const CreateSpotForm = () => {
     if (!name) errors.push("Name must be less than 50 characters")
     if (!description) errors.push("Description is required")
     if (!price) errors.push("Price per day is required")
-  })
+    if (!imageUrl) errors.push("Image url is required")
 
-  const onSubmit = (e) => {
+    setValidationErrors(errors)
+  }, [address, city, state, country, name, description, price, imageUrl])
+
+  const onSubmit = async (e) => {
     e.preventDefault()
+
+    if (!validationErrors.length) {
+      const payload = {
+        address,
+        city,
+        state,
+        country,
+        name,
+        description,
+        price
+      }
+
+      const newSpot = await dispatch(createSpotThunk(payload))
+      console.log('/n', 'Create a spot (onSubmit)):', '/n', newSpot)
+      if (newSpot) {
+        const image = ({
+          url: imageUrl,
+          preview: true
+        })
+        await dispatch(createSpotImageThunk(newSpot.id, image))
+        history.push(`/spots/${newSpot.id}`)
+      }
+    }
   }
 
   return (
@@ -41,9 +72,9 @@ const CreateSpotForm = () => {
       <form onSubmit={onSubmit}>
         <h2>Begin Hosting</h2>
         <ul className="errors">
-          {validationErrors.length > 0 && validationErrors.map(error => (
+          {validationErrors.length > 0 && validationErrors.map((error, idx) => (
             <span>
-              <li key={error}>{error}</li>
+              <li key={idx}>{error}</li>
             </span>
           ))}
         </ul>
@@ -99,7 +130,7 @@ const CreateSpotForm = () => {
         />
         <button
           type="submit"
-          disabled={validationErrors.length > 0}>Host Spot</button>
+          disabled={validationErrors.length > 0}>Begin Hosting</button>
       </form>
     </div>
   )

@@ -16,63 +16,63 @@ module.exports = {
     await queryInterface.bulkInsert('Spots', [
       {
         ownerId: 1,
-        address: '3650 Hayes St',
-        city: 'San Leandro',
-        state: 'California',
-        country: 'United States of America',
+        address: '3650 Soju St',
+        city: 'Seoul',
+        state: 'Korea',
+        country: 'Chungcheong Province',
         lat: 33.812511,
         lng: 117.918976,
-        name: 'Sahara Resort',
-        description: 'The best of the best',
-        price: 345.99
+        name: 'Beachside Wiews',
+        description: 'The best of the best. Close distance to shopping malls',
+        price: 345.91
       },
       {
         ownerId: 2,
         address: '1764 Paid Dr',
-        city: 'Los Angeles',
-        state: 'California',
-        country: 'United States of America',
+        city: 'Hong Kong',
+        state: 'Kowloon District',
+        country: 'China',
         lat: 36.54161,
         lng: 45.75125,
-        name: 'City Of Angels',
-        description: 'Close to all your favorite resorts',
-        price: 170.50
+        name: 'The Hong Kong Lifestyle ',
+        description: 'Walking distance to all your favorite itinerary destinations',
+        price: 489.32
       },
       {
         ownerId: 3,
-        address: '646 Joke St',
-        city: 'San Happy',
-        state: 'Colorado',
-        country: 'United States of America',
+        address: '646 PhiPhi St',
+        city: 'Ko Samui',
+        state: 'Surat Thani Province',
+        country: 'Thailand',
         lat: 69.321542,
         lng: 15.489078,
-        name: 'Amazing Destination',
+        name: 'Thailands Very Best',
         description: 'One of the worlds best kept secrets is here',
-        price: 542.99
+        price: 242.87
       },
       {
         ownerId: 4,
-        address: '846 Brotherhood Cr',
-        city: 'San Francisco',
-        state: 'New York',
-        country: 'United States of America',
+        address: '846 Zouk Cr',
+        city: 'Hougang',
+        state: 'Seletar Province',
+        country: 'Singapore',
         lat: 88.115566,
         lng: 76.345854,
         name: 'GetAway Now',
-        description: 'No place else like this',
-        price: 49.99
+        description: 'No place else like this. Nearby Marina Bay Sands infamous structure',
+        price: 526.15
       },
       {
         ownerId: 5,
-        address: '1250 Pepper Dr',
+        address: '1250 Itchiwa Dr',
         city: 'San Diego',
-        state: 'California',
-        country: 'United States of America',
+        state: 'Chiba Prefecture',
+        country: 'Japan',
         lat: 12.154784,
         lng: 17.579254,
-        name: 'Leave Your Hometown Now',
-        description: 'Discoveer the best San Diego has to offer here in this lovely place',
-        price: 112.47
+        name: 'Experience Japan',
+        description: 'Discoveer the best Japan has to offer here in this lovely place',
+        price: 198.46
       },
     ], {});
 

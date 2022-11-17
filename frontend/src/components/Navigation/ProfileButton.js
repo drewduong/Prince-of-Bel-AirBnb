@@ -5,7 +5,7 @@ import * as sessionActions from '../../store/session';
 import { NavLink, useHistory } from "react-router-dom"
 import "./ProfileButton.css"
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, setLogin, setShowModal }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const history = useHistory()
@@ -37,16 +37,33 @@ function ProfileButton({ user }) {
     <div className='navigation-bar'>
       <div>
         <button className='menu-profile-button' onClick={openMenu}>
-          <i className='menu' class="fa-sharp fa-solid fa-bars"></i>
-          <i className='profile' class="fa-regular fa-user"></i>
+          <i id='menu' className="fa-sharp fa-solid fa-bars"></i>
+          <i id='profile' className="fa-regular fa-user"></i>
         </button>
       </div>
-      {showMenu && (
-        <div className="profile-dropdown">
+      {/* If a user is logged in, we'll show the first set, otherwise show the second set */}
+      {showMenu && (user ?
+        (<ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
+          <li><NavLink className='account' to={'/user'}>Account</NavLink></li>
           <li><button onClick={logout}>Log Out</button></li>
-        </div>
+        </ul>) :
+        (<ul className="profile-dropdown">
+          <li>
+            <button onClick={() => {
+              setLogin(true)
+              setShowModal(true)
+            }}>Log In</button>
+          </li>
+          <li>
+            <button onClick={() => {
+              setLogin(false)
+              setShowModal(true)
+            }}>Sign Up</button>
+          </li>
+        </ul>)
+
       )}
     </div>
   );

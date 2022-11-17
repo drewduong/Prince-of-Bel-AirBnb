@@ -151,9 +151,9 @@ export const createSpotImageThunk = (spotId, image) => async (dispatch) => {
 }
 
 // Payload contains spotId
-export const updateSpotThunk = (payload) => async (dispatch) => {
+export const updateSpotThunk = (payload, spotId) => async (dispatch) => {
   // console.log('/n', 'Update a spot user useParams spotId payload (thunk):', '/n', payload)
-  const res = await csrfFetch(`/api/spots/${payload}`, {
+  const res = await csrfFetch(`/api/spots/${spotId}`, {
     method: 'PUT',
     body: JSON.stringify(payload)
   })
@@ -186,6 +186,9 @@ export const updateSpotThunk = (payload) => async (dispatch) => {
 
 /*----------REDUCER----------*/
 
+/* Have API routes open so you can see a successful 
+response = action.payload we're keying into for the reducer */
+
 const initialState = {}
 
 const spotReducer = (state = initialState, action) => {
@@ -213,7 +216,13 @@ const spotReducer = (state = initialState, action) => {
     case GET_USER_SPOTS: {
       const newState = { ...state }
       newState[action.payload.Spots] = action.payload
-      console.log('/n', 'User spots newState after (reducer):', '/n', newState)
+      // console.log('/n', 'User spots newState after (reducer):', '/n', newState)
+      return newState
+    }
+    case UPDATE_SPOT: {
+      const newState = { ...state }
+      newState[action.payload.id] = action.payload
+      // console.log('/n', 'Update spot newState after (reducer):', '/n', newState)
       return newState
     }
     default:

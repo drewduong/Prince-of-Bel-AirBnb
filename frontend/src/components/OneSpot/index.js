@@ -41,7 +41,7 @@ const OneSpot = () => {
                       <span>{currentSpot.description}</span>
                     </div>
                     <div className='spots-price'>
-                      <span>{`${currentSpot.price}`}</span>
+                      <span>{`${currentSpot.price}`} per night</span>
                     </div>
                   </div>
                 </div>

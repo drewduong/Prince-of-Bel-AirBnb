@@ -40,7 +40,7 @@ const AllSpots = () => {
                         <span>{spot.description}</span>
                       </div>
                       <div className='spots-price'>
-                        <span>{spot.price}</span>
+                        <span>{spot.price} per night</span>
                       </div>
                     </div>
                   </div>

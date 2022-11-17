@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { createSpotImageThunk, createSpotThunk } from '../../store/spots';
-import './CreateSpotForm.css';
+import { useHistory, useParams } from 'react-router-dom';
+import { getSpotThunk, updateSpotThunk } from '../../store/spots';
+import './UpdateSpotForm.css';
 
-const CreateSpotForm = () => {
+const UpdateSpotForm = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  // const currentUser = useSelector((state) => state.session.user);
+  const { spotId } = useParams()
+  // const sessionUser = useSelector(state => state.session.user);
+  const currentSpot = useSelector(state => state.spots[+spotId])
+  console.log('/n', 'Edit Spot (useSelector):', '/n', currentSpot)
 
-  const [address, setAddress] = useState("")
-  const [city, setCity] = useState("")
-  const [state, setState] = useState("")
-  const [country, setCountry] = useState("")
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
-  const [price, setPrice] = useState("")
-  const [imageUrl, setImageUrl] = useState("")
+  const [address, setAddress] = useState(currentSpot?.address)
+  const [city, setCity] = useState(currentSpot?.city)
+  const [state, setState] = useState(currentSpot?.state)
+  const [country, setCountry] = useState(currentSpot?.country)
+  const [name, setName] = useState(currentSpot?.name)
+  const [description, setDescription] = useState(currentSpot?.description)
+  const [price, setPrice] = useState(currentSpot?.price)
 
   const [validationErrors, setValidationErrors] = useState([])
 
-  // if (!currentUser) return <Redirect to="/" />
 
   /* Passive data: dispatch within useEffect
-     Active data, dispatch within onSubmit */
+  Active data, dispatch within onSubmit */
 
   useEffect(() => {
     const errors = []
@@ -35,10 +36,14 @@ const CreateSpotForm = () => {
     if (!name) errors.push("Name must be less than 50 characters")
     if (!description) errors.push("Description is required")
     if (!price) errors.push("Price per day is required")
-    if (!imageUrl) errors.push("Image url is required")
 
     setValidationErrors(errors)
-  }, [address, city, state, country, name, description, price, imageUrl])
+
+  }, [address, city, state, country, name, description, price])
+
+  useEffect(() => {
+    dispatch(getSpotThunk(+spotId))
+  }, [dispatch, spotId])
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -54,23 +59,19 @@ const CreateSpotForm = () => {
         price
       }
 
-      const newSpot = await dispatch(createSpotThunk(payload))
-      // console.log('/n', 'Create a spot (onSubmit)):', '/n', newSpot)
-      if (newSpot) {
-        const image = ({
-          url: imageUrl,
-          preview: true
-        })
-        await dispatch(createSpotImageThunk(newSpot.id, image))
-        history.push(`/spots/${newSpot.id}`)
-      }
+      dispatch(updateSpotThunk(payload, spotId))
+
+      history.push('/account')
     }
   }
+
+  // Conditional used to debug if it's not rendering correctly
+  if (!currentSpot) return (<div>Spot Not Found</div>)
 
   return (
     <div className="spot-form">
       <form onSubmit={onSubmit}>
-        <h2>Begin Hosting</h2>
+        <h2>Edit Listing</h2>
         <ul className="errors">
           {validationErrors.length > 0 && validationErrors.map((error, idx) => (
             <span>
@@ -122,18 +123,12 @@ const CreateSpotForm = () => {
           onChange={(e) => setPrice(e.target.value)}
           placeholder='Price'
         />
-        <input
-          type="text"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-          placeholder='Image URL'
-        />
         <button
           type="submit"
-          disabled={validationErrors.length > 0}>Begin Hosting</button>
+          disabled={validationErrors.length > 0}>Submit Listing</button>
       </form>
     </div>
   )
 }
 
-export default CreateSpotForm
+export default UpdateSpotForm

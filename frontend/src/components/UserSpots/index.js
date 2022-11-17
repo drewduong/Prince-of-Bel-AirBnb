@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom'
 import { getUserSpotsThunk } from '../../store/spots';
+import UpdateSpotForm from '../UpdateSpotForm';
 import { NavLink } from 'react-router-dom';
 import './UserSpots.css';
 
@@ -27,9 +28,6 @@ const UserSpots = () => {
     // setHasSubmitted(false) // Double check logic. add into dependecy array if needed
   }, [dispatch])
 
-  /* Redirect user back to homepage if not logged in */
-
-
   /* Conditional used to debug if it's not rendering correctly */
   if (!currentSpots) return (<div>Not spots found. Sign up to begin hosting!</div>)
 
@@ -49,7 +47,10 @@ const UserSpots = () => {
                         <span>{spot.description}</span>
                       </div>
                       <div className='spots-price'>
-                        <span>{spot.price}</span>
+                        <span>{spot.price} per night</span>
+                      </div>
+                      <div>
+                        <NavLink to={`/spots/${spot.id}/edit`}>Edit Spot</NavLink>
                       </div>
                     </div>
                   </div>

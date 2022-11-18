@@ -70,7 +70,7 @@ export const updateSpotAction = (payload) => {
 
 // Delete spot
 export const deleteSpotAction = (payload) => {
-  console.log("Delete spot payload (action)", payload)
+  // console.log("Delete spot payload (action)", payload)
   return {
     type: DELETE_SPOT,
     payload
@@ -188,20 +188,22 @@ export const deleteSpotThunk = (payload) => async (dispatch) => {
 /* Have API routes open so you can see a successful 
 response = action.payload we're keying into for the reducer */
 
-const initialState = { singleSpot: {} }
+/* Hash collision choice of reducers is to render quicker with old state in there */
+
+const initialState = { singleSpot: {}, allSpots: {} }
 
 const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_SPOTS: {
-      const newState = { singleSpot: {} }
+      const newState = { ...state, allSpots: {} }
       action.payload.Spots.forEach(spot => {
-        newState[spot.id] = spot
+        newState.allSpots[spot.id] = spot
       })
       // console.log('/n', 'All spots (reducer):', '/n', newState)
       return newState
     }
     case GET_SPOT: {
-      const newState = { ...state }
+      const newState = { ...state, singleSpot: {} }
       newState.singleSpot = action.payload
       // console.log('/n', 'One spots newState after (reducer):', '/n', newState)
       return newState
@@ -213,11 +215,11 @@ const spotReducer = (state = initialState, action) => {
       return newState
     }
     case GET_USER_SPOTS: {
-      const newState = { singleSpot: {} }
+      const newState = { ...state, allSpots: {} }
       action.payload.Spots.forEach(spot => {
-        newState[spot.id] = spot
+        newState.allSpots[spot.id] = spot
       })
-      // console.log('/n', 'All spots (reducer):', '/n', newState)
+      // console.log('/n', 'Get user spots (reducer):', '/n', newState)
       return newState
     }
     case UPDATE_SPOT: {
@@ -229,7 +231,7 @@ const spotReducer = (state = initialState, action) => {
     case DELETE_SPOT: {
       const newState = { ...state }
       newState[action.payload] = action.payload
-      console.log('/n', 'Delete spot newState after (reducer):', '/n', newState)
+      // console.log('/n', 'Delete spot newState after (reducer):', '/n', newState)
       return newState
     }
     default:

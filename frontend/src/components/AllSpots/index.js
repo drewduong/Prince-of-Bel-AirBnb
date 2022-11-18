@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
 import { getAllSpotsThunk } from '../../store/spots';
 import { NavLink } from 'react-router-dom';
+// import SpotReviews from '../SpotReviews';
 import './AllSpots.css';
 
 const AllSpots = () => {
@@ -11,7 +11,7 @@ const AllSpots = () => {
   /* Subscribe to the store and listen to changes in the spots slice of state.
   newState is an object containing all spots, which can't be mapped over, it needs to be converted to an array */
 
-  const currentSpots = useSelector(state => Object.values(state.spots))
+  const currentSpots = useSelector(state => Object.values(state.spots.allSpots))
   // console.log('/n', 'useSelector Current Spots:', '/n', currentSpots)
 
   /* Passive data: dispatch within useEffect
@@ -35,13 +35,10 @@ const AllSpots = () => {
                   <img className='airbnb-image' src={spot.previewImage} alt='No Preview' />
                   <div>
                     <div className='left-div'>
-                      <span>{spot.city}, {spot.country}</span>
-                      <div className='spots-description'>
-                        <span>{spot.description}</span>
-                      </div>
-                      <div className='spots-price'>
-                        <span>{spot.price} per night</span>
-                      </div>
+                      <div>{spot.city}, {spot.country}</div>
+                      <div>★ {spot.avgRating}</div>
+                      <div>{spot.name}</div>
+                      <div>${spot.price} /night</div>
                     </div>
                   </div>
                 </div>

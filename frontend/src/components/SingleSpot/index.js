@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { getSpotThunk } from '../../store/spots';
 import { NavLink } from 'react-router-dom';
-import './OneSpot.css';
+import './SingleSpot.css';
 
-const OneSpot = () => {
+const SingleSpot = () => {
   const dispatch = useDispatch()
   const { spotId } = useParams()
 
   /* Subscribe to the store and listen to changes in the spots slice of state.
-  OneSpot is an object, which can't be mapped over, it needs to be converted to an array */
+  singleSpot is an object, which can't be mapped over, it needs to be converted to an array */
   const currentSpot = useSelector(state => state.spots.singleSpot)
-  console.log('/n', 'One Spot (useSelector):', '/n', currentSpot)
+  console.log('/n', 'Spot detail (useSelector):', '/n', currentSpot)
+
+  // const currentReviews = useSelector(state => state.reviews.spotReviews)
+  // console.log('/n', 'Spot detail reviews (useSelector):', '/n', currentReviews)
 
   /* Passive data: dispatch within useEffect
      Active data, dispatch within submitHandler */
@@ -27,22 +30,19 @@ const OneSpot = () => {
   return (
     <div className='spots-container'>
       <div>
-
+        <h2>{currentSpot.name}</h2>
+        <span>★ {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews · Superhost · {currentSpot.city}, {currentSpot.country} </span>
         <li key={currentSpot.id}>
           <div className='spots-card'>
             <NavLink to={`/spots/${currentSpot.id}`}>
               <div className='spots-image'>
-                {/* note: optional chaining so that it'll return undefined if null/undefined */}
                 <img className='airbnb-image' src={currentSpot?.SpotImages[0]?.url} alt='No Preview' />
                 <div>
                   <div className='spots-city'>
-                    <span>{currentSpot.city}, {currentSpot.country}</span>
-                    <div className='spot-description'>
-                      <span>{currentSpot.description}</span>
-                    </div>
-                    <div className='spots-price'>
-                      <span>{`${currentSpot.price}`} per night</span>
-                    </div>
+                    <span>{currentSpot.description}</span>
+                  </div>
+                  <div className='spots-price'>
+                    <span>${`${currentSpot.price}`}/night</span>
                   </div>
                 </div>
               </div>
@@ -55,4 +55,4 @@ const OneSpot = () => {
   )
 }
 
-export default OneSpot
+export default SingleSpot

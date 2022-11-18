@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { getUserSpotsThunk } from '../../store/spots';
 import { deleteSpotThunk } from '../../store/spots';
 import { NavLink } from 'react-router-dom';
+import UserReviews from '../UserReviews'
 import './UserSpots.css';
 
 const UserSpots = () => {
@@ -17,7 +18,7 @@ const UserSpots = () => {
   newState is an object containing all spots, which can't be mapped over, it needs to be converted to an array */
 
   const sessionUser = useSelector(state => state.session.user)
-  const currentSpots = useSelector(state => Object.values(state.spots))
+  const currentSpots = useSelector(state => Object.values(state.spots.allSpots))
   const currentUserSpots = currentSpots.filter(spot => spot.ownerId === sessionUser.id)
   console.log('/n', 'Current user spots (useSelector):', '/n', currentUserSpots)
 
@@ -34,23 +35,19 @@ const UserSpots = () => {
   if (!Object.keys(currentUserSpots).length) return null
 
   return (
-    <div className='spots-container'>
-      <ul>
-        {currentUserSpots.map(spot => (
-          <li key={spot.id}>
-            <div className='spots-card'>
-              <NavLink to={`/spots/${spot.id}`}>
+    <div className='listings-reviews-container'>
+      <div className='listing-reviews-div'>
+        <ul>
+          {currentUserSpots.map(spot => (
+            <li key={spot.id}>
+              <h2>{spot.name}</h2>
+              <span>★ {spot.avgRating} · ${spot.price}/night · {spot.city}, {spot.country} </span>
+              <div className='spots-card'>
+                <NavLink to={`/spots/${spot.id}`} />
                 <div className='spots-image'>
                   <img className='airbnb-image' src={spot.previewImage} alt='No Preview' />
                   <div>
                     <div className='left-div'>
-                      <span>{spot.city}, {spot.country}</span>
-                      <div className='spots-description'>
-                        <span>{spot.description}</span>
-                      </div>
-                      <div className='spots-price'>
-                        <span>{spot.price} per night</span>
-                      </div>
                       <div className='listing-update-delete'>
                         <NavLink className='edit-button' to={`/spots/${spot.id}/edit`}>Edit Spot</NavLink>
                         <button className='delete-button' onClick={() => dispatch(deleteSpotThunk(spot.id))}>Delete</button>
@@ -58,12 +55,15 @@ const UserSpots = () => {
                     </div>
                   </div>
                 </div>
-              </NavLink>
-            </div>
-          </li>
-        ))}
-      </ul>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <h2>Manage Reviews</h2>
+        <UserReviews />
+      </div>
     </div>
+
   )
 }
 

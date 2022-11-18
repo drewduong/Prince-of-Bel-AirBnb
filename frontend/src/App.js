@@ -6,7 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import CreateSpotForm from "./components/CreateSpotForm"
 import AllSpots from "./components/AllSpots";
-import OneSpot from "./components/OneSpot";
+import SingleSpot from "./components/SingleSpot";
 import UserSpots from "./components/UserSpots";
 import UpdateSpotForm from "./components/UpdateSpotForm"
 
@@ -26,7 +26,7 @@ function App() {
             <AllSpots />
           </Route>
           <Route exact path='/spots/:spotId'>
-            <OneSpot />
+            <SingleSpot />
           </Route>
           <Route path='/host'>
             <CreateSpotForm />

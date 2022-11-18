@@ -117,13 +117,13 @@ const CreateSpotForm = () => {
           placeholder='Description'
         />
         <input
-          type="integer"
+          type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           placeholder='Price'
         />
         <input
-          type="text"
+          type="url"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
           placeholder='Image URL'

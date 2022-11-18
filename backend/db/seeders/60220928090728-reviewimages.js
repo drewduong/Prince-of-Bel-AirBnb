@@ -15,6 +15,18 @@ module.exports = {
     */
     await queryInterface.bulkInsert('ReviewImages', [
       {
+        reviewId: 8,
+        url: 'googledrive.com/vv78d'
+      },
+      {
+        reviewId: 7,
+        url: 'googledrive.com/v378d'
+      },
+      {
+        reviewId: 6,
+        url: 'googledrive.com/v878d'
+      },
+      {
         reviewId: 5,
         url: 'googledrive.com/vc78d'
       },

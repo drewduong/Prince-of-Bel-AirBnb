@@ -8,9 +8,10 @@ const UpdateSpotForm = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const { spotId } = useParams()
+
   // const sessionUser = useSelector(state => state.session.user);
-  const currentSpot = useSelector(state => state.spots[+spotId])
-  console.log('/n', 'Edit Spot (useSelector):', '/n', currentSpot)
+  const currentSpot = useSelector(state => state.spots.allSpots[+spotId])
+  // console.log('/n', 'Edit Spot (useSelector):', '/n', currentSpot)
 
   const [address, setAddress] = useState(currentSpot?.address)
   const [city, setCity] = useState(currentSpot?.city)
@@ -21,7 +22,6 @@ const UpdateSpotForm = () => {
   const [price, setPrice] = useState(currentSpot?.price)
 
   const [validationErrors, setValidationErrors] = useState([])
-
 
   /* Passive data: dispatch within useEffect
   Active data, dispatch within onSubmit */
@@ -118,7 +118,7 @@ const UpdateSpotForm = () => {
           placeholder='Description'
         />
         <input
-          type="integer"
+          type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           placeholder='Price'

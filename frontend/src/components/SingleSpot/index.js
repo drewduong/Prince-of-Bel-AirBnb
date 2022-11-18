@@ -12,10 +12,19 @@ const SingleSpot = () => {
   /* Subscribe to the store and listen to changes in the spots slice of state.
   singleSpot is an object, which can't be mapped over, it needs to be converted to an array */
   const currentSpot = useSelector(state => state.spots.singleSpot)
-  console.log('/n', 'Spot detail (useSelector):', '/n', currentSpot)
+  // console.log('/n', 'Spot detail (useSelector):', '/n', currentSpot)
 
   // const currentReviews = useSelector(state => state.reviews.spotReviews)
   // console.log('/n', 'Spot detail reviews (useSelector):', '/n', currentReviews)
+
+
+
+  /*
+  
+  ------------------------------------------------------------------------------------
+  HERE WE'RE GONNA USE A .FILTER TO CHECK TO SEE IF THEY'VE ALREADY REVIEWED THE SPOT
+
+
 
   /* Passive data: dispatch within useEffect
      Active data, dispatch within submitHandler */
@@ -34,22 +43,23 @@ const SingleSpot = () => {
         <span>★ {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews · Superhost · {currentSpot.city}, {currentSpot.country} </span>
         <li key={currentSpot.id}>
           <div className='spots-card'>
-            <NavLink to={`/spots/${currentSpot.id}`}>
-              <div className='spots-image'>
-                <img className='airbnb-image' src={currentSpot?.SpotImages[0]?.url} alt='No Preview' />
+            <NavLink to={`/spots/${currentSpot.id}`} />
+            <div className='spots-image'>
+              <img className='airbnb-image' src={currentSpot?.SpotImages[0]?.url} alt='No Preview' />
+              <div>
+                <div className='spots-city'>
+                  <span>{currentSpot.description}</span>
+                </div>
+                <div className='spots-price'>
+                  <span>${`${currentSpot.price}`}/night</span>
+                </div>
                 <div>
-                  <div className='spots-city'>
-                    <span>{currentSpot.description}</span>
-                  </div>
-                  <div className='spots-price'>
-                    <span>${`${currentSpot.price}`}/night</span>
-                  </div>
+                  <NavLink className='create-review-button' to={`/spots/${currentSpot.id}/review`}>Leave Review</NavLink>
                 </div>
               </div>
-            </NavLink>
+            </div>
           </div>
         </li>
-
       </div>
     </div>
   )

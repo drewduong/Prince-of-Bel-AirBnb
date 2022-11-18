@@ -12,7 +12,7 @@ const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
 
 // Get review reviews
 export const getReviewsAction = (payload) => {
-  console.log("Get all spots payload (action)", payload)
+  // console.log("Get all spots payload (action)", payload)
   return {
     type: GET_SPOT_REVIEWS,
     payload
@@ -55,12 +55,12 @@ If data is ok in the backend, it will dispatch the regular POJO action creator t
 
 // Payload contains spotId
 export const getSpotReviewsThunk = (payload) => async (dispatch) => {
-  console.log('/n', 'Get review useParams spotId payload (thunk):', '/n', payload)
+  // console.log('/n', 'Get review useParams spotId payload (thunk):', '/n', payload)
   const res = await csrfFetch(`/api/spots/${payload}/reviews`)
 
   if (res.ok) {
     const data = await res.json()
-    console.log("/n", "Get a review backend data (thunk):", "/n", data)
+    // console.log("/n", "Get a review backend data (thunk):", "/n", data)
     dispatch(getReviewsAction(data))
     return data
   }
@@ -122,7 +122,7 @@ const reviewReducer = (state = initialState, action) => {
     case GET_SPOT_REVIEWS: {
       const newState = { ...state, spotReviews: {} }
       action.payload.Reviews.forEach(review => newState.spotReviews[review.id] = review)
-      console.log('/n', 'One spots newState after (reducer):', '/n', newState)
+      // console.log('/n', 'One spots newState after (reducer):', '/n', newState)
       return newState
     }
     case CREATE_REVIEW: {
@@ -140,8 +140,10 @@ const reviewReducer = (state = initialState, action) => {
       return newState
     }
     case DELETE_REVIEW: {
-      const newState = { ...state }
-      newState[action.payload] = action.payload
+      // const newState = { ...state, spotReviews: {} }
+      // delete newState.spotReviews[action.payload]
+      const newState = { ...state, userReviews: { ...state.userReviews } }
+      delete newState.userReviews[action.payload]
       // console.log('/n', 'Delete spot newState after (reducer):', '/n', newState)
       return newState
     }

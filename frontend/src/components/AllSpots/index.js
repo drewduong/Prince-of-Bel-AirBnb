@@ -14,6 +14,7 @@ const AllSpots = () => {
   const currentSpots = useSelector(state => Object.values(state.spots.allSpots))
   // console.log('/n', 'useSelector Current Spots:', '/n', currentSpots)
 
+
   /* Passive data: dispatch within useEffect
      Active data, dispatch within onSubmit */
 

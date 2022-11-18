@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { getUserSpotsThunk } from '../../store/spots';
@@ -12,7 +12,7 @@ const UserSpots = () => {
   const history = useHistory()
   const { spotId } = useParams()
 
-  // const [hasSubmitted, setHasSubmitted] = useState(false) // Double check if needed
+  const [isLoaded, setIsLoaded] = useState(false)
 
   /* Subscribe to the store and listen to changes in the spots slice of state.
   newState is an object containing all spots, which can't be mapped over, it needs to be converted to an array */
@@ -20,7 +20,7 @@ const UserSpots = () => {
   const sessionUser = useSelector(state => state.session.user)
   const currentSpots = useSelector(state => Object.values(state.spots.allSpots))
   const currentUserSpots = currentSpots.filter(spot => spot.ownerId === sessionUser.id)
-  console.log('/n', 'Current user spots (useSelector):', '/n', currentUserSpots)
+  // console.log('/n', 'Current user spots (useSelector):', '/n', currentUserSpots)
 
 
   /* Passive data: dispatch within useEffect
@@ -28,13 +28,14 @@ const UserSpots = () => {
 
   useEffect(() => {
     dispatch(getUserSpotsThunk())
-    // setHasSubmitted(false) // Double check logic. add into dependecy array if needed
+      .then(() => setIsLoaded(true))
   }, [dispatch])
+
 
   /* Conditional used to debug if it's not rendering correctly */
   if (!Object.keys(currentUserSpots).length) return null
 
-  return (
+  return isLoaded && (
     <div className='listings-reviews-container'>
       <div className='listing-reviews-div'>
         <ul>
@@ -50,7 +51,12 @@ const UserSpots = () => {
                     <div className='left-div'>
                       <div className='listing-update-delete'>
                         <NavLink className='edit-button' to={`/spots/${spot.id}/edit`}>Edit Spot</NavLink>
-                        <button className='delete-button' onClick={() => dispatch(deleteSpotThunk(spot.id))}>Delete</button>
+                        {/* <button className='delete-button' onClick={() => dispatch(deleteSpotThunk(spot.id))}>Delete</button> */}
+                        <button className='delete-button' onClick={async (e) => {
+                          e.preventDefault()
+                          const spotDeleted = await dispatch(deleteSpotThunk(spot.id))
+                          if (spotDeleted) history.push('/')
+                        }}>Delete</button>
                       </div>
                     </div>
                   </div>

@@ -49,7 +49,7 @@ const CreateReviewForm = () => {
   return (
     <div className="spot-form">
       <form onSubmit={onSubmit}>
-        <h2>Please Leave a Review</h2>
+        <h2>Please Leave a Brief Review</h2>
         <ul className="errors">
           {validationErrors.length > 0 && validationErrors.map((error, idx) => (
             <span>
@@ -61,59 +61,59 @@ const CreateReviewForm = () => {
           How was your stay?
           <input
             type="text"
-            name="review"
             onChange={e => setReview(e.target.value)}
+            placeholder="Describe your stay here"
             value={review}
           />
         </label>
         <label>
+          Select a rating based on your experience
           <label>
-            Select a rating based on your experience
             <input
-              checked={rating === 1}
+              checked={rating === "1"}
               type="radio"
               value="1"
-              name="star rating"
+              name="rating"
               onChange={(e) => setRating(e.target.value)}
             />
             ★
           </label>
           <label>
             <input
-              checked={rating === 2}
+              checked={rating === "2"}
               type="radio"
               value="2"
-              name="star rating"
+              name="rating"
               onChange={(e) => setRating(e.target.value)}
             />
             ★★
           </label>
           <label>
             <input
-              checked={rating === 3}
+              checked={rating === "3"}
               type="radio"
               value="3"
-              name="star rating"
+              name="rating"
               onChange={(e) => setRating(e.target.value)}
             />
             ★★★
           </label>
           <label>
             <input
-              checked={rating === 4}
+              checked={rating === "4"}
               type="radio"
               value="4"
-              name="star rating"
+              name="rating"
               onChange={(e) => setRating(e.target.value)}
             />
             ★★★★
           </label>
           <label>
             <input
-              checked={rating === 5}
+              checked={rating === "5"}
               type="radio"
               value="5"
-              name="star rating"
+              name="rating"
               onChange={(e) => setRating(e.target.value)}
             />
             ★★★★★

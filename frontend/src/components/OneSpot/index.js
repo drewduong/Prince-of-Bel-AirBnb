@@ -11,7 +11,7 @@ const OneSpot = () => {
 
   /* Subscribe to the store and listen to changes in the spots slice of state.
   OneSpot is an object, which can't be mapped over, it needs to be converted to an array */
-  const currentSpot = useSelector(state => state.spots[+spotId])
+  const currentSpot = useSelector(state => state.spots.singleSpot)
   console.log('/n', 'One Spot (useSelector):', '/n', currentSpot)
 
   /* Passive data: dispatch within useEffect
@@ -22,7 +22,7 @@ const OneSpot = () => {
   }, [dispatch, spotId])
 
   // Conditional used to debug if it's not rendering correctly
-  if (!currentSpot) return (<div>Spot Not Found</div>)
+  if (!Object.keys(currentSpot).length) return null
 
   return (
     <div className='spots-container'>
@@ -33,7 +33,7 @@ const OneSpot = () => {
             <NavLink to={`/spots/${currentSpot.id}`}>
               <div className='spots-image'>
                 {/* note: optional chaining so that it'll return undefined if null/undefined */}
-                {/* <img className='airbnb-image' src={currentSpot?.SpotImages[0]?.url} alt='No Preview' /> */}
+                <img className='airbnb-image' src={currentSpot?.SpotImages[0]?.url} alt='No Preview' />
                 <div>
                   <div className='spots-city'>
                     <span>{currentSpot.city}, {currentSpot.country}</span>

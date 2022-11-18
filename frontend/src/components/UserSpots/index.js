@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom';
 import { getUserSpotsThunk } from '../../store/spots';
-import UpdateSpotForm from '../UpdateSpotForm';
+import { deleteSpotThunk } from '../../store/spots';
 import { NavLink } from 'react-router-dom';
 import './UserSpots.css';
 
 const UserSpots = () => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const { spotId } = useParams()
 
   // const [hasSubmitted, setHasSubmitted] = useState(false) // Double check if needed
 
@@ -20,6 +21,7 @@ const UserSpots = () => {
   const currentUserSpots = currentSpots.filter(spot => spot.ownerId === sessionUser.id)
   console.log('/n', 'Current user spots (useSelector):', '/n', currentUserSpots)
 
+
   /* Passive data: dispatch within useEffect
   Active data, dispatch within onSubmit */
 
@@ -29,7 +31,7 @@ const UserSpots = () => {
   }, [dispatch])
 
   /* Conditional used to debug if it's not rendering correctly */
-  if (!currentSpots) return (<div>Not spots found. Sign up to begin hosting!</div>)
+  if (!Object.keys(currentUserSpots).length) return null
 
   return (
     <div className='spots-container'>
@@ -49,8 +51,9 @@ const UserSpots = () => {
                       <div className='spots-price'>
                         <span>{spot.price} per night</span>
                       </div>
-                      <div>
-                        <NavLink to={`/spots/${spot.id}/edit`}>Edit Spot</NavLink>
+                      <div className='listing-update-delete'>
+                        <NavLink className='edit-button' to={`/spots/${spot.id}/edit`}>Edit Spot</NavLink>
+                        <button className='delete-button' onClick={() => dispatch(deleteSpotThunk(spot.id))}>Delete</button>
                       </div>
                     </div>
                   </div>

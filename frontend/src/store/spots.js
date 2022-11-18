@@ -8,12 +8,12 @@ const GET_USER_SPOTS = 'spots/GET_USER_SPOTS'
 const CREATE_SPOT = 'spots/CREATE_SPOT'
 const CREATE_SPOT_IMAGE = 'spots/CREATE_SPOT_IMAGE'
 const UPDATE_SPOT = 'spots/UPDATE_SPOT'
-// const DELETE_SPOT = 'spots/DELETE_SPOT'
+const DELETE_SPOT = 'spots/DELETE_SPOT'
 
 
 /*----------ACTION CREATORS----------*/
 
-// get all spots
+// Get all spots
 export const getAllSpotsAction = (payload) => {
   // console.log("Get all spots payload (action)", payload)
   return {
@@ -22,7 +22,7 @@ export const getAllSpotsAction = (payload) => {
   }
 }
 
-// get spot
+// Get spot
 export const getSpotAction = (payload) => {
   // console.log("Get all spots payload (action)", payload)
   return {
@@ -31,16 +31,16 @@ export const getSpotAction = (payload) => {
   }
 }
 
-// get user spots
+// Get user spots
 export const getUserSpotsAction = (payload) => {
-  console.log("Get user spots payload (action)", payload)
+  // console.log("Get user spots payload (action)", payload)
   return {
     type: GET_USER_SPOTS,
     payload
   }
 }
 
-// create a spot
+// Create a spot
 export const createSpotAction = (payload) => {
   // console.log("Create spots payload (action)", payload)
   return {
@@ -49,7 +49,7 @@ export const createSpotAction = (payload) => {
   }
 }
 
-// create spot image
+// Create spot image
 export const createSpotImageAction = (spotId, image) => {
   // console.log("Create spot image payload (action)", payload)
   return {
@@ -59,7 +59,7 @@ export const createSpotImageAction = (spotId, image) => {
   }
 }
 
-// update spot
+// Update spot
 export const updateSpotAction = (payload) => {
   // console.log("Update spot payload (action)", payload)
   return {
@@ -68,14 +68,14 @@ export const updateSpotAction = (payload) => {
   }
 }
 
-// delete spot
-// export const deleteSpotAction = (spotId) => {
-// console.log("Delete spot payload (action)", payload)
-//   return {
-//     type: DELETE_SPOT,
-//     spotId
-//   }
-// }
+// Delete spot
+export const deleteSpotAction = (payload) => {
+  console.log("Delete spot payload (action)", payload)
+  return {
+    type: DELETE_SPOT,
+    payload
+  }
+}
 
 /*----------THUNK ACTION CREATORS----------*/
 
@@ -93,6 +93,7 @@ export const getAllSpotsThunk = () => async (dispatch) => {
   }
 }
 
+
 // Payload contains spotId
 export const getSpotThunk = (payload) => async (dispatch) => {
   // console.log('/n', 'Get spot useParams spotId payload (thunk):', '/n', payload)
@@ -100,7 +101,7 @@ export const getSpotThunk = (payload) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    console.log("/n", "Get a spot backend data (thunk):", "/n", data)
+    // console.log("/n", "Get a spot backend data (thunk):", "/n", data)
     dispatch(getSpotAction(data))
     return data
   }
@@ -112,7 +113,7 @@ export const getUserSpotsThunk = () => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    console.log("/n", "Get user spots backend data (thunk):", "/n", data)
+    // console.log("/n", "Get user spots backend data (thunk):", "/n", data)
     dispatch(getUserSpotsAction(data))
     return data
   }
@@ -128,11 +129,12 @@ export const createSpotThunk = (payload) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    console.log('/n', 'Create a spot backend (thunk):', '/n', data)
+    // console.log('/n', 'Create a spot backend (thunk):', '/n', data)
     dispatch(createSpotAction(data))
     return data
   }
 }
+
 
 // Payload contains SpotId, imageUrl
 export const createSpotImageThunk = (spotId, image) => async (dispatch) => {
@@ -144,13 +146,13 @@ export const createSpotImageThunk = (spotId, image) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    console.log('/n', 'Create a spot image backend data (thunk):', '/n', data)
+    // console.log('/n', 'Create a spot image backend data (thunk):', '/n', data)
     dispatch(createSpotImageAction(data))
     return data
   }
 }
 
-// Payload contains spotId
+// Payload contains edit spot details and spotId
 export const updateSpotThunk = (payload, spotId) => async (dispatch) => {
   // console.log('/n', 'Update a spot user useParams spotId payload (thunk):', '/n', payload)
   const res = await csrfFetch(`/api/spots/${spotId}`, {
@@ -160,41 +162,38 @@ export const updateSpotThunk = (payload, spotId) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    // console.log('*update spot*: ', data)
+    // console.log('/n', 'Update a spot backend data (thunk):', '/n', data)
     dispatch(updateSpotAction(data))
     return data
   }
 }
 
+// Payload contains spotId
+export const deleteSpotThunk = (payload) => async (dispatch) => {
+  // console.log('/n', 'Create a spot useParams spotId payload (thunk):', '/n', payload)
+  const res = await csrfFetch(`/api/spots/${payload}`, {
+    method: 'DELETE'
+  })
 
-// export const deleteSpotThunk = (spotId) => async (dispatch) => {
-// console.log('/n', 'Create a spot useParams spotId payload (thunk):', '/n', payload)
-//   const res = await csrfFetch(`/api/spots/${spotId}`, {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     }
-//   })
-
-//   if (res.ok) {
-//     const data = await res.json()
-//     // console.log('*delete spot*: ', data)
-//     dispatch(deleteSpotAction(data))
-//     return data //check again
-//   }
-// }
+  if (res.ok) {
+    const data = await res.json()
+    // console.log('/n', 'Delete a spot backend data (thunk):', '/n', data)
+    dispatch(deleteSpotAction(data))
+    return data //check again
+  }
+}
 
 /*----------REDUCER----------*/
 
 /* Have API routes open so you can see a successful 
 response = action.payload we're keying into for the reducer */
 
-const initialState = {}
+const initialState = { singleSpot: {} }
 
 const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_SPOTS: {
-      const newState = { ...state }
+      const newState = { singleSpot: {} }
       action.payload.Spots.forEach(spot => {
         newState[spot.id] = spot
       })
@@ -203,7 +202,7 @@ const spotReducer = (state = initialState, action) => {
     }
     case GET_SPOT: {
       const newState = { ...state }
-      newState[action.payload.id] = action.payload
+      newState.singleSpot = action.payload
       // console.log('/n', 'One spots newState after (reducer):', '/n', newState)
       return newState
     }
@@ -214,15 +213,23 @@ const spotReducer = (state = initialState, action) => {
       return newState
     }
     case GET_USER_SPOTS: {
-      const newState = { ...state }
-      newState[action.payload.Spots] = action.payload
-      // console.log('/n', 'User spots newState after (reducer):', '/n', newState)
+      const newState = { singleSpot: {} }
+      action.payload.Spots.forEach(spot => {
+        newState[spot.id] = spot
+      })
+      // console.log('/n', 'All spots (reducer):', '/n', newState)
       return newState
     }
     case UPDATE_SPOT: {
       const newState = { ...state }
-      newState[action.payload.id] = action.payload
+      newState[action.payload.id] = { ...state[action.payload.id], ...action.payload }
       // console.log('/n', 'Update spot newState after (reducer):', '/n', newState)
+      return newState
+    }
+    case DELETE_SPOT: {
+      const newState = { ...state }
+      newState[action.payload] = action.payload
+      console.log('/n', 'Delete spot newState after (reducer):', '/n', newState)
       return newState
     }
     default:

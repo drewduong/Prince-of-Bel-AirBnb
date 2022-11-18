@@ -15,6 +15,24 @@ module.exports = {
     */
     await queryInterface.bulkInsert('Reviews', [
       {
+        spotId: 4,
+        userId: 1,
+        review: 'Average stay, definitely not as advertised based on the photos',
+        stars: 4
+      },
+      {
+        spotId: 3,
+        userId: 1,
+        review: 'Average stay, definitely not as advertised based on the photos',
+        stars: 4
+      },
+      {
+        spotId: 2,
+        userId: 1,
+        review: 'Average stay, definitely not as advertised based on the photos',
+        stars: 4
+      },
+      {
         spotId: 5,
         userId: 1,
         review: 'Average stay, definitely not as advertised based on the photos',
@@ -42,24 +60,6 @@ module.exports = {
         spotId: 1,
         userId: 5,
         review: 'I am speechless this listing is even allowed to be on here',
-        stars: 5
-      },
-      {
-        spotId: 4,
-        userId: 1,
-        review: 'Floors were literally spot-less. I am bringing my family here next time',
-        stars: 5
-      },
-      {
-        spotId: 3,
-        userId: 1,
-        review: 'As other reviews have stated, this was a fabulous stay!',
-        stars: 4
-      },
-      {
-        spotId: 2,
-        userId: 1,
-        review: 'Beautiful city views from the beautiful balcony. Would definitely stay again',
         stars: 5
       }
     ], {});

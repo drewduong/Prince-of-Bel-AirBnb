@@ -15,37 +15,25 @@ module.exports = {
     */
     await queryInterface.bulkInsert('ReviewImages', [
       {
-        reviewId: 8,
-        url: 'googledrive.com/vv78d'
-      },
-      {
-        reviewId: 7,
-        url: 'googledrive.com/v378d'
-      },
-      {
-        reviewId: 6,
-        url: 'googledrive.com/v878d'
-      },
-      {
-        reviewId: 5,
-        url: 'googledrive.com/vc78d'
-      },
-      {
-        reviewId: 4,
-        url: 'googledrive.com/eg84g'
-      },
-      {
-        reviewId: 3,
-        url: 'googledrive.com/gre21'
+        reviewId: 1,
+        url: 'https://nextluxury.com/wp-content/uploads/masculine-designs-loft-ideas.jpg'
       },
       {
         reviewId: 2,
-        url: 'googledrive.com/18dfe'
+        url: 'https://i.ytimg.com/vi/ddkxfZtWzDA/maxresdefault.jpg'
       },
       {
-        reviewId: 1,
-        url: 'googledrive.com/85eah'
+        reviewId: 3,
+        url: 'https://thesmartlocal.com/images/easyblog_articles/5844/image11.jpg'
       },
+      {
+        reviewId: 4,
+        url: 'https://www.myglobalviewpoint.com/wp-content/uploads/2021/02/16a-seoul-south-korea-rooftop-airbnb-rental.jpg'
+      },
+      {
+        reviewId: 5,
+        url: 'https://www.jonesaroundtheworld.com/wp-content/uploads/2019/11/Unique-Airbnbs-in-Singapore-2020.jpg'
+      }
     ], {});
 
   },

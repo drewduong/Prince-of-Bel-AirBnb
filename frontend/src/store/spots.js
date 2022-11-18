@@ -209,6 +209,9 @@ const spotReducer = (state = initialState, action) => {
       return newState
     }
     case CREATE_SPOT: {
+      // const newState = { ...state, allSpots: {} }
+      // newState.allSpots[action.payload.id] = action.payload
+      // return newState
       const newState = { ...state }
       newState[action.payload.id] = action.payload
       // console.log('/n', 'Create a spots newState after (reducer):', '/n', newState)

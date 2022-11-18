@@ -79,9 +79,9 @@ export const getUserReviewsThunk = () => async (dispatch) => {
 }
 
 // Payload contains spotId
-export const createReviewThunk = (payload) => async (dispatch) => {
+export const createReviewThunk = (payload, spotId) => async (dispatch) => {
   // console.log('/n', 'Create a review user input payload (thunk):', '/n', payload)
-  const res = await csrfFetch(`/api/spots/${payload}/reviews`, {
+  const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
     method: 'POST',
     body: JSON.stringify(payload)
   })

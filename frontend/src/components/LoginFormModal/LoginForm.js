@@ -9,6 +9,12 @@ function LoginForm({ setShowModal }) {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const demoLogin = async (e) => {
+    setCredential('Demo-lition')
+    setPassword('password');
+    await dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -48,7 +54,8 @@ function LoginForm({ setShowModal }) {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button className='login-button' type="submit">Log In</button>
+      <button className='demo-button' type="submit" onClick={demoLogin}>Demo User</button>
     </form>
   );
 }

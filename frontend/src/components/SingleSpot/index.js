@@ -25,7 +25,8 @@ const SingleSpot = () => {
   const currentReviews = useSelector(state => Object.values(state.reviews.spotReviews))
   // console.log('current reviews: ', currentReviews)
   const reviewExists = currentReviews.find(review => review.userId === sessionUser?.id)
-  const isReviewOwner = currentSpot?.ownerId === sessionUser?.spotId
+  const isSpotOwner = currentSpot?.ownerId === sessionUser?.id
+  console.log('/n', 'Checking to see if the owner can review his own spot (useSelector):', '/n', currentSpot)
 
 
   /* Passive data: dispatch within useEffect
@@ -69,9 +70,9 @@ const SingleSpot = () => {
           <h2>★ {currentSpot.avgStarRating} · {currentSpot.numReviews}</h2>
           <div className='reviews-card'>
             <div className='create-review-div'>
-              {sessionUser && !reviewExists && !isReviewOwner ? (
+              {sessionUser && !reviewExists && !isSpotOwner ? (
                 <NavLink className='create-review-button' to={`/spots/${currentSpot.id}/review`}>Leave Review</NavLink>) :
-                (<h3>User has already reviewed this airbnb</h3>)}
+                (<h3>Currently unable to review this place</h3>)}
             </div>
             <ul className='spot-reviews'>
               {currentSpotReviews?.map(review => (

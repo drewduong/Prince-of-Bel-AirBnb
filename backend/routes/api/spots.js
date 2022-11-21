@@ -110,8 +110,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     })
   }
 
-  const existingReview = await Review.findByPk(req.params.spotId, {
+  const existingReview = await Review.findOne({
     where: {
+      spotId: spot.id,
       userId: req.user.id
     }
   })
@@ -119,6 +120,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
   if (existingReview) {
     res.status(403)
     return res.json({
+      "errors": ["User already has a review for this spot"],
       "message": "User already has a review for this spot",
       "statusCode": 403
     })

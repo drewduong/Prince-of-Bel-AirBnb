@@ -7,7 +7,6 @@ import './CreateSpotForm.css';
 const CreateSpotForm = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  // const currentUser = useSelector((state) => state.session.user);
 
   const [address, setAddress] = useState("")
   const [city, setCity] = useState("")
@@ -17,10 +16,9 @@ const CreateSpotForm = () => {
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
   const [imageUrl, setImageUrl] = useState("")
+  const [hasSubmitted, setHasSubmitted] = useState(false)
 
   const [validationErrors, setValidationErrors] = useState([])
-
-  // if (!currentUser) return <Redirect to="/" />
 
   /* Passive data: dispatch within useEffect
      Active data, dispatch within onSubmit */
@@ -32,8 +30,10 @@ const CreateSpotForm = () => {
     if (!city) errors.push("City is required")
     if (!state) errors.push("State is required")
     if (!country) errors.push("Country is required")
-    if (!name) errors.push("Name must be less than 50 characters")
+    if (!name) errors.push("Name of airbnb is required")
+    if (name.length > 50) errors.push("Name must be less than 50 characters")
     if (!description) errors.push("Description is required")
+    if (description.length > 255) errors.push("Description must be less than 255 characters")
     if (!price) errors.push("Price per day is required")
     if (!imageUrl) errors.push("Image url is required")
 
@@ -42,6 +42,7 @@ const CreateSpotForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    setHasSubmitted(true)
 
     if (!validationErrors.length) {
       const payload = {
@@ -69,10 +70,10 @@ const CreateSpotForm = () => {
 
   return (
     <div className="spot-form">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
         <h2>Begin Hosting</h2>
         <ul className="errors">
-          {validationErrors.length > 0 && validationErrors.map((error, idx) => (
+          {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
             <span>
               <li key={idx}>{error}</li>
             </span>
@@ -128,9 +129,7 @@ const CreateSpotForm = () => {
           onChange={(e) => setImageUrl(e.target.value)}
           placeholder='Image URL'
         />
-        <button
-          type="submit"
-          disabled={validationErrors.length > 0}>Begin Hosting</button>
+        <button type="submit">Begin Hosting</button>
       </form>
     </div>
   )

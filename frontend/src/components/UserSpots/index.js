@@ -37,6 +37,7 @@ const UserSpots = () => {
 
   return isLoaded && (
     <div className='listings-reviews-container'>
+      <h2>Manage Your Listings </h2>
       <div className='listing-reviews-div'>
         <ul>
           {currentUserSpots.map(spot => (
@@ -65,8 +66,6 @@ const UserSpots = () => {
             </li>
           ))}
         </ul>
-        <h2>Manage Reviews</h2>
-        <UserReviews />
       </div>
     </div>
 

@@ -16,23 +16,15 @@ module.exports = {
     await queryInterface.bulkInsert('ReviewImages', [
       {
         reviewId: 1,
-        url: 'https://nextluxury.com/wp-content/uploads/masculine-designs-loft-ideas.jpg'
+        url: 'https://media-cldnry.s-nbcnews.com/image/upload/newscms/2018_41/2603736/181013-skid-row-los-angeles-ew-555p.jpg'
       },
       {
         reviewId: 2,
-        url: 'https://i.ytimg.com/vi/ddkxfZtWzDA/maxresdefault.jpg'
+        url: 'https://skidrow.org/wp-content/uploads/Skidrow.jpg'
       },
       {
         reviewId: 3,
-        url: 'https://thesmartlocal.com/images/easyblog_articles/5844/image11.jpg'
-      },
-      {
-        reviewId: 4,
-        url: 'https://www.myglobalviewpoint.com/wp-content/uploads/2021/02/16a-seoul-south-korea-rooftop-airbnb-rental.jpg'
-      },
-      {
-        reviewId: 5,
-        url: 'https://www.jonesaroundtheworld.com/wp-content/uploads/2019/11/Unique-Airbnbs-in-Singapore-2020.jpg'
+        url: 'https://bloximages.chicago2.vip.townnews.com/ladowntownnews.com/content/tncms/assets/v3/editorial/7/3f/73f436ea-bafd-11e9-9251-a3db9e215be6/5d4e0213d086f.image.jpg'
       }
     ], {});
 

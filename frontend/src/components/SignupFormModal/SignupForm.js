@@ -30,7 +30,7 @@ function SignupForm({ setShowModal }) {
           if (data && data.errors) setErrors(data.errors);
         });
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return setErrors(['Confirm password field must be the same as the password field']);
   };
 
   return (

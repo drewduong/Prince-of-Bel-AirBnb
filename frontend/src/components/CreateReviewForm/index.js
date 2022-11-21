@@ -10,8 +10,9 @@ const CreateReviewForm = () => {
   const { spotId } = useParams()
   // const currentUser = useSelector((state) => state.session.user);
 
-  const [rating, setRating] = useState(1)
+  const [stars, setStars] = useState(1)
   const [review, setReview] = useState("")
+  const [hasSubmitted, setHasSubmitted] = useState(false)
 
   const [validationErrors, setValidationErrors] = useState([])
 
@@ -23,23 +24,24 @@ const CreateReviewForm = () => {
   useEffect(() => {
     const errors = []
 
-    if (!rating) errors.push("Rating is required")
-    if (!review) errors.push("Review is required")
+    if (!stars) errors.push("Rating is required")
+    if (!review) errors.push("Review is required for submission")
+    if (!review.length > 255) errors.push("Review should be less than 255 characters")
 
     setValidationErrors(errors)
-  }, [rating, review])
+  }, [stars, review])
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    setHasSubmitted(true)
 
     if (!validationErrors.length) {
       const payload = {
-        rating,
+        stars,
         review
       }
 
       const newReview = await dispatch(createReviewThunk(payload, spotId))
-      // console.log('/n', 'Create a spot (onSubmit)):', '/n', newSpot)
       if (newReview) {
         history.push(`/spots/${spotId}`)
       }
@@ -48,10 +50,10 @@ const CreateReviewForm = () => {
 
   return (
     <div className="spot-form">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
         <h2>Please Leave a Brief Review</h2>
         <ul className="errors">
-          {validationErrors.length > 0 && validationErrors.map((error, idx) => (
+          {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
             <span>
               <li key={idx}>{error}</li>
             </span>
@@ -70,58 +72,56 @@ const CreateReviewForm = () => {
           Select a rating based on your experience
           <label>
             <input
-              checked={rating === "1"}
+              checked={stars === "1"}
               type="radio"
               value="1"
-              name="rating"
-              onChange={(e) => setRating(e.target.value)}
+              name="stars"
+              onChange={(e) => setStars(e.target.value)}
             />
             ★
           </label>
           <label>
             <input
-              checked={rating === "2"}
+              checked={stars === "2"}
               type="radio"
               value="2"
-              name="rating"
-              onChange={(e) => setRating(e.target.value)}
+              name="stars"
+              onChange={(e) => setStars(e.target.value)}
             />
             ★★
           </label>
           <label>
             <input
-              checked={rating === "3"}
+              checked={stars === "3"}
               type="radio"
               value="3"
-              name="rating"
-              onChange={(e) => setRating(e.target.value)}
+              name="stars"
+              onChange={(e) => setStars(e.target.value)}
             />
             ★★★
           </label>
           <label>
             <input
-              checked={rating === "4"}
+              checked={stars === "4"}
               type="radio"
               value="4"
-              name="rating"
-              onChange={(e) => setRating(e.target.value)}
+              name="stars"
+              onChange={(e) => setStars(e.target.value)}
             />
             ★★★★
           </label>
           <label>
             <input
-              checked={rating === "5"}
+              checked={stars === "5"}
               type="radio"
               value="5"
-              name="rating"
-              onChange={(e) => setRating(e.target.value)}
+              name="stars"
+              onChange={(e) => setStars(e.target.value)}
             />
             ★★★★★
           </label>
         </label>
-        <button
-          type="submit"
-          disabled={validationErrors.length > 0}>Submit Review</button>
+        <button type="submit">Submit Review</button>
       </form>
     </div>
   )

@@ -61,7 +61,7 @@ const UpdateSpotForm = () => {
 
       dispatch(updateSpotThunk(payload, spotId))
 
-      history.push('/account')
+      history.push('/listings')
     }
   }
 

@@ -31,19 +31,19 @@ const AllSpots = () => {
         {currentSpots.map(spot => (
           <li key={spot.id}>
             <div className='spots-card'>
-              <NavLink to={`/spots/${spot.id}`}>
-                <div className='spots-image'>
+              <div className='spots-image'>
+                <NavLink to={`/spots/${spot.id}`}>
                   <img className='airbnb-image' src={spot.previewImage} alt='No Preview' />
-                  <div>
-                    <div className='left-div'>
-                      <div>{spot.city}, {spot.country}</div>
-                      <div>★ {spot.avgRating}</div>
-                      <div>{spot.name}</div>
-                      <div>${spot.price} /night</div>
-                    </div>
+                </NavLink>
+                <div>
+                  <div className='left-div'>
+                    <div>{spot.city}, {spot.country}</div>
+                    <div>★ {spot.avgRating}</div>
+                    <div>{spot.name}</div>
+                    <div>${spot.price} /night</div>
                   </div>
                 </div>
-              </NavLink>
+              </div>
             </div>
           </li>
         ))}

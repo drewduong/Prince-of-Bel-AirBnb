@@ -178,7 +178,7 @@ export const deleteSpotThunk = (payload) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     // console.log('/n', 'Delete a spot backend data (thunk):', '/n', data)
-    dispatch(deleteSpotAction(data))
+    dispatch(deleteSpotAction(payload))
     return data //check again
   }
 }

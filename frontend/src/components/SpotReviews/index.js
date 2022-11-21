@@ -15,9 +15,8 @@ const SpotReviews = () => {
   newState is an object containing all spots, which can't be mapped over, it needs to be converted to an array */
 
   // const sessionUser = useSelector(state => state.session.user)
-  // const currentSpots = useSelector(state => Object.values(state.spots))
   const currentSpotReviews = useSelector(state => Object.values(state.reviews.spotReviews))
-  console.log('/n', 'Current user reviews (useSelector):', '/n', currentSpotReviews)
+  // console.log('/n', 'Current user reviews (useSelector):', '/n', currentSpotReviews)
 
 
   /* Passive data: dispatch within useEffect

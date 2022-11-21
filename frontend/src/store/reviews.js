@@ -127,7 +127,7 @@ const reviewReducer = (state = initialState, action) => {
     }
     case CREATE_REVIEW: {
       const newState = { ...state }
-      newState[action.payload.id] = action.payload
+      newState.spotReviews[action.payload.id] = action.payload
       // console.log('/n', 'Create a spots newState after (reducer):', '/n', newState)
       return newState
     }

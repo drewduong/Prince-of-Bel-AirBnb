@@ -1,19 +1,49 @@
-.spots-container {
-  display: flex;
-  justify-content: space-between;
-  border: 2px solid black;
+@font-face {
+  font-family: "Airbnb-Normal";
+  src: url('../../assets/AirbnbCereal_W_Bk.woff') format('woff');
+  /* font-weight: normal; */
 }
 
-.spots-card {
-  border: 2px solid black;
+@font-face {
+  font-family: "Airbnb-Light";
+  src: url('../../assets/AirbnbCereal_W_Lt.woff') format('woff');
+  /* font-weight: normal; */
 }
+
+.spot-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  /* border: 2px solid red */
+}
+
+
+.single {
+  padding-top: 1rem;
+  padding: 0 1rem;
+  list-style: none;
+  /* background-color: yellow; */
+  /* border: 2px solid black; */
+}
+
 
 .airbnb-image {
-  border: 2px solid black;
-  width: 100%;
-  /* height: 300px; */
+  /* border: 2px solid black; */
+  width: 20%;
+  border-radius: 5%;
 }
 
 .left-div {
-  border: 2px solid black
+  /* border: 2px solid black; */
+  /* display: flex; */
+  justify-content: space-between;
+  line-height: 21px;
+}
+
+.rating {
+  display: flex;
+  flex-wrap: wrap;
 }

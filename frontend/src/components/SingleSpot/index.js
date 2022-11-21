@@ -19,14 +19,14 @@ const SingleSpot = () => {
   const currentSpot = useSelector(state => state.spots.singleSpot)
   // console.log('/n', 'Spot detail (useSelector):', '/n', currentSpot)
   const currentSpotReviews = useSelector(state => Object.values(state.reviews.spotReviews))
-  console.log('/n', 'Current spot reviews (useSelector):', '/n', currentSpotReviews)
+  // console.log('/n', 'Current spot reviews (useSelector):', '/n', currentSpotReviews)
 
   // Checking if user has already reviewed the spot
   const currentReviews = useSelector(state => Object.values(state.reviews.spotReviews))
   // console.log('current reviews: ', currentReviews)
   const reviewExists = currentReviews.find(review => review.userId === sessionUser?.id)
   const isSpotOwner = currentSpot?.ownerId === sessionUser?.id
-  console.log('/n', 'Checking to see if the owner can review his own spot (useSelector):', '/n', currentSpot)
+  // console.log('/n', 'Checking to see if the owner can review his own spot (useSelector):', '/n', currentSpot)
 
 
   /* Passive data: dispatch within useEffect

@@ -69,67 +69,69 @@ const CreateSpotForm = () => {
   }
 
   return (
-    <div className="spot-form">
-      <form onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
-        <h2>Begin Hosting</h2>
-        <ul className="errors">
-          {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
-            <span>
-              <li key={idx}>{error}</li>
-            </span>
-          ))}
-        </ul>
-        <label>
+    <div className="begin-hosting-form">
+      <form className='form-input' onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
+        <div className='host-wrapper'>
+          <h2>Begin Hosting</h2>
+          <ul className="errors">
+            {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
+              <span>
+                <li key={idx}>{error}</li>
+              </span>
+            ))}
+          </ul>
+          <label>
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder='Address'
+            />
+          </label>
           <input
             type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            placeholder='Address'
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder='City'
           />
-        </label>
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder='City'
-        />
-        <input
-          type="text"
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-          placeholder='State'
-        />
-        <input
-          type="text"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-          placeholder='Country'
-        />
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder='Name'
-        />
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder='Description'
-        />
-        <input
-          type="number"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          placeholder='Price'
-        />
-        <input
-          type="url"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-          placeholder='Image URL'
-        />
-        <button type="submit">Begin Hosting</button>
+          <input
+            type="text"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            placeholder='State'
+          />
+          <input
+            type="text"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            placeholder='Country'
+          />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder='Name'
+          />
+          <input
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder='Description'
+          />
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder='Price'
+          />
+          <input
+            type="url"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            placeholder='Image URL'
+          />
+          <button type="submit">Begin Hosting</button>
+        </div>
       </form>
     </div>
   )

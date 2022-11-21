@@ -1,43 +1,87 @@
+@font-face {
+  font-family: "Airbnb-Normal";
+  src: url('../../assets/AirbnbCereal_W_Bk.woff') format('woff');
+}
+
+@font-face {
+  font-family: "Airbnb-Light";
+  src: url('../../assets/AirbnbCereal_W_Lt.woff') format('woff');
+}
+
 /* ------- Navigation Bar Container ------- */
 
 .nav-bar-container {
   display: flex;
   justify-content: space-between;
-  background-color: yellow;
-  border: 2px solid black
+  /* background-color: yellow; */
+  /* border: 2px solid black */
+}
+
+.nav-bar-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  /* border: 2px solid black; */
 }
 
 /* ------- Navigation Left Div ------- */
 
-.left-nav {
-  /* display: flex; */
-  background-color: green;
-  border: 2px solid black;
-  width: 70px;
-  height: 70px;
-}
 
 .logo {
-  display: flex;
-  align-items: center;
-  width: 50px;
-  margin: 5px;
-  border: 2px solid black
+  width: 180px;
+  padding: 0px 20px;
+  padding-top: 10px;
+  /* border: 2px solid black */
 }
 
-/* ------- Navigation Right Div, No User Logged In ------- */
+/* ------- Navigation Right Div ------- */
 
 .right-nav {
-  /* display: flex;
-  justify-content: space-between; */
-  background-color: rgb(196, 226, 227);
-  border: 2px solid black;
-  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 5%;
+  /* background-color: rgb(196, 226, 227); */
+  /* border: 2px solid black; */
+  width: 15%;
 }
 
 .begin-hosting {
-  background-color: aquamarine;
-  border: 2px solid black;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  width: 140px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 25px;
+  padding-right: 2px;
+}
+
+.begin-hosting:hover {
+  background: #F0EDE1
+}
+
+.new-spot {
+  text-decoration: none;
+}
+
+.profile-button {
+  position: relative;
+  background-color: white;
+  width: 150px;
+  height: 60px;
+  border: 1px solid grey;
+}
+
+.profile-dropdown {
+  position: absolute;
+  right: 20px;
+  top: 100px;
 }
 
 .menu-profile {

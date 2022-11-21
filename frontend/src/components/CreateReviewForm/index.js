@@ -49,79 +49,82 @@ const CreateReviewForm = () => {
   }
 
   return (
-    <div className="spot-form">
+    <div className="review">
       <form onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
-        <h2>Please Leave a Brief Review</h2>
-        <ul className="errors">
-          {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
-            <span>
-              <li key={idx}>{error}</li>
-            </span>
-          ))}
-        </ul>
-        <label>
-          How was your stay?
-          <input
-            type="text"
-            onChange={e => setReview(e.target.value)}
-            placeholder="Describe your stay here"
-            value={review}
-          />
-        </label>
-        <label>
-          Select a rating based on your experience
+        <div className='host-wrapper'>
+          <h2>Please Leave a Brief Review</h2>
+          <ul className="errors">
+            {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
+              <span>
+                <li key={idx}>{error}</li>
+              </span>
+            ))}
+          </ul>
           <label>
+            How was your stay?
             <input
-              checked={stars === "1"}
-              type="radio"
-              value="1"
-              name="stars"
-              onChange={(e) => setStars(e.target.value)}
+              className='describe'
+              type="text"
+              onChange={e => setReview(e.target.value)}
+              placeholder="Describe your stay here"
+              value={review}
             />
-            ★
           </label>
           <label>
-            <input
-              checked={stars === "2"}
-              type="radio"
-              value="2"
-              name="stars"
-              onChange={(e) => setStars(e.target.value)}
-            />
-            ★★
+            Select a rating based on your experience
+            <label>
+              <input
+                checked={stars === "1"}
+                type="radio"
+                value="1"
+                name="stars"
+                onChange={(e) => setStars(e.target.value)}
+              />
+              ★
+            </label>
+            <label>
+              <input
+                checked={stars === "2"}
+                type="radio"
+                value="2"
+                name="stars"
+                onChange={(e) => setStars(e.target.value)}
+              />
+              ★★
+            </label>
+            <label>
+              <input
+                checked={stars === "3"}
+                type="radio"
+                value="3"
+                name="stars"
+                onChange={(e) => setStars(e.target.value)}
+              />
+              ★★★
+            </label>
+            <label>
+              <input
+                checked={stars === "4"}
+                type="radio"
+                value="4"
+                name="stars"
+                onChange={(e) => setStars(e.target.value)}
+              />
+              ★★★★
+            </label>
+            <label>
+              <input
+                checked={stars === "5"}
+                type="radio"
+                value="5"
+                name="stars"
+                onChange={(e) => setStars(e.target.value)}
+              />
+              ★★★★★
+            </label>
           </label>
-          <label>
-            <input
-              checked={stars === "3"}
-              type="radio"
-              value="3"
-              name="stars"
-              onChange={(e) => setStars(e.target.value)}
-            />
-            ★★★
-          </label>
-          <label>
-            <input
-              checked={stars === "4"}
-              type="radio"
-              value="4"
-              name="stars"
-              onChange={(e) => setStars(e.target.value)}
-            />
-            ★★★★
-          </label>
-          <label>
-            <input
-              checked={stars === "5"}
-              type="radio"
-              value="5"
-              name="stars"
-              onChange={(e) => setStars(e.target.value)}
-            />
-            ★★★★★
-          </label>
-        </label>
-        <button type="submit">Submit Review</button>
+          <button type="submit">Submit Review</button>
+        </div>
       </form>
     </div>
   )

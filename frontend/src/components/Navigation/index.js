@@ -15,24 +15,28 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className='nav-bar-container'>
-      <div className='left-nav'>
-        <NavLink exact to="/">
-          <img className='logo' src='https://cdn.pixabay.com/photo/2018/05/08/21/28/airbnb-3384008_960_720.png' alt='logo' />
-        </NavLink>
-      </div>
-      <div className='right-nav'>
-        <div className='begin-hosting'>
-          {sessionUser && <NavLink className='begin-hosting' to={'/host'}>Begin Hosting</NavLink>}
+      <ul className='nav-bar-list'>
+        <li>
+          <NavLink exact to="/">
+            <img className='logo' src='https://i.imgur.com/mrzo0xM.png' alt='logo' />
+          </NavLink>
+        </li>
+        <div className='right-nav'>
+          <li>
+            <div className='begin-hosting'>
+              {sessionUser && <NavLink className='new-spot' to={'/host'}>Begin Hosting</NavLink>}
+            </div>
+          </li>
+          <li>
+            {isLoaded && <ProfileButton className='profile-button' user={sessionUser} setLogin={setLogin} setShowModal={setShowModal} />}
+            <div className='dropdown'>
+              {showModal && <Modal onClose={() => setShowModal(false)}>
+                {login ? <LoginForm setShowModal={setShowModal} /> : <SignupForm setShowModal={setShowModal} />}
+              </Modal>}
+            </div>
+          </li>
         </div>
-        <div className='profile-button'>
-          {isLoaded && <ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal} />}
-        </div>
-        <div>
-          {showModal && <Modal onClose={() => setShowModal(false)}>
-            {login ? <LoginForm setShowModal={setShowModal} /> : <SignupForm setShowModal={setShowModal} />}
-          </Modal>}
-        </div>
-      </div>
+      </ul>
     </div>
   );
 }

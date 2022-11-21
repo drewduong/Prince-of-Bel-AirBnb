@@ -34,12 +34,11 @@ function SignupForm({ setShowModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='signup' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
-        First Name
         <input
           type="text"
           value={firstName}
@@ -49,7 +48,6 @@ function SignupForm({ setShowModal }) {
         />
       </label>
       <label>
-        Last Name
         <input
           type="text"
           value={lastName}
@@ -59,7 +57,6 @@ function SignupForm({ setShowModal }) {
         />
       </label>
       <label>
-        Email
         <input
           type="text"
           value={email}
@@ -69,7 +66,6 @@ function SignupForm({ setShowModal }) {
         />
       </label>
       <label>
-        Username
         <input
           type="text"
           value={username}
@@ -79,7 +75,6 @@ function SignupForm({ setShowModal }) {
         />
       </label>
       <label>
-        Password
         <input
           type="password"
           value={password}
@@ -89,7 +84,6 @@ function SignupForm({ setShowModal }) {
         />
       </label>
       <label>
-        Confirm Password
         <input
           type="password"
           value={confirmPassword}

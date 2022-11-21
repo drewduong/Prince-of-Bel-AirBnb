@@ -51,8 +51,10 @@ const UserSpots = () => {
                   <div>
                     <div className='left-div'>
                       <div className='listing-update-delete'>
-                        <NavLink className='edit-button' to={`/spots/${spot.id}/edit`}>Edit Spot</NavLink>
+                        <NavLink className='edit-button' style={{ textDecoration: 'none', color: 'black' }} to={`/spots/${spot.id}/edit`}>Edit Spot</NavLink>
                         {/* <button className='delete-button' onClick={() => dispatch(deleteSpotThunk(spot.id))}>Delete</button> */}
+                        ,
+                        <div></div>
                         <button className='delete-button' onClick={async (e) => {
                           e.preventDefault()
                           const spotDeleted = await dispatch(deleteSpotThunk(spot.id))

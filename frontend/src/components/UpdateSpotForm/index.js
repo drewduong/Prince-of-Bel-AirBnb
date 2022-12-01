@@ -7,6 +7,7 @@ import './UpdateSpotForm.css';
 const UpdateSpotForm = () => {
   const history = useHistory()
   const dispatch = useDispatch()
+  const [isLoaded, setIsLoaded] = useState(false)
   const { spotId } = useParams()
 
   // const sessionUser = useSelector(state => state.session.user);
@@ -43,6 +44,7 @@ const UpdateSpotForm = () => {
 
   useEffect(() => {
     dispatch(getSpotThunk(+spotId))
+      .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
 
   const onSubmit = async (e) => {
@@ -68,7 +70,7 @@ const UpdateSpotForm = () => {
   // Conditional used to debug if it's not rendering correctly
   if (!currentSpot) return (<div>Spot Not Found</div>)
 
-  return (
+  return isLoaded && (
     <div className="spot-form">
       <form onSubmit={onSubmit}>
         <h2>Edit Listing</h2>

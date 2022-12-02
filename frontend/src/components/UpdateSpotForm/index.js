@@ -61,9 +61,10 @@ const UpdateSpotForm = () => {
         price
       }
 
-      dispatch(updateSpotThunk(payload, spotId))
+      const editedSpot = await dispatch(updateSpotThunk(payload, spotId))
+      // console.log('/n', 'Edit a spot (onSubmit)):', '/n', editedSpot)
 
-      history.push('/listings')
+      if (editedSpot) history.push('/listings')
     }
   }
 

@@ -10,41 +10,55 @@
   /* font-weight: normal; */
 }
 
-.spot-container {
+/* border box keeps divs within divs from extending outside of container */
+
+.container {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding-top: 40px;
-  width: 100%;
-  height: 100%;
+  justify-content: space-between;
+  margin: 0 2rem;
+  margin-top: 2rem;
   border: 2px solid red
 }
 
-
-.single {
-  padding-top: 40px;
-  padding: 0 1rem;
-  list-style: none;
-  /* background-color: yellow; */
+.items {
+  /* box-sizing: border-box; */
+  /* justify-content: center; */
+  width: 25%;
+  height: 100%;
+  /* margin: 0 100px; */
+  /* padding: 2rem; */
+  background-color: yellow;
   border: 2px solid black;
 }
 
-
-.airbnb-image {
+.image {
   /* border: 2px solid black; */
-  width: 20%;
+  width: 100%;
+  /* height: 100%; */
   border-radius: 5%;
 }
 
-.left-div {
-  /* border: 2px solid black; */
-  /* display: flex; */
+/* ---------AIRBNB DETAILS-------*/
+
+.description {
+  display: flex;
   justify-content: space-between;
-  line-height: 21px;
+  border: 2px solid greenyellow;
 }
 
-.rating {
+.left {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  line-height: 25px;
+  border: 2px solid RED;
+}
+
+.right {
+  border: 2px solid purple;
+}
+
+.price {
+  font-weight: 600;
 }

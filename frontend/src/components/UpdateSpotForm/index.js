@@ -72,63 +72,65 @@ const UpdateSpotForm = () => {
   if (!currentSpot) return (<div>Spot Not Found</div>)
 
   return isLoaded && (
-    <div className="spot-form">
+    <div className="update-container">
       <form onSubmit={onSubmit}>
-        <h2>Edit Listing</h2>
-        <ul className="errors">
-          {validationErrors.length > 0 && validationErrors.map((error, idx) => (
-            <span>
-              <li key={idx}>{error}</li>
-            </span>
-          ))}
-        </ul>
-        <label>
+        <div className="update-item">
+          <h2>Edit Listing</h2>
+          <ul className="errors">
+            {validationErrors.length > 0 && validationErrors.map((error, idx) => (
+              <span>
+                <li key={idx}>{error}</li>
+              </span>
+            ))}
+          </ul>
+          <label>
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder='Address'
+            />
+          </label>
           <input
             type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            placeholder='Address'
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder='City'
           />
-        </label>
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder='City'
-        />
-        <input
-          type="text"
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-          placeholder='State'
-        />
-        <input
-          type="text"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-          placeholder='Country'
-        />
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder='Name'
-        />
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder='Description'
-        />
-        <input
-          type="number"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          placeholder='Price'
-        />
-        <button
-          type="submit"
-          disabled={validationErrors.length > 0}>Submit Listing</button>
+          <input
+            type="text"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            placeholder='State'
+          />
+          <input
+            type="text"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            placeholder='Country'
+          />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder='Name'
+          />
+          <input
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder='Description'
+          />
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder='Price'
+          />
+          <button
+            type="submit"
+            disabled={validationErrors.length > 0}>Submit Listing</button>
+        </div>
       </form>
     </div>
   )

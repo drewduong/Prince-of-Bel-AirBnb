@@ -71,7 +71,7 @@ const CreateSpotForm = () => {
   return (
     <div className="hosting-container">
       <form onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
-        <div className='hosting-item'>
+        <div className="hosting-item">
           <h2>Begin Hosting</h2>
           <ul className="errors">
             {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
@@ -85,52 +85,52 @@ const CreateSpotForm = () => {
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              placeholder='    Address'
+              placeholder='Address'
             />
           </label>
           <input
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            placeholder='    City'
+            placeholder='City'
           />
           <input
             type="text"
             value={state}
             onChange={(e) => setState(e.target.value)}
-            placeholder='    State'
+            placeholder='State'
           />
           <input
             type="text"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
-            placeholder='    Country'
+            placeholder='Country'
           />
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder='    Name'
+            placeholder='Name'
           />
           <input
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder='    Description'
+            placeholder='Description'
           />
           <input
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            placeholder='    Price'
+            placeholder='Price'
           />
           <input
             type="url"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
-            placeholder='    Image URL'
+            placeholder='Image URL'
           />
-          <button type="submit">Begin Hosting</button>
+          <button type="submit">Submit Listing</button>
         </div>
       </form>
     </div>

@@ -49,9 +49,9 @@ const CreateReviewForm = () => {
   }
 
   return (
-    <div className="review">
+    <div className="review-container">
       <form onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
-        <div className='host-wrapper'>
+        <div className='review-item'>
           <h2>Please Leave a Brief Review</h2>
           <ul className="errors">
             {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
@@ -61,7 +61,7 @@ const CreateReviewForm = () => {
             ))}
           </ul>
           <label>
-            How was your stay?
+            <h4>How was your stay?</h4>
             <input
               className='describe'
               type="text"
@@ -71,7 +71,7 @@ const CreateReviewForm = () => {
             />
           </label>
           <label>
-            Select a rating based on your experience
+            <h4>Select a rating based on your experience</h4>
             <label>
               <input
                 checked={stars === "1"}

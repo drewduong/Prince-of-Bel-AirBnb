@@ -12,42 +12,44 @@
 
 /* border box keeps divs within divs from extending outside of container */
 
-.container {
+.spots-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 2rem;
   margin-top: 2rem;
-  border: 2px solid red
+  /* border: 2px solid red */
 }
 
-.items {
+.spots-items {
   /* box-sizing: border-box; */
   /* justify-content: center; */
   width: 25%;
-  height: 100%;
   /* margin: 0 100px; */
-  /* padding: 2rem; */
-  background-color: yellow;
-  border: 2px solid black;
+  padding: 0 1rem 1rem 0;
+  /* background-color: yellow; */
+  /* border: 2px solid black; */
 }
 
-.image {
-  /* border: 2px solid black; */
+
+.spots-image {
+  box-sizing: border-box;
   width: 100%;
-  /* height: 100%; */
+  height: 70%;
   border-radius: 5%;
+  border: 2px solid black;
 }
 
 /* ---------AIRBNB DETAILS-------*/
 
-.description {
+.spots-description {
   display: flex;
   justify-content: space-between;
   border: 2px solid greenyellow;
 }
 
-.left {
+/*Adjust so when shrinking, each div within left div remains as a row for the left div */
+.spots-left {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -55,10 +57,14 @@
   border: 2px solid RED;
 }
 
-.right {
+.spots-right {
   border: 2px solid purple;
 }
 
-.price {
+.spots-location {
+  font-weight: 600;
+}
+
+.spots-price {
   font-weight: 600;
 }

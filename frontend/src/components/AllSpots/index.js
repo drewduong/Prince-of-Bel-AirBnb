@@ -26,23 +26,25 @@ const AllSpots = () => {
   if (!currentSpots) return (<div>Spots Not Found</div>)
 
   return (
-    <div className='container'>
+    <div className='spots-container'>
       {currentSpots.map(spot => (
-        <div className='items'>
+        <div className='spots-items'>
+
           <NavLink to={`/spots/${spot.id}`}>
-            <img className='image' src={spot.previewImage} alt='No Preview' />
+            <img className='spots-image' src={spot.previewImage} alt='No Preview' />
           </NavLink>
-          <div className='description'>
-            <div className='left'>
-              <div>{spot.city}, {spot.country}</div>
+
+          <div className='spots-description'>
+            <div className='spots-left'>
+              <div className='spots-location'>{spot.city}, {spot.country}</div>
               <div>{spot.name}</div>
               <div>
-                <span className='price'>${spot.price}</span>
-                <span> /night</span>
+                <span className='spots-price'>${spot.price}</span>
+                <span> per night</span>
               </div>
             </div>
-            <div className='right'>
-              <div className='rating'>★ {spot.avgRating}</div>
+            <div className='spots-right'>
+              <div>★ {spot.avgRating}</div>
             </div>
           </div>
         </div>

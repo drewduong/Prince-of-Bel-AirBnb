@@ -11,42 +11,53 @@
 }
 
 
-.begin-hosting-form {
+.hosting-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-content: center;
-  align-items: center;
   height: auto;
   width: auto;
-  padding: 10px;
   /* border: 1px solid red; */
 }
 
-.host-wrapper {
-  /* display: flex; */
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  height: auto;
-  width: 300px;
+.hosting-item {
+  width: 400px;
+  border-radius: 10px;
   /* border: 1px solid green; */
 }
 
-.host-wrapper input {
-  width: 294px;
-  border-radius: 10%;
+.hosting-item h2 {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  border-bottom: rgb(230, 230, 230) 1px solid;
+}
+
+
+.hosting-item input {
+  height: 35px;
+  width: 394px;
+  margin-bottom: 15px;
+  border-radius: 8px;
   border-color: lightgray;
 
 }
 
-.host-wrapper button {
-  width: 300px;
-  background-color: lightcoral;
-  border-radius: 5%;
+.hosting-item button {
+  color: white;
+  font-weight: 600;
+  height: 35px;
+  width: 400px;
+  background-color: rgb(255, 44, 44);
+  border-radius: 10px;
   border: none;
 }
 
-.host-wrapper button:hover {
+.hosting-item button:hover {
   cursor: pointer;
+}
+
+.errors {
+  list-style-type: none;
+  line-height: 23px;
+  color: rgb(255, 44, 44);
 }

@@ -41,32 +41,35 @@ function ProfileButton({ user, setLogin, setShowModal }) {
           <i id='profile' className="fa-regular fa-user"></i>
         </button>
       </div>
-      <div className='dropdown'>
-        {/* If a user is logged in, we'll show the first set, otherwise show the second set */}
-        {showMenu && (user ?
-          (<ul className="dropdown-list">
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li><NavLink className='listings' to={'/listings'}>Listings</NavLink></li>
-            <li><NavLink className='reviews' to={'/reviews'}>Reviews</NavLink></li>
-            <li><button className='logout' onClick={logout}>Log Out</button></li>
-          </ul>) :
-          (<ul className="dropdown-list">
-            <li>
-              <button onClick={() => {
-                setLogin(true)
-                setShowModal(true)
-              }}>Log In</button>
-            </li>
-            <li>
-              <button onClick={() => {
-                setLogin(false)
-                setShowModal(true)
-              }}>Sign Up</button>
-            </li>
-          </ul>)
-        )}
-      </div>
+      {/* If a user is logged in, we'll show the first set, otherwise show the second set */}
+      {/* <div className='dropdown'> */}
+      {showMenu && (user ?
+        (<ul className="dropdown-list">
+          <div className='first-section'>
+            <div>{user.username}</div>
+            <div>{user.email}</div>
+          </div>
+          <div className='second-section'>
+            <div><NavLink className='listings' to={'/listings'}>Listings</NavLink></div>
+            <div><NavLink className='reviews' to={'/reviews'}>Reviews</NavLink></div>
+            <div><button className='logout' onClick={logout}>Log Out</button></div>
+          </div>
+        </ul>) :
+        (<ul className="dropdown-list">
+          <li>
+            <button onClick={() => {
+              setLogin(true)
+              setShowModal(true)
+            }}>Log In</button>
+          </li>
+          <li>
+            <button onClick={() => {
+              setLogin(false)
+              setShowModal(true)
+            }}>Sign Up</button>
+          </li>
+        </ul>)
+      )}
     </div>
   );
 }

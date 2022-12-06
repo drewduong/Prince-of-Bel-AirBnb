@@ -29,7 +29,7 @@ const UserReviews = () => {
 
 
   /* Conditional used to debug if it's not rendering correctly */
-  if (!Object.keys(currentUserReviews).length) return (<div>No Reviews Found</div>)
+  if (!Object.keys(currentUserReviews).length) return (<h3>Currently no reviews pending...</h3>)
 
   return isLoaded && (
     <div className='reviews-container'>

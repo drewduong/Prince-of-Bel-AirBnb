@@ -34,7 +34,8 @@ const UpdateSpotForm = () => {
     if (!city) errors.push("City is required")
     if (!state) errors.push("State is required")
     if (!country) errors.push("Country is required")
-    if (!name) errors.push("Name must be less than 50 characters")
+    if (!name) errors.push("Name is required")
+    if (name.length > 50) errors.push("Name must be less than 50 characters")
     if (!description) errors.push("Description is required")
     if (!price) errors.push("Price per day is required")
 

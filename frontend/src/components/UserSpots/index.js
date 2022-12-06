@@ -33,7 +33,7 @@ const UserSpots = () => {
 
 
   /* Conditional used to debug if it's not rendering correctly */
-  if (!Object.keys(currentUserSpots).length) return null
+  if (!Object.keys(currentUserSpots).length) return (<h3>Currently, no listings found. To get started, click the 'Begin Hosting' button above to list your first property</h3>)
 
   return isLoaded && (
     <div className='listings-reviews-container'>

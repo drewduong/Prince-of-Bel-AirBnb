@@ -23,7 +23,7 @@ const AllSpots = () => {
   }, [dispatch])
 
   // Conditional used to debug if it's not rendering correctly
-  if (!currentSpots) return (<div>Spots Not Found</div>)
+  if (!currentSpots) return null
 
   return (
     <div className='spots-container'>

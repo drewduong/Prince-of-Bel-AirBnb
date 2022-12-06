@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getSpotReviewsThunk } from '../../store/reviews';
-import { NavLink } from 'react-router-dom';
 import './SpotReviews.css';
 
 const SpotReviews = () => {
@@ -28,7 +27,7 @@ const SpotReviews = () => {
   }, [dispatch, spotId])
 
   /* Conditional used to debug if it's not rendering correctly */
-  if (!Object.keys(currentSpotReviews).length) return (<div>No Reviews Found</div>)
+  if (!Object.keys(currentSpotReviews).length) return (<h3>Currently, no reviews found</h3>)
 
   return (
     <div className='reviews-container'>

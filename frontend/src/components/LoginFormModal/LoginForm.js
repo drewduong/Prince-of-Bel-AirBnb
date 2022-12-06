@@ -31,33 +31,38 @@ function LoginForm({ setShowModal }) {
   };
 
   return (
-    <form className='login' onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          placeholder='Username or email'
-          required
-        />
-      </label>
-      <label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder='Password'
-          required
-        />
-      </label>
-      <button className='login-button' type="submit">Log In</button>
-      <button className='demo-button' type="submit" onClick={demoLogin}>Demo User</button>
-    </form>
+    <div className='login-container'>
+      <form onSubmit={handleSubmit}>
+        <div className='login-item'>
+          <h2>Login</h2>
+          <ul className='errors'>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label>
+            <input
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              placeholder='Username or email'
+              required
+            />
+          </label>
+          <label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder='Password'
+              required
+            />
+          </label>
+          <button type="submit">Log In</button>
+          <button type="submit" onClick={demoLogin}>Demo User</button>
+        </div>
+      </form>
+    </div>
   );
 }
 

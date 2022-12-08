@@ -3,6 +3,12 @@ const { Op } = require('sequelize')
 //added to use bcrypt
 const bcrypt = require("bcryptjs");
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+options.tableName = "Users"
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     /**
@@ -14,7 +20,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Users', [
+    await queryInterface.bulkInsert(options, [
       { //1
         firstName: 'Henry',
         lastName: 'Jones',
@@ -60,7 +66,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Users', {
+    await queryInterface.bulkDelete(options, {
       //added other usernames
       username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2', 'PokerChampion99', 'Baking4Life'] }
     }, {});

@@ -1,5 +1,5 @@
 // frontend/src/components/Navigation/index.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -14,30 +14,35 @@ function Navigation({ isLoaded }) {
   const [login, setLogin] = useState(true)
 
   return (
-    <div className='nav-bar-container'>
-      <ul className='nav-bar-list'>
+    <ul className='nav-bar-container'>
+      <li>
+        <NavLink exact to="/">
+          <img className='logo' src='https://i.imgur.com/mrzo0xM.png' alt='logo' />
+        </NavLink>
+      </li>
+      <div className='right-nav'>
         <li>
-          <NavLink exact to="/">
-            <img className='logo' src='https://i.imgur.com/mrzo0xM.png' alt='logo' />
-          </NavLink>
+          <div className='begin-hosting'>
+            {sessionUser ? <NavLink className='loggedin-hosting' to={'/host'}>Begin Hosting</NavLink> : (
+              <button className='loggedout-hosting' onClick={() => setShowModal(true)}>
+                Begin Hosting
+              </button>
+            )}
+            {/* // {sessionUser && <NavLink className='new-spot' to={'/host'}>Begin Hosting</NavLink>} */}
+          </div>
         </li>
-        <div className='right-nav'>
-          <li>
-            <div className='begin-hosting'>
-              {sessionUser && <NavLink className='new-spot' to={'/host'}>Begin Hosting</NavLink>}
-            </div>
-          </li>
-          <li>
+        <li>
+          <div className='profile-item'>
             {isLoaded && <ProfileButton className='profile-button' user={sessionUser} setLogin={setLogin} setShowModal={setShowModal} />}
-            <div className='dropdown'>
-              {showModal && <Modal onClose={() => setShowModal(false)}>
-                {login ? <LoginForm setShowModal={setShowModal} /> : <SignupForm setShowModal={setShowModal} />}
-              </Modal>}
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
+          </div>
+          <div className='dropdown'>
+            {showModal && <Modal onClose={() => setShowModal(false)}>
+              {login ? <LoginForm setShowModal={setShowModal} /> : <SignupForm setShowModal={setShowModal} />}
+            </Modal>}
+          </div>
+        </li>
+      </div>
+    </ul>
   );
 }
 

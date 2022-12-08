@@ -2,6 +2,13 @@
 const { Op } = require('sequelize')
 
 /** @type {import('sequelize-cli').Migration} */
+
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+options.tableName = "ReviewImages"
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     /**
@@ -13,7 +20,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('ReviewImages', [
+    await queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
         url: 'https://media-cldnry.s-nbcnews.com/image/upload/newscms/2018_41/2603736/181013-skid-row-los-angeles-ew-555p.jpg'
@@ -37,7 +44,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('ReviewImages', {
+    await queryInterface.bulkDelete(options, {
       //added all ids
       id: { [Op.in]: [5, 4, 3, 2, 1] }
     }, {});

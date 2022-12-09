@@ -46,8 +46,8 @@ const SingleSpot = () => {
   if (!isLoaded) return null
 
   return (
-    <div className='spots-container'>
-      <div className='spots-wrapper'>
+    <div className='spot-container'>
+      <div className='spot-item'>
         <h2>{currentSpot.name}</h2>
         <span>★ {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews · Superhost · {currentSpot.city}, {currentSpot.country} </span>
         <li key={currentSpot.id}>
@@ -66,7 +66,7 @@ const SingleSpot = () => {
             </div>
           </div>
         </li>
-        <div className='reviews-wrapper'>
+        <div className='reviews-container'>
           <h2>★ {currentSpot.avgStarRating} · {currentSpot.numReviews}</h2>
           <div className='reviews-card'>
             <div className='create-review-div'>

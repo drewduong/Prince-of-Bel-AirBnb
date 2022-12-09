@@ -75,9 +75,7 @@ const CreateSpotForm = () => {
           <h2>Begin Hosting</h2>
           <ul className="errors">
             {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
-              <span>
-                <li key={idx}>{error}</li>
-              </span>
+              <li key={idx}><i class="fa-sharp fa-solid fa-circle-exclamation"></i> {error}</li>
             ))}
           </ul>
           <label>

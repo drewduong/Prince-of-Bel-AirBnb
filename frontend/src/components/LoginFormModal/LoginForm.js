@@ -37,7 +37,7 @@ function LoginForm({ setShowModal }) {
           <h2>Login</h2>
           <ul className='errors'>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li key={idx}><i class="fa-sharp fa-solid fa-circle-exclamation"></i> {error}</li>
             ))}
           </ul>
           <label>

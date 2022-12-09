@@ -26,6 +26,7 @@ const CreateReviewForm = () => {
 
     if (!stars) errors.push("Rating is required")
     if (!review) errors.push("Review is required for submission")
+    // if (!review.length < 10) errors.push("Review should be more than 10 characters")
     if (!review.length > 255) errors.push("Review should be less than 255 characters")
 
     setValidationErrors(errors)
@@ -55,9 +56,7 @@ const CreateReviewForm = () => {
           <h2>Please Leave a Brief Review</h2>
           <ul className="errors">
             {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
-              <span>
-                <li key={idx}>{error}</li>
-              </span>
+              <li key={idx}><i class="fa-sharp fa-solid fa-circle-exclamation"></i> {error}</li>
             ))}
           </ul>
           <label>
@@ -68,6 +67,8 @@ const CreateReviewForm = () => {
               onChange={e => setReview(e.target.value)}
               placeholder="Describe your stay here"
               value={review}
+              // minLength="10"
+              maxLength="255"
             />
           </label>
           <label>

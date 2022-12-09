@@ -79,9 +79,7 @@ const UpdateSpotForm = () => {
           <h2>Edit Listing</h2>
           <ul className="errors">
             {validationErrors.length > 0 && validationErrors.map((error, idx) => (
-              <span>
-                <li key={idx}>{error}</li>
-              </span>
+              <li key={idx}><i class="fa-sharp fa-solid fa-circle-exclamation"></i> {error}</li>
             ))}
           </ul>
           <label>

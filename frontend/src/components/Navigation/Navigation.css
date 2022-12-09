@@ -8,6 +8,10 @@
   src: url('../../assets/AirbnbCereal_W_Lt.woff') format('woff');
 }
 
+body {
+  border: 1px solid purple
+}
+
 /* ------- Navigation Bar Container ------- */
 
 .nav-bar-container {
@@ -16,8 +20,10 @@
   justify-content: space-between;
   align-items: center;
   list-style: none;
+  box-sizing: border-box;
   width: 100%;
   padding: 0;
+  margin: 0;
   border: 2px solid black;
 }
 
@@ -25,8 +31,7 @@
 
 .logo {
   width: 180px;
-  padding: 0 3rem;
-  padding-top: 10px;
+  padding: 0 4rem;
   /* border: 2px solid black */
 }
 
@@ -36,9 +41,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 3rem;
+  padding: 0 5rem;
   /* background-color: rgb(196, 226, 227); */
-  border: 2px solid black;
+  /* border: 2px solid black; */
   width: 15%;
 }
 
@@ -51,7 +56,7 @@
   line-height: 20px;
   border-radius: 25px;
   /* padding: 0 1rem 0 0; */
-  border: 1px solid red
+  /* border: 1px solid red */
 }
 
 .begin-hosting:hover {

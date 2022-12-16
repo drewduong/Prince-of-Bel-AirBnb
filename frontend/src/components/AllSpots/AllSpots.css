@@ -1,4 +1,4 @@
-@font-face {
+18vw@font-face {
   font-family: "Airbnb-Normal";
   src: url('../../assets/AirbnbCereal_W_Bk.woff') format('woff');
   /* font-weight: normal; */
@@ -22,7 +22,8 @@
 
 .spots-items {
   /* box-sizing: border-box; */
-  width: 20%;
+  width: 19vw;
+  height: 18vw;
   padding: 0 2rem 8rem 2rem;
   /* background-color: yellow; */
   /* border: 2px solid black; */

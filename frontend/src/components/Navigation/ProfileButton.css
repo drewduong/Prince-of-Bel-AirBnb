@@ -14,24 +14,26 @@
   position: relative;
   background-color: white;
   width: 60px;
-  height: 35px;
-  border: 1px solid grey;
+  height: 40px;
+  border: 2px solid rgb(240, 240, 240);
   border-radius: 100px;
 }
 
 .menu-profile-button:hover {
-  box-shadow: 0px 2px 2px 0px lightgray;
+  box-shadow: 0px 6px 6px rgb(245, 245, 245);
+  cursor: pointer;
 }
 
 i+i {
   margin-left: 10px;
 }
 
+
 /* ------- Dropdown List ------- */
 
 .dropdown-list {
   position: absolute;
-  right: 4%;
+  right: 6.5%;
   top: 12%;
   width: 185px;
   /* border-top: 1px rgba(255, 255, 255, 0.855) solid; */

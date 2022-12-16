@@ -44,28 +44,44 @@ body {
   padding: 0 5rem;
   /* background-color: rgb(196, 226, 227); */
   /* border: 2px solid black; */
-  width: 15%;
+  width: 15vw;
 }
 
 .begin-hosting {
   position: relative;
   display: flex;
   justify-content: center;
-  width: 140px;
-  height: 20px;
+  align-items: center;
+  width: 10vw;
+  height: 1.8vw;
   line-height: 20px;
-  border-radius: 25px;
+  border-radius: 14px;
+  /* border-width: 5%; */
   /* padding: 0 1rem 0 0; */
   /* border: 1px solid red */
 }
 
 .begin-hosting:hover {
-  background: #F0EDE1
+  background: rgb(245, 245, 245)
 }
 
 .loggedin-hosting {
   text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 1rem;
   color: black
+}
+
+.loggedout-hosting {
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 1rem;
+}
+
+.loggedout-hosting:hover {
+  cursor: pointer;
 }
 
 .profile-button {
@@ -77,9 +93,6 @@ body {
 }
 
 .menu-profile {
-  /* display: flex;
-  align-items: center; */
-  /* justify-content: center; */
   background-color: white;
   padding: 5px;
   width: 40px;
@@ -93,10 +106,4 @@ body {
 
 .profile {
   padding: 10px;
-}
-
-
-.menu-profile-button:hover {
-  box-shadow: 0px 2px 2px black;
-  cursor: pointer;
 }

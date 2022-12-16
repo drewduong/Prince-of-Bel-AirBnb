@@ -13,6 +13,7 @@
 .menu-profile-button {
   position: relative;
   background-color: white;
+  margin: 0 0 0 2vw;
   width: 60px;
   height: 40px;
   border: 2px solid rgb(240, 240, 240);
@@ -20,7 +21,7 @@
 }
 
 .menu-profile-button:hover {
-  box-shadow: 0px 6px 6px rgb(245, 245, 245);
+  box-shadow: 0px 4px 4px rgb(245, 245, 245);
   cursor: pointer;
 }
 

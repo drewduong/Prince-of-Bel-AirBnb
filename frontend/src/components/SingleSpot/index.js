@@ -18,7 +18,7 @@ const SingleSpot = () => {
   const sessionUser = useSelector(state => state.session.user)
   // console.log('/n', 'Session user (useSelector):', '/n', currentSpot)
   const currentSpot = useSelector(state => state.spots.singleSpot)
-  // console.log('/n', 'Spot detail (useSelector):', '/n', currentSpot)
+  console.log('/n', 'Spot detail (useSelector):', '/n', currentSpot)
   const currentSpotReviews = useSelector(state => Object.values(state.reviews.spotReviews))
   // console.log('/n', 'Current spot reviews (useSelector):', '/n', currentSpotReviews)
 
@@ -56,11 +56,18 @@ const SingleSpot = () => {
           <div>
             <img className='spot-image' src={currentSpot?.SpotImages[0]?.url} alt='No Preview' />
             <div className='spot-details-container'>
-              <div className='spot-description'>
-                <span>{currentSpot.description}</span>
+              <div className='spot-left'>
+                <div className='spot-host'>
+                  <h3>Entire place hosted by {currentSpot?.Owner.firstName}</h3>
+                </div>
+                <div className='spot-description'>
+                  <span>{currentSpot.description}</span>
+                </div>
               </div>
-              <div className='spot-price'>
-                <span>${`${currentSpot.price}`}/night</span>
+              <div className='spot-right'>
+                <div className='spot-price'>
+                  <span>${`${currentSpot.price}`}/night</span>
+                </div>
               </div>
             </div>
           </div>

@@ -29,11 +29,9 @@ const AllSpots = () => {
     <div className='spots-container'>
       {currentSpots.map(spot => (
         <div className='spots-items'>
-
           <NavLink to={`/spots/${spot.id}`}>
             <img className='spots-image' src={spot.previewImage} alt='No Preview' />
           </NavLink>
-
           <div className='spots-description'>
             <div className='spots-left'>
               <div className='spots-location'>{spot.city}, {spot.country}</div>

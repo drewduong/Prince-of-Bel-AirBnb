@@ -26,15 +26,15 @@ const CreateReviewForm = () => {
 
     if (!stars) errors.push("Rating is required")
     if (!review) errors.push("Review is required for submission")
-    // if (!review.length < 10) errors.push("Review should be more than 10 characters")
-    if (!review.length > 255) errors.push("Review should be less than 255 characters")
-
+    if (review.length < 10) errors.push("Review should be more than 10 characters")
+    if (review.length > 255) errors.push("Review should be less than 255 characters")
     setValidationErrors(errors)
   }, [stars, review])
 
   const onSubmit = async (e) => {
     e.preventDefault()
     setHasSubmitted(true)
+    console.log('review testing: ', review)
 
     if (!validationErrors.length) {
       const payload = {
@@ -67,8 +67,9 @@ const CreateReviewForm = () => {
               onChange={e => setReview(e.target.value)}
               placeholder="Describe your stay here"
               value={review}
-              // minLength="10"
+              minLength="10"
               maxLength="255"
+              onPaste="return false"
             />
           </label>
           <label>

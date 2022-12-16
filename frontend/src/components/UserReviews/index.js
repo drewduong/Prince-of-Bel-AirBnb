@@ -32,31 +32,25 @@ const UserReviews = () => {
   if (!Object.keys(currentUserReviews).length) return (<h3>Currently no reviews pending...</h3>)
 
   return isLoaded && (
-    <div className='reviews-container'>
-      <ul>
-        {currentUserReviews.map(review => (
-          <li key={review.id}>
-            <div className='reviews-card'>
-              <div>
-                <div className='left-div'>
-                  <span>{review.User.firstName} {review.User.lastName} · ★ {review.stars} </span>
-                  <div className='review-spot-location'>
-                    <span>{review.Spot.city}, {review.Spot.country}</span>
-                    <div>{review.review}</div>
-                  </div>
-                  <div className='delete-review'>
-                    <button className='delete-button' onClick={async (e) => {
-                      e.preventDefault()
-                      const reviewDeleted = await dispatch(deleteReviewThunk(review.id))
-                      if (reviewDeleted) history.push('/')
-                    }}>Delete</button>
-                  </div>
-                </div>
-              </div>
+    <div className='user-reviews-container'>
+      {currentUserReviews.map(review => (
+        <div className='user-reviews-item'>
+          <div className='user-review-div'>
+            <span>{review.User.firstName} {review.User.lastName} · ★ {review.stars} </span>
+            <div className='review-spot-location'>
+              <div className='user-reviews-location'>{review.Spot.city}, {review.Spot.country}</div>
+              <div className='user-reviews-description'>{review.review}</div>
             </div>
-          </li>
-        ))}
-      </ul>
+          </div>
+          <div className='delete-review'>
+            <button className='user-reviews-delete-button' onClick={async (e) => {
+              e.preventDefault()
+              const reviewDeleted = await dispatch(deleteReviewThunk(review.id))
+              if (reviewDeleted) history.push('/')
+            }}>Delete</button>
+          </div>
+        </div>
+      ))}
     </div >
   )
 }

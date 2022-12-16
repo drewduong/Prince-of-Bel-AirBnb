@@ -36,39 +36,33 @@ const UserSpots = () => {
   if (!Object.keys(currentUserSpots).length) return (<h3>Currently, no listings found. To get started, click the 'Begin Hosting' button above to list your first property</h3>)
 
   return isLoaded && (
-    <div className='listings-reviews-container'>
-      <h2>Manage Your Listings </h2>
-      <div className='listing-reviews-div'>
-        <ul>
-          {currentUserSpots.map(spot => (
-            <li key={spot.id}>
-              <h2>{spot.name}</h2>
-              <span>★ {spot.avgRating} · ${spot.price}/night · {spot.city}, {spot.country} </span>
-              <div className='spots-card'>
-                <NavLink to={`/spots/${spot.id}`} />
-                <div className='spots-image'>
-                  <img className='airbnb-image' src={spot.previewImage} alt='No Preview' />
-                  <div>
-                    <div className='left-div'>
-                      <div className='listing-update-delete'>
-                        <NavLink className='edit-button' style={{ textDecoration: 'none', color: 'black' }} to={`/spots/${spot.id}/edit`}>Edit Spot</NavLink>
-                        {/* <button className='delete-button' onClick={() => dispatch(deleteSpotThunk(spot.id))}>Delete</button> */}
-                        ,
-                        <div></div>
-                        <button className='delete-button' onClick={async (e) => {
-                          e.preventDefault()
-                          const spotDeleted = await dispatch(deleteSpotThunk(spot.id))
-                          if (spotDeleted) history.push('/')
-                        }}>Delete</button>
-                      </div>
-                    </div>
+    <div className='listings-container'>
+      {currentUserSpots.map(spot => (
+        <div key={spot.id}>
+          <h2>{spot.name}</h2>
+          <span>★ {spot.avgRating} · ${spot.price}/night · {spot.city}, {spot.country} </span>
+          <div className='listings-item'>
+            <NavLink to={`/spots/${spot.id}`} />
+            <div>
+              <img className='listings-image' src={spot.previewImage} alt='No Preview' />
+              <div>
+                <div className='left-div'>
+                  <div className='listing-update-delete'>
+                    <NavLink className='edit-button' to={`/spots/${spot.id}/edit`}>Edit Spot</NavLink>
+                    {/* <button className='delete-button' onClick={() => dispatch(deleteSpotThunk(spot.id))}>Delete</button> */}
+                    <div></div>
+                    <button className='delete-button' onClick={async (e) => {
+                      e.preventDefault()
+                      const spotDeleted = await dispatch(deleteSpotThunk(spot.id))
+                      if (spotDeleted) history.push('/')
+                    }}>Delete</button>
                   </div>
                 </div>
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
 
   )

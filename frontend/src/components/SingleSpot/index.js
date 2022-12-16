@@ -11,6 +11,7 @@ const SingleSpot = () => {
   const { spotId } = useParams()
 
   const [isLoaded, setIsLoaded] = useState(false)
+
   /* Subscribe to the store and listen to changes in the spots slice of state.
   singleSpot is an object, which can't be mapped over, it needs to be converted to an array */
 
@@ -49,19 +50,17 @@ const SingleSpot = () => {
     <div className='spot-container'>
       <div className='spot-item'>
         <h2>{currentSpot.name}</h2>
-        <span>★ {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews · Superhost · {currentSpot.city}, {currentSpot.country} </span>
+        <span>★ {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews · {currentSpot.city}, {currentSpot.country} </span>
         <li key={currentSpot.id}>
-          <div className='spots-card'>
-            <NavLink to={`/spots/${currentSpot.id}`} />
-            <div className='spots-image'>
-              <img className='airbnb-image' src={currentSpot?.SpotImages[0]?.url} alt='No Preview' />
-              <div>
-                <div className='spots-city'>
-                  <span>{currentSpot.description}</span>
-                </div>
-                <div className='spots-price'>
-                  <span>${`${currentSpot.price}`}/night</span>
-                </div>
+          <NavLink to={`/spots/${currentSpot.id}`} />
+          <div>
+            <img className='spot-image' src={currentSpot?.SpotImages[0]?.url} alt='No Preview' />
+            <div className='spot-details-container'>
+              <div className='spot-description'>
+                <span>{currentSpot.description}</span>
+              </div>
+              <div className='spot-price'>
+                <span>${`${currentSpot.price}`}/night</span>
               </div>
             </div>
           </div>
@@ -72,7 +71,7 @@ const SingleSpot = () => {
             <div className='create-review-div'>
               {sessionUser && !reviewExists && !isSpotOwner ? (
                 <NavLink className='create-review-button' to={`/spots/${currentSpot.id}/review`}>Leave Review</NavLink>) :
-                (<h3>Currently unable to review this place</h3>)}
+                (<h4>Currently unable to review this place</h4>)}
             </div>
             <ul className='spot-reviews'>
               {currentSpotReviews?.map(review => (

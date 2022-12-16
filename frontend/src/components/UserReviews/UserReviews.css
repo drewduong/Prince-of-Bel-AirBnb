@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "Airbnb-Normal";
+  src: url('../../assets/AirbnbCereal_W_Bk.woff') format('woff');
+  /* font-weight: normal; */
+}
+
+@font-face {
+  font-family: "Airbnb-Light";
+  src: url('../../assets/AirbnbCereal_W_Lt.woff') format('woff');
+  /* font-weight: normal; */
+}
+
+.user-reviews-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 2rem 12rem;
+  /* border: 2px solid red */
+}
+
+.user-reviews-item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 28.5vw;
+  margin: 0 1rem 1rem 0;
+  border-radius: 10px;
+  border: 2px solid rgb(211, 211, 211, 0.4)
+}
+
+.user-review-div {
+  margin: 1rem;
+  /* border: 2px solid black; */
+}
+
+.user-review-div span {
+  /* font-size: 1.1rem; */
+  font-weight: 600;
+  line-height: 1rem;
+}
+
+.user-reviews-location {
+  font-family: Airbnb-Light;
+  font-size: 0.95rem;
+}
+
+.user-reviews-description {
+  padding-top: 1rem;
+
+}
+
+.user-reviews-delete-button {
+  color: white;
+  font-weight: 600;
+  margin: 1rem;
+  height: 38px;
+  width: 400px;
+  background-color: rgb(255, 44, 44);
+  border-radius: 8px;
+  border: none;
+}
+
+.user-reviews-delete-button:hover {
+  cursor: pointer;
+}

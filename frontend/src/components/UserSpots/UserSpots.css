@@ -10,6 +10,53 @@
   /* font-weight: normal; */
 }
 
-.listings-reviews-container {
-  padding: 5%;
+.listings-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 12rem;
+  /* border: 2px solid red; */
+}
+
+.listings-item {
+  width: 100%;
+  padding: 1rem 1rem 1rem 0;
+  /* border: 2px solid black; */
+}
+
+.listings-image {
+  box-sizing: border-box;
+  width: 49vh;
+  height: 49vh;
+  border-radius: 10px;
+}
+
+.edit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  /* margin: 1rem; */
+  height: 40px;
+  width: 95%;
+  background-color: rgb(255, 44, 44);
+  border-radius: 8px;
+}
+
+.delete-button {
+  color: white;
+  font-weight: 600;
+  margin: 0.5rem 0 0 0;
+  height: 40px;
+  width: 387px;
+  background-color: rgb(255, 44, 44);
+  border-radius: 8px;
+  border: none;
+}
+
+.delete-button:hover {
+  cursor: pointer;
 }

@@ -53,37 +53,38 @@ const SingleSpot = () => {
         <span>★ {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews · {currentSpot.city}, {currentSpot.country} </span>
         <li key={currentSpot.id}>
           <NavLink to={`/spots/${currentSpot.id}`} />
-          <div>
+          <div className='spot-image-container'>
             <img className='spot-image' src={currentSpot?.SpotImages[0]?.url} alt='No Preview' />
-            <div className='spot-details-container'>
-              <div className='spot-left'>
-                <div className='spot-host'>
-                  <h3>Entire place hosted by {currentSpot?.Owner.firstName}</h3>
-                </div>
-                <div className='spot-description'>
-                  <span>{currentSpot.description}</span>
-                </div>
+          </div>
+          <div className='spot-details-container'>
+            <div className='spot-left'>
+              <div className='spot-host'>
+                <h3>Entire place hosted by {currentSpot?.Owner.firstName}</h3>
               </div>
-              <div className='spot-right'>
-                <div className='spot-price'>
-                  <span>${`${currentSpot.price}`}/night</span>
-                </div>
+              <div className='spot-description'>
+                <span>{currentSpot.description}</span>
+              </div>
+            </div>
+            <div className='spot-right'>
+              <div className='spot-breakdown'>
+                <span className='spot-price'>${currentSpot.price} per night</span>
+                <span className='spot-review-breakdown'>★ {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews</span>
               </div>
             </div>
           </div>
         </li>
         <div className='reviews-container'>
-          <h2>★ {currentSpot.avgStarRating} · {currentSpot.numReviews}</h2>
+          <h3>★ {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews</h3>
           <div className='reviews-card'>
             <div className='create-review-div'>
               {sessionUser && !reviewExists && !isSpotOwner ? (
                 <NavLink className='create-review-button' to={`/spots/${currentSpot.id}/review`}>Leave Review</NavLink>) :
-                (<h4>Currently unable to review this place</h4>)}
+                (<h4><i class="fa-sharp fa-solid fa-circle-exclamation"></i> Currently unable to review</h4>)}
             </div>
             <ul className='spot-reviews'>
               {currentSpotReviews?.map(review => (
                 <li key={review.id}>
-                  <div className='spot-review'>
+                  <div className='spot-review-item'>
                     <div className='review-user'>★ {review?.stars} · {review?.User.firstName} {review?.User.lastName}</div>
                     <div className='review-description'>{review?.review}</div>
                   </div>

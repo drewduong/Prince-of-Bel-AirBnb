@@ -37,7 +37,7 @@ const AllSpots = () => {
               <div className='spots-location'>{spot.city}, {spot.country}</div>
               <div>{spot.name}</div>
               <div>
-                <span className='spots-price'>${spot.price}</span>
+                <span className='spots-price'>${spot.price} </span>
                 <span> per night</span>
               </div>
             </div>

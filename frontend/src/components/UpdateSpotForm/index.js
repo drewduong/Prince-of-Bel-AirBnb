@@ -36,7 +36,7 @@ const UpdateSpotForm = () => {
     if (!country) errors.push("Country is required")
     if (!name) errors.push("Name is required")
     if (name.length > 30) errors.push("Name must be less than 30 characters")
-    if (!description) errors.push("Description is required")
+    if (!description) errors.push("Description is required and max length is 255 characters")
     if (description.length > 255) errors.push("Description must be less than 255 characters")
     if (!price) errors.push("Price per day is required")
 
@@ -120,6 +120,7 @@ const UpdateSpotForm = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder='Description'
+            maxLength="255"
           />
           <input
             type="number"

@@ -25,6 +25,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   box-sizing: border-box;
+  block-size: fit-content;
   width: 27.5vw;
   margin: 0 0 1rem 0;
   border-radius: 10px;
@@ -33,6 +34,7 @@
 
 .user-review-div {
   margin: 1rem;
+  block-size: fit-content;
 }
 
 .user-review-div span {
@@ -49,6 +51,7 @@
   padding-top: 1rem;
   overflow: auto;
   overflow-wrap: break-word;
+  block-size: fit-content;
   /* border: 2px solid black */
 }
 

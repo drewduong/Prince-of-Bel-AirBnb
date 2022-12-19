@@ -61,7 +61,7 @@ const CreateReviewForm = () => {
           </ul>
           <label>
             <h4>How was your stay?</h4>
-            <input
+            <textarea
               className='describe'
               type="text"
               onChange={e => setReview(e.target.value)}

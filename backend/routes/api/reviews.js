@@ -114,11 +114,11 @@ router.get('/current', requireAuth, async (req, res) => {
   })
 
   for (let review of reviews) {
-    const previewImage = await SpotImage.findByPk(review.id, {
+    const previewImage = await SpotImage.findOne({
       where: {
-        preview: true
-      },
-      attributes: ['url']
+        preview: true,
+        spotId: review.spotId
+      }
     })
 
     let reviewObj = review.toJSON()

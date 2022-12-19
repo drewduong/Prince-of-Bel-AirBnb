@@ -100,7 +100,7 @@ module.exports = {
         spotId: 8,
         url: 'https://www.guestready.com/blog/wp-content/uploads/2020/09/Dubai_09-1140x760.jpg',
         preview: true
-      },
+      }
 
 
 

@@ -52,6 +52,7 @@ body {
   position: relative;
   display: flex;
   justify-content: center;
+  white-space: nowrap;
   align-items: center;
   width: 10vw;
   height: 1.8vw;

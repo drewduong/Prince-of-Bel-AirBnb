@@ -29,8 +29,8 @@ module.exports = {
         country: 'Korea',
         lat: 33.812511,
         lng: 117.918976,
-        name: 'Beachside Wiews',
-        description: 'The best of the best. Close distance to shopping malls',
+        name: 'Beachside Views',
+        description: 'The best of the best. Aesthetic-looking rooms. Close distance to shopping malls',
         price: 345.91
       },
       {
@@ -54,7 +54,7 @@ module.exports = {
         lat: 69.321542,
         lng: 15.489078,
         name: 'Thailands Very Best',
-        description: 'One of the worlds best kept secrets is here',
+        description: 'Nearby street food vendors to satisfy late night cravings. Relatively close to all major destination spots',
         price: 242.87
       },
       {
@@ -77,9 +77,45 @@ module.exports = {
         country: 'Japan',
         lat: 12.154784,
         lng: 17.579254,
-        name: 'Experience Japan',
-        description: 'Discoveer the best Japan has to offer here in this lovely place',
+        name: 'Experience Japan Here',
+        description: 'Discover the best Japan has to offer here at this lovely place. Next to the Shibuya Crossing',
         price: 198.46
+      },
+      {
+        ownerId: 6,
+        address: '1728 Nawa St',
+        city: 'Denpasar',
+        state: 'Bali Prefecture',
+        country: 'Indonesia',
+        lat: 65.154784,
+        lng: 17.579254,
+        name: 'Illuminating Serene Home',
+        description: 'Large master bedroom with large scale pool outside the villa',
+        price: 278.22
+      },
+      {
+        ownerId: 7,
+        address: '831 Thai Dr',
+        city: 'Saigon',
+        state: 'Hoc Mon District',
+        country: 'Vietnam',
+        lat: 12.154784,
+        lng: 17.579254,
+        name: 'Warm Tropical Oasis',
+        description: 'Spacious well lit home with open floor panel and decadent views',
+        price: 431.49
+      },
+      {
+        ownerId: 8,
+        address: '1250 Itchiwa Dr',
+        city: 'Dubai',
+        state: 'Abu Dhabi',
+        country: 'United Arab Emirates',
+        lat: 12.154784,
+        lng: 17.579254,
+        name: 'Upscale Spacious Home',
+        description: 'Five bedroom home with indoor pool and two story balcony',
+        price: 680.28
       },
     ], {});
 

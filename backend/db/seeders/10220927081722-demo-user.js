@@ -22,9 +22,9 @@ module.exports = {
     */
     await queryInterface.bulkInsert(options, [
       { //1
-        firstName: 'Henry',
-        lastName: 'Jones',
-        username: 'Demo-lition',
+        firstName: 'Rachel',
+        lastName: 'Kettle',
+        username: 'Demo',
         email: 'demo@user.io',
         hashedPassword: bcrypt.hashSync('password')
       },
@@ -56,6 +56,27 @@ module.exports = {
         email: 'lzest@gmail.com',
         hashedPassword: bcrypt.hashSync('password5')
       },
+      { //6
+        firstName: 'Pay',
+        lastName: 'Ramis',
+        username: 'PayingRamis',
+        email: 'payingramis@gmail.com',
+        hashedPassword: bcrypt.hashSync('passwor65')
+      },
+      { //7
+        firstName: 'Pop',
+        lastName: 'Root',
+        username: 'RootingWithMe',
+        email: 'Rootpop@aol.com',
+        hashedPassword: bcrypt.hashSync('password7')
+      },
+      { //8
+        firstName: 'Ace',
+        lastName: 'Waifu',
+        username: 'WaifuWaifu',
+        email: 'awaifu@yahoo.com',
+        hashedPassword: bcrypt.hashSync('password8')
+      },
     ], {});
   },
 
@@ -68,7 +89,7 @@ module.exports = {
      */
     await queryInterface.bulkDelete(options, {
       //added other usernames
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2', 'PokerChampion99', 'Baking4Life'] }
+      username: { [Op.in]: ['Demo', 'FakeUser1', 'FakeUser2', 'PokerChampion99', 'Baking4Life'] }
     }, {});
   }
 };

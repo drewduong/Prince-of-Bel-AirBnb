@@ -54,8 +54,18 @@ i+i {
   line-height: 25px;
 }
 
-.dropdown-list div:hover {
-  background: #F0EDE1;
+.dropdown-list button:hover {
+  border-radius: 10px;
+  background: rgb(245, 245, 245)
+}
+
+.first-section {
+  margin: 0 0 0.5rem 0;
+}
+
+.second-section div:hover {
+  border-radius: 10px;
+  background: rgb(245, 245, 245);
   cursor: pointer;
 }
 

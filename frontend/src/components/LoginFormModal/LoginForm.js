@@ -11,9 +11,9 @@ function LoginForm({ setShowModal }) {
   const [errors, setErrors] = useState([]);
 
   const demoLogin = async (e) => {
-    setCredential('Demo-lition')
+    setCredential('Demo')
     setPassword('password');
-    await dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
+    await dispatch(sessionActions.login({ credential: 'Demo', password: 'password' }))
   }
 
   const handleSubmit = (e) => {

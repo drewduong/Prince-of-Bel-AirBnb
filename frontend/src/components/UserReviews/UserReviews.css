@@ -13,7 +13,8 @@
 .user-reviews-container {
   display: flex;
   justify-content: center;
-  flex-direction: row;
+  align-items: center;
+  flex-direction: column;
   flex-wrap: wrap;
   margin: 2rem 20rem;
   border: 2px solid white
@@ -25,18 +26,16 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   width: 27.5vw;
-  margin: 0 1rem 1rem 0;
+  margin: 0 0 1rem 0;
   border-radius: 10px;
   border: 2px solid rgb(211, 211, 211, 0.4)
 }
 
 .user-review-div {
   margin: 1rem;
-  /* border: 2px solid black; */
 }
 
 .user-review-div span {
-  /* font-size: 1.1rem; */
   font-weight: 600;
   line-height: 1rem;
 }
@@ -48,7 +47,9 @@
 
 .user-reviews-description {
   padding-top: 1rem;
-
+  overflow: auto;
+  overflow-wrap: break-word;
+  /* border: 2px solid black */
 }
 
 .user-reviews-delete-button {

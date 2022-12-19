@@ -16,8 +16,14 @@ function SignupForm({ setShowModal }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  /* Check to see if email or username exists */
+
+  // const emailExists = 
+  // const usernameExists 
+
   if (sessionUser) return <Redirect to="/" />;
 
+  /* Create conditional to check if username or email exists */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
@@ -27,6 +33,7 @@ function SignupForm({ setShowModal }) {
         .then(() => setShowModal(false))
         .catch(async (res) => {
           const data = await res.json();
+          // console.log('data.error data type: ', data)
           if (data && data.errors) setErrors(data.errors);
         });
     }

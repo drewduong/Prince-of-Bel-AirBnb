@@ -32,6 +32,26 @@ module.exports = {
       {
         reviewId: 3,
         url: 'https://bloximages.chicago2.vip.townnews.com/ladowntownnews.com/content/tncms/assets/v3/editorial/7/3f/73f436ea-bafd-11e9-9251-a3db9e215be6/5d4e0213d086f.image.jpg'
+      },
+      {
+        reviewId: 4,
+        url: 'https://bloximages.chicago2.vip.townnews.com/ladowntownnews.com/content/tncms/assets/v3/editorial/7/3f/73f436ea-bafd-11e9-9251-a3db9e215be6/5d4e0213d086f.image.jpg'
+      },
+      {
+        reviewId: 5,
+        url: 'https://bloximages.chicago2.vip.townnews.com/ladowntownnews.com/content/tncms/assets/v3/editorial/7/3f/73f436ea-bafd-11e9-9251-a3db9e215be6/5d4e0213d086f.image.jpg'
+      },
+      {
+        reviewId: 6,
+        url: 'https://bloximages.chicago2.vip.townnews.com/ladowntownnews.com/content/tncms/assets/v3/editorial/7/3f/73f436ea-bafd-11e9-9251-a3db9e215be6/5d4e0213d086f.image.jpg'
+      },
+      {
+        reviewId: 7,
+        url: 'https://bloximages.chicago2.vip.townnews.com/ladowntownnews.com/content/tncms/assets/v3/editorial/7/3f/73f436ea-bafd-11e9-9251-a3db9e215be6/5d4e0213d086f.image.jpg'
+      },
+      {
+        reviewId: 8,
+        url: 'https://bloximages.chicago2.vip.townnews.com/ladowntownnews.com/content/tncms/assets/v3/editorial/7/3f/73f436ea-bafd-11e9-9251-a3db9e215be6/5d4e0213d086f.image.jpg'
       }
     ], {});
 

@@ -69,7 +69,6 @@ const CreateReviewForm = () => {
               value={review}
               minLength="10"
               maxLength="255"
-              onPaste="return false"
             />
           </label>
           <label>

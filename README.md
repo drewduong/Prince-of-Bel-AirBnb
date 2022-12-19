@@ -1,4 +1,5 @@
-![Alt text](https://drive.google.com/file/d/1nYIOCpT44dgLYssj6dgsagSUoPL3dDxz/view?usp=sharing)
+![BEAUTIFUL DESTINATION (500 × 250 px) (5)](https://user-images.githubusercontent.com/105185556/208415763-ff43d529-3ca2-4f4e-aa5d-0787e4ae8ee0.png)
+
 Interested in gorgeous staycations outside of the United States? Look no further! [Beautiful Destinations](https://beautifuldestinations.onrender.com) is a full stack application that was inspired by [Airbnb](http://airbnb.com). Make sure to checkout the reviews when you get a chance!
 
 ## Technology
@@ -26,4 +27,4 @@ Interested in gorgeous staycations outside of the United States? Look no further
 5.  Navigate to Frontend folder in a separate terminal and type 'npm start,' and you'll be automatically directed to http://localhost:3000/
 
 ## Landing Page
-![Alt text](./Screenshot 2022-12-19 031552.png)
+![Screenshot 2022-12-19 031552](https://user-images.githubusercontent.com/105185556/208415803-3670e2f7-c852-4fa4-a282-50d8a956e7e4.png)

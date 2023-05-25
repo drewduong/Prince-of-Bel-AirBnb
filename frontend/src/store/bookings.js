@@ -102,7 +102,7 @@ export const createBookingThunk = (payload) => async (dispatch) => {
 
 
 // Payload contains edit booking details and bookingId
-export const updateSpotThunk = (payload, bookingId) => async (dispatch) => {
+export const updateBookingThunk = (payload, bookingId) => async (dispatch) => {
   // console.log('/n', 'Update a booking user useParams bookingId payload (thunk):', '/n', payload)
   const res = await csrfFetch(`/api/bookings/${bookingId}`, {
     method: 'PUT',

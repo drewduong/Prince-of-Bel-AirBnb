@@ -21,7 +21,7 @@ export const getReviewsAction = (payload) => {
 
 // Get user reviews
 export const getUserReviewsAction = (payload) => {
-  // console.log("Get user spots payload (action)", payload)
+  console.log("Get user spots payload (action)", payload)
   return {
     type: GET_USER_REVIEWS,
     payload
@@ -72,7 +72,7 @@ export const getUserReviewsThunk = () => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    // console.log("/n", "Get user spots backend data (thunk):", "/n", data)
+    console.log("/n", "Get user spots backend data (thunk):", "/n", data)
     dispatch(getUserReviewsAction(data))
     return data
   }
@@ -136,7 +136,7 @@ const reviewReducer = (state = initialState, action) => {
       action.payload.Reviews.forEach(review => {
         newState.userReviews[review.id] = review
       })
-      // console.log('/n', 'All user reviews (reducer):', '/n', newState)
+      console.log('/n', 'All user reviews (reducer):', '/n', newState)
       return newState
     }
     case DELETE_REVIEW: {

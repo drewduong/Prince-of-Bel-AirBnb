@@ -16,7 +16,7 @@ const UserReviews = () => {
 
   // const sessionUser = useSelector(state => state.session.user)
   const currentUserReviews = useSelector(state => Object.values(state.reviews.userReviews))
-  // console.log('/n', 'Current user reviews (useSelector):', '/n', currentUserReviews)
+  console.log('/n', 'Current user reviews (useSelector):', '/n', currentUserReviews)
 
 
   /* Passive data: dispatch within useEffect

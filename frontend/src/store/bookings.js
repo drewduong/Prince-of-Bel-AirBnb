@@ -61,8 +61,8 @@ export const deleteBookingAction = (payload) => {
 /* Thunk waits to be dispatched, then does an API call to our backend to grab data.
 If data is ok in the backend, it will dispatch the regular POJO action creator that will go into the reducer and update the store which stores state */
 
-export const getAllBookingsThunk = () => async (dispatch) => {
-  const res = await csrfFetch('/api/bookings')
+export const getAllBookingsThunk = (payload) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${payload}/bookings`)
 
   if (res.ok) {
     const data = await res.json()
@@ -85,9 +85,9 @@ export const getUserBookingsThunk = () => async (dispatch) => {
 }
 
 
-export const createBookingThunk = (payload) => async (dispatch) => {
+export const createBookingThunk = (payload, spotId) => async (dispatch) => {
   // console.log('/n', 'Create a booking user input payload (thunk):', '/n', payload)
-  const res = await csrfFetch('/api/bookings', {
+  const res = await csrfFetch(`/api/spots/${spotId}/bookings`, {
     method: 'POST',
     body: JSON.stringify(payload)
   })

@@ -5,12 +5,18 @@ import { getSpotThunk } from '../../store/spots';
 import { NavLink } from 'react-router-dom';
 import './SingleSpot.css';
 import { getSpotReviewsThunk } from '../../store/reviews';
+import { createBookingThunk } from '../../store/bookings';
 
 const SingleSpot = () => {
   const dispatch = useDispatch()
   const { spotId } = useParams()
 
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+  const [hasSubmitted, setHasSubmitted] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+
+  const [validationErrors, setValidationErrors] = useState([])
 
   /* Subscribe to the store and listen to changes in the spots slice of state.
   singleSpot is an object, which can't be mapped over, it needs to be converted to an array */
@@ -28,7 +34,7 @@ const SingleSpot = () => {
   const reviewExists = currentReviews.find(review => review.userId === sessionUser?.id)
   const isSpotOwner = currentSpot?.ownerId === sessionUser?.id
   // console.log('/n', 'Checking to see if the owner can review his own spot (useSelector):', '/n', currentSpot)
-
+  const currentDate = new Date().toISOString().slice(0, 10)
 
   /* Passive data: dispatch within useEffect
      Active data, dispatch within submitHandler */
@@ -41,6 +47,31 @@ const SingleSpot = () => {
     dispatch(getSpotReviewsThunk(+spotId))
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
+
+  useEffect(() => {
+    const errors = []
+
+    if (startDate <= currentDate) errors.push("Invalid start date")
+    if (endDate <= currentDate) errors.push("Invalid end date")
+    if (startDate === endDate) errors.push("Invalid start or end date")
+
+    setValidationErrors(errors)
+
+  }, [startDate, endDate, currentDate])
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    setHasSubmitted(true)
+    const payload = {
+      startDate,
+      endDate
+    }
+
+    if (!validationErrors.length) {
+      await dispatch(createBookingThunk(payload, spotId))
+    }
+
+  }
 
   // Conditional used to debug if it's not rendering correctly
   if (!Object.keys(currentSpot).length) return null

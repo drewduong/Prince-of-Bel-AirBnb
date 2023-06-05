@@ -84,6 +84,11 @@ i+i {
   color: black;
 }
 
+.user {
+  text-decoration: none;
+  color: black;
+}
+
 .dropdown-list button {
   position: relative;
   right: 5px;

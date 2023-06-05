@@ -6,10 +6,12 @@ import { NavLink } from 'react-router-dom';
 import './SingleSpot.css';
 import { getSpotReviewsThunk } from '../../store/reviews';
 import { createBookingThunk } from '../../store/bookings';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const SingleSpot = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const { spotId } = useParams()
 
   const [startDate, setStartDate] = useState('')
@@ -25,7 +27,7 @@ const SingleSpot = () => {
   const sessionUser = useSelector(state => state.session.user)
   // console.log('/n', 'Session user (useSelector):', '/n', currentSpot)
   const currentSpot = useSelector(state => state.spots.singleSpot)
-  console.log('/n', 'Spot detail (useSelector):', '/n', currentSpot)
+  // console.log('/n', 'Spot detail (useSelector):', '/n', currentSpot)
   const currentSpotReviews = useSelector(state => Object.values(state.reviews.spotReviews))
   // console.log('/n', 'Current spot reviews (useSelector):', '/n', currentSpotReviews)
 
@@ -70,6 +72,7 @@ const SingleSpot = () => {
 
     if (!validationErrors.length) {
       await dispatch(createBookingThunk(payload, spotId))
+      history.push('/bookings')
     }
 
   }

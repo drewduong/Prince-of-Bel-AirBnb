@@ -49,6 +49,9 @@ function App() {
           <Route path='/bookings'>
             <UserBookings />
           </Route>
+          <Route path='/profile'>
+            <UserBookings />
+          </Route>
         </Switch>
       )
       }

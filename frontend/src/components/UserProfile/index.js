@@ -17,7 +17,7 @@ const UserProfile = () => {
       <UserBookings />
       <h2>Manage Listings</h2>
       <UserSpots />
-      <h2>Your Reviews</h2>
+      <h2>Manage Reviews</h2>
       <UserReviews />
     </div>
   )

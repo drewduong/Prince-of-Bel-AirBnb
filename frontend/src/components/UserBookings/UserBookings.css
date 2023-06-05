@@ -23,8 +23,8 @@
 
 .booking-listing-image {
   box-sizing: border-box;
-  width: 25vw;
-  height: 20vw;
+  width: 20vw;
+  height: 15vw;
   border-radius: 10px;
 }
 
@@ -33,7 +33,7 @@
   font-weight: 600;
   margin: 0.5rem 0 1rem 0;
   height: 30px;
-  width: 25vw;
+  width: 20vw;
   background-color: rgb(255, 44, 44);
   border-radius: 8px;
   border: none;

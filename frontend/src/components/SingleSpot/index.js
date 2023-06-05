@@ -120,7 +120,7 @@ const SingleSpot = () => {
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                   />
-                  <button type="submit">Book Now</button>
+                  <button className='delete-booking-button' type="submit">Book Now</button>
                 </form>
               </div>
             </div>

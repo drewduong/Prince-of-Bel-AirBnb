@@ -79,6 +79,11 @@ i+i {
   color: black;
 }
 
+.bookings {
+  text-decoration: none;
+  color: black;
+}
+
 .dropdown-list button {
   position: relative;
   right: 5px;

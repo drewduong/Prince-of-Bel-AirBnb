@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 const UserBookings = () => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const currentDate = new Date().toISOString().slice(0, 10)
   const [isLoaded, setIsLoaded] = useState(false)
 
   /* Subscribe to the store and listen to changes in the spots slice of state.
@@ -35,10 +36,10 @@ const UserBookings = () => {
       {currentUserBookings.map(booking => (
         <div className='user-bookings-item'>
           <div className='user-booking-div'>
-            <span>{booking.User.firstName} {booking.User.lastName} · ★ {booking.stars} </span>
+            <span>ID: {booking.id} · Spot ID {booking.spotId} · User: {booking.userId} · Start Date: {booking.startDate} · End Date: {booking.endDate} </span>
             <div className='booking-spot-location'>
-              <div className='user-bookings-location'>{booking.Spot.city}, {booking.Spot.country}</div>
-              <div className='user-bookings-description'>{booking.booking}</div>
+              {/* <div className='user-bookings-location'>{booking.Spot.city}, {booking.Spot.country}</div> */}
+              {/* <div className='user-bookings-description'>{booking.booking}</div> */}
             </div>
           </div>
           <div className='delete-booking'>

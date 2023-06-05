@@ -11,6 +11,7 @@ import UserSpots from "./components/UserSpots";
 import UpdateSpotForm from "./components/UpdateSpotForm"
 import CreateReviewForm from "./components/CreateReviewForm";
 import UserReviews from "./components/UserReviews";
+import UserBookings from "./components/UserBookings";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route path='/reviews'>
             <UserReviews />
+          </Route>
+          <Route path='/bookings'>
+            <UserBookings />
           </Route>
         </Switch>
       )

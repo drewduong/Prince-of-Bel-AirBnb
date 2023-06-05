@@ -52,6 +52,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
           <div className='second-section'>
             <div><NavLink className='listings' to={'/listings'}>Listings</NavLink></div>
             <div><NavLink className='reviews' to={'/reviews'}>Reviews</NavLink></div>
+            <div><NavLink className='bookings' to={'/bookings'}>Bookings</NavLink></div>
             <button className='logout' onClick={logout}>Log Out</button>
           </div>
         </ul>) :

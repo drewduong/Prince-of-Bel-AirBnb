@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 const UserBookings = () => {
   const dispatch = useDispatch()
   const history = useHistory()
-  const currentDate = new Date().toISOString().slice(0, 10)
   const [isLoaded, setIsLoaded] = useState(false)
 
   /* Subscribe to the store and listen to changes in the spots slice of state.
@@ -16,7 +15,7 @@ const UserBookings = () => {
 
   // const sessionUser = useSelector(state => state.session.user)
   const currentUserBookings = useSelector(state => Object.values(state.bookings))
-  console.log('/n', 'Current user bookings (useSelector):', '/n', currentUserBookings)
+  // console.log('/n', 'Current user bookings (useSelector):', '/n', currentUserBookings)
 
 
   /* Passive data: dispatch within useEffect

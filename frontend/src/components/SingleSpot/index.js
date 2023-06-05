@@ -7,6 +7,7 @@ import './SingleSpot.css';
 import { getSpotReviewsThunk } from '../../store/reviews';
 import { createBookingThunk } from '../../store/bookings';
 
+
 const SingleSpot = () => {
   const dispatch = useDispatch()
   const { spotId } = useParams()
@@ -100,6 +101,24 @@ const SingleSpot = () => {
               <div className='spot-breakdown'>
                 <span className='spot-price'>${currentSpot.price} per night</span>
                 <span className='spot-review-breakdown'>★ {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews</span>
+                <form onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
+                  <ul className="errors">
+                    {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
+                      <li key={idx}><i class="fa-sharp fa-solid fa-circle-exclamation"></i> {error}</li>
+                    ))}
+                  </ul>
+                  <input
+                    type="date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                  />
+                  <input
+                    type="date"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                  />
+                  <button type="submit">Book Now</button>
+                </form>
               </div>
             </div>
           </div>

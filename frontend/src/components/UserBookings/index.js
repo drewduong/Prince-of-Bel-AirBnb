@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getUserBookingsThunk, deleteBookingThunk } from '../../store/bookings';
 import { NavLink } from 'react-router-dom';
-// import './UserBookings.css';
+import './UserBookings.css';
 
 const UserBookings = () => {
   const dispatch = useDispatch()
@@ -35,11 +35,10 @@ const UserBookings = () => {
       {currentUserBookings.map(booking => (
         <div className='user-bookings-item'>
           <div className='user-booking-div'>
-            <span>ID: {booking.id} · Spot ID {booking.spotId} · User: {booking.userId} · Start Date: {booking.startDate} · End Date: {booking.endDate} </span>
-            <div className='booking-spot-location'>
-              {/* <div className='user-bookings-location'>{booking.Spot.city}, {booking.Spot.country}</div> */}
-              {/* <div className='user-bookings-description'>{booking.booking}</div> */}
+            <div className='booking-spot-image'>
+              <img className='booking-listing-image' src={booking.Spot.previewImage} alt='No Preview' />
             </div>
+            <span>Dates: {booking.startDate} - {booking.endDate} </span>
           </div>
           <div className='delete-booking'>
             <button className='user-bookings-delete-button' onClick={async (e) => {

@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "Airbnb-Normal";
+  src: url('../../assets/AirbnbCereal_W_Bk.woff') format('woff');
+  /* font-weight: normal; */
+}
+
+@font-face {
+  font-family: "Airbnb-Light";
+  src: url('../../assets/AirbnbCereal_W_Lt.woff') format('woff');
+  /* font-weight: normal; */
+}
+
+.user-bookings-container {
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  /* border: 2px solid red; */
+}
+
+.user-bookings-item {
+  padding: 1rem 1rem 1rem 0;
+  /* border-bottom: rgb(230, 230, 230) 1px solid; */
+  /* border: 2px solid black; */
+}
+
+.booking-listing-image {
+  box-sizing: border-box;
+  width: 20vw;
+  height: 20vw;
+  border-radius: 10px;
+}
+
+.user-bookings-delete-button {
+  color: white;
+  font-weight: 600;
+  margin: 0.5rem 0 1rem 0;
+  height: 30px;
+  width: 20vw;
+  background-color: rgb(255, 44, 44);
+  border-radius: 8px;
+  border: none;
+}
+
+.user-bookings-delete-button:hover {
+  cursor: pointer;
+}

@@ -12,6 +12,7 @@ import UpdateSpotForm from "./components/UpdateSpotForm"
 import CreateReviewForm from "./components/CreateReviewForm";
 import UserReviews from "./components/UserReviews";
 import UserBookings from "./components/UserBookings";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ function App() {
             <UserBookings />
           </Route>
           <Route path='/profile'>
-            <UserBookings />
+            <UserProfile />
           </Route>
         </Switch>
       )

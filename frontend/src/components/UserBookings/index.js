@@ -38,7 +38,7 @@ const UserBookings = () => {
             <div className='booking-spot-image'>
               <img className='booking-listing-image' src={booking.Spot.previewImage} alt='No Preview' />
             </div>
-            <span>Dates: {booking.startDate} - {booking.endDate} </span>
+            <span>Dates Booked: {booking.startDate} - {booking.endDate} </span>
           </div>
           <div className='delete-booking'>
             <button className='user-bookings-delete-button' onClick={async (e) => {

@@ -12,10 +12,7 @@
 
 .user-bookings-container {
   display: flex;
-  /* flex-wrap: wrap; */
-  /* flex-direction: row; */
-  /* justify-content: center; */
-  /* border: 2px solid red; */
+  border-bottom: rgb(230, 230, 230) 1px solid;
 }
 
 .user-bookings-item {
@@ -26,7 +23,7 @@
 
 .booking-listing-image {
   box-sizing: border-box;
-  width: 20vw;
+  width: 25vw;
   height: 20vw;
   border-radius: 10px;
 }
@@ -36,7 +33,7 @@
   font-weight: 600;
   margin: 0.5rem 0 1rem 0;
   height: 30px;
-  width: 20vw;
+  width: 25vw;
   background-color: rgb(255, 44, 44);
   border-radius: 8px;
   border: none;

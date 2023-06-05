@@ -12,11 +12,6 @@
 
 .user-reviews-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 2rem 20rem;
   border: 2px solid white
 }
 

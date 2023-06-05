@@ -39,7 +39,7 @@ const UserSpots = () => {
     <div className='listings-container'>
       {currentUserSpots.map(spot => (
         <div key={spot.id}>
-          <h2>{spot.name}</h2>
+          <h3>{spot.name}</h3>
           <span>★ {spot.avgRating} · ${spot.price}/night · {spot.city}, {spot.country} </span>
           <div className='listings-item'>
             <NavLink to={`/spots/${spot.id}`} />

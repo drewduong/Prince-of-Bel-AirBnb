@@ -35,20 +35,11 @@ function App() {
           <Route path='/host'>
             <CreateSpotForm />
           </Route>
-          <Route path='/listings'>
-            <UserSpots />
-          </Route>
           <Route path='/spots/:spotId/edit'>
             <UpdateSpotForm />
           </Route>
           <Route path='/spots/:spotId/review'>
             <CreateReviewForm />
-          </Route>
-          <Route path='/reviews'>
-            <UserReviews />
-          </Route>
-          <Route path='/bookings'>
-            <UserBookings />
           </Route>
           <Route path='/profile'>
             <UserProfile />

@@ -10,25 +10,25 @@
   /* font-weight: normal; */
 }
 
+h3 {
+  margin: 0;
+}
+
 .listings-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 1rem 12rem;
-  /* border: 2px solid red; */
+  border-bottom: rgb(230, 230, 230) 1px solid;
 }
 
 .listings-item {
   width: 100%;
   padding: 1rem 1rem 1rem 0;
-  border-bottom: rgb(230, 230, 230) 1px solid;
   /* border: 2px solid black; */
 }
 
 .listings-image {
   box-sizing: border-box;
-  width: 40vw;
-  height: 40vw;
+  width: 25vw;
+  height: 20vw;
   border-radius: 10px;
 }
 
@@ -40,9 +40,9 @@
   color: white;
   font-weight: 600;
   font-size: 0.85rem;
-  height: 40px;
+  height: 30px;
   margin-top: 1vw;
-  width: 40vw;
+  width: 25vw;
   background-color: rgb(255, 44, 44);
   border-radius: 8px;
 }
@@ -51,8 +51,8 @@
   color: white;
   font-weight: 600;
   margin: 0.5rem 0 1rem 0;
-  height: 40px;
-  width: 40vw;
+  height: 30px;
+  width: 25vw;
   background-color: rgb(255, 44, 44);
   border-radius: 8px;
   border: none;

@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import UserSpots from "../UserSpots";
 import UserReviews from "../UserReviews";
 import UserBookings from "../UserBookings";
+import './UserProfile.css';
 
 const UserProfile = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -14,9 +15,9 @@ const UserProfile = () => {
       <h1>Welcome, {sessionUser.firstName} </h1>
       <h2>Upcoming Destinations</h2>
       <UserBookings />
-      <h2>Listings:</h2>
+      <h2>Manage Listings</h2>
       <UserSpots />
-      <h2>Reviews:</h2>
+      <h2>Your Reviews</h2>
       <UserReviews />
     </div>
   )

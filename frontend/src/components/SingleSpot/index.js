@@ -62,50 +62,50 @@ const SingleSpot = () => {
 
   // }, [startDate, endDate, currentDate])
 
-  // const onSubmit = async (e) => {
-  //   e.preventDefault()
-  //   setHasSubmitted(true)
-
-  //   if (startDate <= currentDate) errors.push("Invalid start date")
-  //   if (endDate <= currentDate) errors.push("Invalid end date")
-  //   if (startDate === endDate) errors.push("Invalid start or end date")
-  //   // setErrors([])
-  //   const payload = {
-  //     startDate,
-  //     endDate
-  //   }
-
-  //   if (!errors.length) {
-  //     return dispatch(createBookingThunk(payload, spotId))
-  //       .then(() => {
-  //         alert('Booking sucessful!')
-  //       })
-  //       .catch(
-  //         async (res) => {
-  //           const data = await res.json();
-  //           if (data && data.errors) setErrors(data.errors);
-  //         }
-  //       );
-  //   }
-  // }
-
   const onSubmit = async (e) => {
     e.preventDefault()
     setHasSubmitted(true)
+
     if (startDate <= currentDate) errors.push("Invalid start date")
     if (endDate <= currentDate) errors.push("Invalid end date")
     if (startDate === endDate) errors.push("Invalid start or end date")
-
+    // setErrors([])
     const payload = {
       startDate,
       endDate
     }
-    const newBooking = await dispatch(createBookingThunk(payload, spotId))
-    if (newBooking) {
-      setErrors(newBooking)
+
+    if (!errors.length) {
+      return dispatch(createBookingThunk(payload, spotId))
+        .then(() => {
+          alert('Booking sucessful!')
+        })
+        .catch(
+          async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+          }
+        );
     }
-    return newBooking
   }
+
+  // const onSubmit = async (e) => {
+  //   e.preventDefault()
+  //   setHasSubmitted(true)
+  //   if (startDate <= currentDate) errors.push("Invalid start date")
+  //   if (endDate <= currentDate) errors.push("Invalid end date")
+  //   if (startDate === endDate) errors.push("Invalid start or end date")
+
+  //   const payload = {
+  //     startDate,
+  //     endDate
+  //   }
+  //   const newBooking = await dispatch(createBookingThunk(payload, spotId))
+  //   if (newBooking) {
+  //     setErrors(newBooking)
+  //   }
+  //   return newBooking
+  // }
 
   // Conditional used to debug if it's not rendering correctly
   if (!Object.keys(currentSpot).length) return null

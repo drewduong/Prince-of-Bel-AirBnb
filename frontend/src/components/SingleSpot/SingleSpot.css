@@ -121,7 +121,7 @@ h3 {
 
 .spot-review-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   box-sizing: border-box;
   block-size: fit-content;

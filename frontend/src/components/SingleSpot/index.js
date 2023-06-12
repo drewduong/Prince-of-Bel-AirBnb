@@ -19,7 +19,7 @@ const SingleSpot = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 
-  const [validationErrors, setValidationErrors] = useState([])
+  const [errors, setErrors] = useState([])
 
   /* Subscribe to the store and listen to changes in the spots slice of state.
   singleSpot is an object, which can't be mapped over, it needs to be converted to an array */
@@ -51,30 +51,60 @@ const SingleSpot = () => {
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
 
-  useEffect(() => {
-    const errors = []
+  // useEffect(() => {
+  //   const errors = []
 
-    if (startDate <= currentDate) errors.push("Invalid start date")
-    if (endDate <= currentDate) errors.push("Invalid end date")
-    if (startDate === endDate) errors.push("Invalid start or end date")
+  //   if (startDate <= currentDate) errors.push("Invalid start date")
+  //   if (endDate <= currentDate) errors.push("Invalid end date")
+  //   if (startDate === endDate) errors.push("Invalid start or end date")
 
-    setValidationErrors(errors)
+  //   setErrors(errors)
 
-  }, [startDate, endDate, currentDate])
+  // }, [startDate, endDate, currentDate])
+
+  // const onSubmit = async (e) => {
+  //   e.preventDefault()
+  //   setHasSubmitted(true)
+
+  //   if (startDate <= currentDate) errors.push("Invalid start date")
+  //   if (endDate <= currentDate) errors.push("Invalid end date")
+  //   if (startDate === endDate) errors.push("Invalid start or end date")
+  //   // setErrors([])
+  //   const payload = {
+  //     startDate,
+  //     endDate
+  //   }
+
+  //   if (!errors.length) {
+  //     return dispatch(createBookingThunk(payload, spotId))
+  //       .then(() => {
+  //         alert('Booking sucessful!')
+  //       })
+  //       .catch(
+  //         async (res) => {
+  //           const data = await res.json();
+  //           if (data && data.errors) setErrors(data.errors);
+  //         }
+  //       );
+  //   }
+  // }
 
   const onSubmit = async (e) => {
     e.preventDefault()
     setHasSubmitted(true)
+    if (startDate <= currentDate) errors.push("Invalid start date")
+    if (endDate <= currentDate) errors.push("Invalid end date")
+    if (startDate === endDate) errors.push("Invalid start or end date")
+
     const payload = {
       startDate,
       endDate
     }
-
-    if (!validationErrors.length) {
-      await dispatch(createBookingThunk(payload, spotId))
-      history.push('/bookings')
+    const newBooking = await dispatch(createBookingThunk(payload, spotId))
+    if (newBooking) {
+      setErrors(newBooking)
     }
-
+    return newBooking
   }
 
   // Conditional used to debug if it's not rendering correctly
@@ -106,7 +136,7 @@ const SingleSpot = () => {
                 <span className='spot-review-breakdown'>★ {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews</span>
                 <form onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
                   <ul className="errors">
-                    {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
+                    {hasSubmitted && errors.length > 0 && errors.map((error, idx) => (
                       <li key={idx}><i class="fa-sharp fa-solid fa-circle-exclamation"></i> {error}</li>
                     ))}
                   </ul>

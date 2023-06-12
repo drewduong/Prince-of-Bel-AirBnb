@@ -24,7 +24,7 @@ function SignupForm({ setShowModal }) {
   if (sessionUser) return <Redirect to="/" />;
 
   /* Create conditional to check if username or email exists */
-  const handleSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
@@ -41,7 +41,7 @@ function SignupForm({ setShowModal }) {
   };
 
   return (
-    <form className='signup-container' onSubmit={handleSubmit}>
+    <form className='signup-container' onSubmit={onSubmit}>
       <div className='signup-item'>
         <h2>Sign Up</h2>
         <ul className='errors'>

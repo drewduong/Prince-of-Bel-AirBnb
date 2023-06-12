@@ -16,7 +16,7 @@ function LoginForm({ setShowModal }) {
     await dispatch(sessionActions.login({ credential: 'Demo', password: 'password' }))
   }
 
-  const handleSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
@@ -32,7 +32,7 @@ function LoginForm({ setShowModal }) {
 
   return (
     <div className='login-container'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <div className='login-item'>
           <h2>Login</h2>
           <ul className='errors'>

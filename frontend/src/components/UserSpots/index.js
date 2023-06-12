@@ -42,9 +42,10 @@ const UserSpots = () => {
           <h3>{spot.name}</h3>
           <span>★ {spot.avgRating} · ${spot.price}/night · {spot.city}, {spot.country} </span>
           <div className='listings-item'>
-            <NavLink to={`/spots/${spot.id}`} />
             <div>
-              <img className='listings-image' src={spot.previewImage} alt='No Preview' />
+              <NavLink to={`/spots/${spot.id}`}>
+                <img className='listings-image' src={spot.previewImage} alt='No Preview' />
+              </NavLink>
               <div>
                 <div className='left-div'>
                   <div className='listing-update-delete'>

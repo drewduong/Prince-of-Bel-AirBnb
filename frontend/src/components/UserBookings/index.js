@@ -36,7 +36,9 @@ const UserBookings = () => {
         <div className='user-bookings-item'>
           <div className='user-booking-div'>
             <div className='booking-spot-image'>
-              <img className='booking-listing-image' src={booking.Spot.previewImage} alt='No Preview' />
+              <NavLink to={`/spots/${booking.spotId}`}>
+                <img className='booking-listing-image' src={booking.Spot.previewImage} alt='No Preview' />
+              </NavLink>
             </div>
             <span>Dates Booked: {booking.startDate} - {booking.endDate} </span>
           </div>

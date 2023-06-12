@@ -56,7 +56,7 @@ i+i {
 
 .dropdown-list button:hover {
   border-radius: 10px;
-  background: rgb(245, 245, 245)
+  /* background: rgb(245, 245, 245) */
 }
 
 .first-section {
